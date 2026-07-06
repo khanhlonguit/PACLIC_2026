@@ -1,0 +1,306 @@
+!pip uninstall torch torchvision torchaudio xformers transformers trl unsloth unsloth_zoo -y
+---
+# Bước 2: Cài đặt lại bản PyTorch 2.6 ổn định, hỗ trợ CUDA 12.4 (hoàn toàn tương thích ngược với CUDA 12.8 của máy)
+!pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 --no-cache-dir
+---
+# Bước 3: Cài đặt đồng bộ tất cả các thư viện vệ tinh cốt lõi (Không chỉ định phiên bản lỗi thời)
+!pip install transformers trl peft accelerate bitsandbytes xformers --no-cache-dir
+
+# Bước 4: Cài đặt lại bản Unsloth mới nhất từ nhánh chính để nhận diện chính xác card của bạn
+!pip install "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git" --no-cache-dir
+---
+import torch
+
+
+print("--- KIỂM TRA PHIÊN BẢN CÁC THƯ VIỆN ---")
+print(f"PyTorch version:     {torch.__version__}")
+print(f"CUDA Available:      {torch.cuda.is_available()}")
+
+---
+# 2. Khởi tạo Mô hình và Tokenizer
+from unsloth import FastLanguageModel
+import torch
+
+max_seq_length = 2048 # Hỗ trợ tự động RoPE Scaling cho context dài
+dtype = None # None để tự động nhận diện (Float16 cho T4/V100, Bfloat16 cho Ampere+)
+load_in_4bit = True # Dùng 4bit quantization để tiết kiệm bộ nhớ GPU
+
+model, tokenizer = FastLanguageModel.from_pretrained(
+    model_name = "Qwen/Qwen2.5-1.5B-Instruct",
+    max_seq_length = max_seq_length,
+    dtype = dtype,
+    load_in_4bit = load_in_4bit,
+)
+
+# Thiết lập cấu hình LoRA
+model = FastLanguageModel.get_peft_model(
+    model,
+    r = 16,
+    target_modules = ["q_proj", "k_proj", "v_proj", "o_proj",
+                      "gate_proj", "up_proj", "down_proj",],
+    lora_alpha = 16,
+    lora_dropout = 0,
+    bias = "none",
+    use_gradient_checkpointing = "unsloth",
+    random_state = 3407,
+    use_rslora = False,
+    loftq_config = None,
+)
+---
+# 3. Tiền xử lý dữ liệu
+import json
+from datasets import Dataset
+
+# Tải dữ liệu từ file JSON. (Đảm bảo file sample_train.json nằm cùng thư mục)
+with open("train_vimmrc.json", "r", encoding="utf-8") as f:
+    raw_data = json.load(f)
+
+formatted_data = []
+
+for item in raw_data:
+    article = item.get("article", "")
+    questions = item.get("questions", [])
+    options_list = item.get("options", [])
+    answers = item.get("answers", [])
+
+    # Tạo prompt tách biệt cho mỗi câu hỏi để mô hình dễ học
+    for q, opts, ans in zip(questions, options_list, answers):
+        letters = ["A", "B", "C", "D", "E", "F", "G", "H"]
+        options_text = ""
+        for i, opt in enumerate(opts):
+            if i < len(letters):
+                options_text += f"{letters[i]}. {opt}\n"
+
+        prompt = f"Đọc đoạn văn sau và trả lời câu hỏi bằng cách chọn đáp án đúng nhất.\n\nĐoạn văn:\n{article}\n\nCâu hỏi: {q}\nCác đáp án:\n{options_text}"
+        response = f"{ans}" # Mô hình học cách trả lời trực tiếp A, B, C hoặc D
+
+        formatted_data.append({
+            "instruction": prompt,
+            "output": response
+        })
+
+dataset = Dataset.from_list(formatted_data)
+print(f"Tổng số mẫu huấn luyện (tính theo từng câu hỏi): {len(dataset)}")
+print("\nVí dụ 1 mẫu dữ liệu:\n", dataset[0])
+---
+# 4. Format prompt theo định dạng chuẩn của ChatML (dành cho Qwen2.5 Instruct)
+from unsloth.chat_templates import get_chat_template
+
+tokenizer = get_chat_template(
+    tokenizer,
+    chat_template = "qwen-2.5",
+)
+
+def formatting_prompts_func(examples):
+    instructions = examples["instruction"]
+    outputs      = examples["output"]
+    texts = []
+    for instruction, output in zip(instructions, outputs):
+        messages = [
+            {"role": "system", "content": "Bạn là một trợ lý AI thông minh, giỏi tiếng Việt và có khả năng đọc hiểu văn bản cực kỳ chính xác."},
+            {"role": "user", "content": instruction},
+            {"role": "assistant", "content": output}
+        ]
+        # Áp dụng template, tokenize = False vì Trainer sẽ lo phần tokenize
+        text = tokenizer.apply_chat_template(messages, tokenize = False, add_generation_prompt = False)
+        texts.append(text)
+    return { "text" : texts, }
+
+dataset = dataset.map(formatting_prompts_func, batched = True,)
+---
+# 5. Cấu hình và Bắt đầu Huấn luyện (Fine-Tuning)
+from trl import SFTTrainer
+from transformers import TrainingArguments
+from unsloth import is_bfloat16_supported
+import sys
+trainer = SFTTrainer(
+    model = model,
+    processing_class = tokenizer,
+    train_dataset = dataset,     # Tên biến dataset của bạn
+    dataset_text_field = "text", # Tên trường text trong dataset của bạn
+    max_seq_length = max_seq_length,
+    dataset_num_proc = 1,        # Ép tiến trình xử lý data về 1 để NÉ HOÀN TOÀN lỗi pickle
+    packing = False,
+    args = TrainingArguments(
+        per_device_train_batch_size = 2,
+        gradient_accumulation_steps = 4,
+        warmup_steps = 5,
+        # max_steps = 60, # Tăng số bước hoặc thay bằng num_train_epochs để train toàn bộ dataset (VD: num_train_epochs = 3)
+        # num_train_epochs = 3,
+        learning_rate = 2e-4,
+        fp16 = not is_bfloat16_supported(),
+        bf16 = is_bfloat16_supported(),
+        logging_steps = 10,
+        optim = "adamw_8bit",
+        weight_decay = 0.01,
+        lr_scheduler_type = "linear",
+        seed = 3407,
+        output_dir = "outputs",
+        report_to="none", # Nếu không dùng wandb thì để none
+        
+
+    ),
+)
+# Lấy class thực tế đang được dùng trong bộ nhớ
+real_config_cls = type(trainer.args)
+real_trainer_cls = type(trainer)
+# Ép sys.modules trỏ đúng vào module chứa các class này
+sys.modules['trl.trainer.sft_config'] = sys.modules[real_config_cls.__module__]
+sys.modules['trl.trainer.sft_trainer'] = sys.modules[real_trainer_cls.__module__]
+sys.modules[real_config_cls.__module__].SFTConfig = real_config_cls
+sys.modules[real_trainer_cls.__module__].SFTTrainer = real_trainer_cls
+
+# Bắt đầu train!
+trainer_stats = trainer.train()
+---
+# 6. Kiểm tra Inference sau khi huấn luyện
+FastLanguageModel.for_inference(model) # Kích hoạt chế độ sinh token nhanh của Unsloth x2 tốc độ
+
+messages = [
+    {"role": "system", "content": "Bạn là một trợ lý AI thông minh, giỏi tiếng Việt và có khả năng đọc hiểu văn bản cực kỳ chính xác."},
+    {"role": "user", "content": dataset[0]["instruction"]},
+]
+
+inputs = tokenizer.apply_chat_template(messages, tokenize=True, add_generation_prompt=True, return_tensors="pt").to("cuda")
+
+outputs = model.generate(input_ids=inputs, max_new_tokens=64, use_cache=True)
+
+print("\n--- KẾT QUẢ SINH TỪ MODEL ĐÃ FINE-TUNE ---\n")
+print(tokenizer.batch_decode(outputs, skip_special_tokens=True)[0])
+---
+# 7. Lưu Model (Chỉ lưu Weights LoRA)
+model.save_pretrained("qwen2.5-1.5b-instruct-lora-vinmmrc")
+tokenizer.save_pretrained("qwen2.5-1.5b-instruct-lora-vinmmrc")
+
+print("Đã lưu thành công mô hình LoRA!")
+
+# Nếu muốn gộp (merge) LoRA vào model gốc và lưu dạng safetensors thì dùng code sau:
+# model.save_pretrained_merged("qwen2.5-1.5b-instruct-vinmmrc-merged", tokenizer, save_method="merged_16bit")
+---
+import json
+import torch
+from tqdm.auto import tqdm
+from transformers import AutoModelForCausalLM, AutoTokenizer
+from peft import PeftModel
+from sklearn.metrics import accuracy_score, classification_report
+
+# ==========================================
+# 1. CẤU HÌNH & LOAD MODEL
+# ==========================================
+base_model_name = "Qwen/Qwen2.5-1.5B-Instruct" 
+adapter_path = r"qwen2.5-1.5b-instruct-lora-vinmmrc"
+test_data_path = r"test_vimmrc.json"
+
+print("Loading Tokenizer và Model...")
+tokenizer = AutoTokenizer.from_pretrained(base_model_name)
+base_model = AutoModelForCausalLM.from_pretrained(
+    base_model_name,
+    torch_dtype=torch.float16,
+    device_map="auto"
+)
+model = PeftModel.from_pretrained(base_model, adapter_path)
+model.eval()
+
+# Đọc data
+with open(test_data_path, "r", encoding="utf-8") as f:
+    test_data = json.load(f)
+
+# ==========================================
+# 2. HÀM TẠO PROMPT
+# ==========================================
+def format_prompt(article, question, options):
+    labels = ["A", "B", "C", "D", "E", "F"]
+    options_text = "\n".join([f"{labels[i]}. {opt}" for i, opt in enumerate(options)])
+    
+    prompt = f"""Dựa vào đoạn văn sau, hãy chọn đáp án đúng nhất cho câu hỏi.
+
+Đoạn văn: {article}
+
+Câu hỏi: {question}
+Các lựa chọn:
+{options_text}
+
+Đáp án của bạn (chỉ đưa ra một chữ cái): """
+    
+    messages = [
+        {"role": "system", "content": "Bạn là một trợ lý AI giỏi tiếng Việt, có khả năng đọc hiểu và trả lời câu hỏi trắc nghiệm chính xác."},
+        {"role": "user", "content": prompt}
+    ]
+    
+    text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+    return text
+
+# ==========================================
+# 3. CHẠY INFERENCE TRÊN TOÀN BỘ TẬP TEST
+# ==========================================
+y_true = []
+y_pred = []
+invalid_preds = 0 # Đếm số lần model trả lời lạc đề (không phải A, B, C, D)
+
+# Tiền xử lý để bóc tách tất cả các câu hỏi ra thành 1 list phẳng dễ lặp
+all_samples = []
+for item in test_data:
+    article = item['article']
+    for i in range(len(item['questions'])):
+        if len(item['options'][i]) > 0:
+            all_samples.append({
+                "article": article,
+                "question": item['questions'][i],
+                "options": item['options'][i],
+                "answer": item['answers'][i]
+            })
+
+print(f"\nTiến hành test trên tổng cộng {len(all_samples)} câu hỏi...")
+
+for sample in tqdm(all_samples):
+    prompt = format_prompt(sample["article"], sample["question"], sample["options"])
+    inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+    
+    with torch.no_grad():
+        outputs = model.generate(
+            **inputs,
+            max_new_tokens=3, 
+            pad_token_id=tokenizer.pad_token_id,
+            eos_token_id=tokenizer.eos_token_id,
+            temperature=0.01 # Rất nhỏ để tránh sinh ngẫu nhiên
+        )
+    
+    # Lấy text do model sinh ra
+    input_length = inputs.input_ids.shape[1]
+    generated_tokens = outputs[0][input_length:]
+    response = tokenizer.decode(generated_tokens, skip_special_tokens=True).strip()
+    
+    # Xử lý text đầu ra để lấy đúng chữ A, B, C hoặc D
+    pred_label = "N/A"
+    if len(response) > 0:
+        pred_label = response[0].upper()
+    
+    true_label = sample["answer"].upper()
+    
+    # Ghi nhận kết quả
+    y_true.append(true_label)
+    if pred_label in ["A", "B", "C", "D"]:
+        y_pred.append(pred_label)
+    else:
+        # Nếu model trả lời linh tinh (VD: "Theo đoạn văn..."), ta tính là trả lời sai (Z)
+        y_pred.append("X") 
+        invalid_preds += 1
+
+# ==========================================
+# 4. TÍNH TOÁN METRICS
+# ==========================================
+print("\n" + "="*50)
+print("KẾT QUẢ ĐÁNH GIÁ (EVALUATION METRICS)")
+print("="*50)
+
+accuracy = accuracy_score(y_true, y_pred)
+print(f"1. Tổng số câu hỏi: {len(y_true)}")
+print(f"2. Số câu trả lời đúng định dạng: {len(y_true) - invalid_preds}")
+print(f"3. Số câu bị lỗi định dạng (không ra A/B/C/D): {invalid_preds}")
+print(f"4. OVERALL ACCURACY (Độ chính xác tổng thể): {accuracy * 100:.2f}%\n")
+
+print("5. CLASSIFICATION REPORT (Chi tiết theo từng đáp án):")
+# In ra báo cáo chi tiết F1, Precision, Recall. Cảnh báo zero_division nếu class đó thiếu
+print(classification_report(y_true, y_pred, zero_division=0))
+
+---

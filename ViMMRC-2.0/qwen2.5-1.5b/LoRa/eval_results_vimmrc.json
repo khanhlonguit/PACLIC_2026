@@ -1,0 +1,6662 @@
+{
+  "accuracy": 61.3165,
+  "total": 1109,
+  "correct": 680,
+  "invalid_format": 165,
+  "predictions": [
+    {
+      "question": "Tại sao mẹ mệt nhọc và cảm thấy nóng bức?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Hà đã làm gì để cho mẹ bớt mệt?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Ai là người đã đón mẹ ở cổng?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Những dấu hiệu nào cho biết mẹ mệt?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Ai là người dùng quạt tạo gió mát cho mẹ?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Trong bài đọc này, nhân vật mẹ có bao nhiêu người con được nhắc đến?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Bài đọc miêu tả mùa nào trong năm?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Bướm ong đang bay được miêu tả như thế nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Bé tưởng cái gì là bong bóng ?",
+      "true": "B",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Câu chuyện trên được mô tả khi bé trong trạng thái nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Thứ gì đã tạo thành dòng nước và cuốn bé trôi xuống đất?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Nai Nhỏ đã xin phép bố đi đâu?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Bố bạn Nai Nhỏ đã nói gì khi Nai Nhỏ xin đi chơi xa cùng bạn?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Bạn của Nai Nhỏ có cách xử lý như thế nào khi gặp hòn đá chặn đường?",
+      "true": "B",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Ở bờ sông, bạn của Nai Nhỏ đã làm gì khi gặp Hổ?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Bạn của Nai Nhỏ đã xử lý như thế nào khi thấy Sói đang đuổi bắt Dê Non?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Hành động dùng vai hích để đẩy hòn đá chặn đường cho thấy bạn của Nai Nhỏ như thế nào?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Hành động kéo Nai Nhỏ chạy như bay khi thấy có lão Hổ rình mò cho thấy bạn của Nai Nhỏ như thế nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Hành động húc gã Sói để cứu Dê Non cho bạn của Nai Nhỏ như thế nào?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Trong bài đọc này, bạn của Nai Nhỏ có những điểm nào tốt?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Tại sao nói bạn của Nai Nhỏ được đánh giá là một người bạn tốt?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Biểu hiện của người cha ra sao khi nghe Nai Nhỏ kể những câu chuyện về bạn mình?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Trong sổ liên lạc, cô giáo đã nhắc Trung phải làm gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Bố đưa cho Trung xem quyển sổ liên lạc của bố khi học lớp mấy?",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Trong các sổ liên lạc cũ của bố, thầy giáo đã ghi lời phê như thế nào về bố?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Vì sao chữ bố đẹp vậy rồi mà thầy vẫn còn phê chữ bố chưa đẹp?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Khi Trung nhắc tới thầy giáo cũ, thái độ của người bố như thế nào?",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Tại sao bố lại buồn khi nhắc tới thầy giáo cũ của bố?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Nội dung của bài đọc Quyển sổ liên lạc là gì?",
+      "true": "D",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Sáng kiến của bé Hà là gì trong câu chuyện này?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Ngày 8/3 là ngày lễ gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Bé Hà đã giải thích vì sao phải chọn một ngày lễ cho ông bà?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Hai bố con Hà đã chọn ngày nào làm \"ngày ông bà\"?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Tại sao bố con Hà lại chọn ngày lập đông làm ngày lễ ông bà?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Ngày lập đông sắp đến, bé Hà lo lắng về điều gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Món quà của bé Hà đã tặng cho ông bà là gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Trong ngày lập đông, ông thích nhất món quà nào từ Hà?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Qua những hành động của bé Hà cho thấy cô bé là người như thế nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Vua Hùng Vương thứ mấy được nhắc đến trong bài đọc này?",
+      "true": "D",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Người con gái của vua Hùng Vương có tên là gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Những nhân vật nào đã đến cầu hôn Mị Nương?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Hùng Vương đã phân xử việc hai vị thần cùng câu hôn ra sao?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Lễ vật thách cưới của vua Hùng Vương cho con gái mình gồm những thứ gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Người nào là người đã mang lễ vật đến trước và lấy được Mị Nương?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Thái độ và hành động của Thủy Tinh như thế nào khi không lấy được Mị Nương?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Việc Sơn Tinh luôn đánh thắng Thủy Tinh nói lên điều gì có thật ở nước ta?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Nội dung và ý nghĩa của truyện cổ tích Sơn Tinh - Thủy Tinh là gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Bài đọc miêu tả về cảnh đẹp gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Sông Hương là bức tranh phong cảnh gồm nhiều đoạn nhưng mỗi đoạn đều có vẻ đẹp như thế nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Vào mùa hạ, sông Hương thay đổi màu sắc như thế nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Vào những đêm trăng, sông Hương thay đổi màu như thế nào?",
+      "true": "B",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Sông Hương đã tạo cho thành phố Huế một vẻ đẹp như thế nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Màu sắc sông Hương như thế nào vào mùa hạ?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Sông Hương là đặc ân của ai dành cho thành phố Huế?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Nội dung chính của bài đọc này là gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Đặc điểm của cậu bé này là gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Tại sao cậu bé lại bỏ nhà ra đi?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Người mẹ ở nhà như thế nào trong khi cậu bỏ nhà đi?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Vì sao cậu bé nhớ đến mẹ và tìm đường về nhà mình?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Khi trở về nhà, cậu bé nhận ra điều gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Trở về nhà không thấy mẹ mình đâu, cậu bé đã làm gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Con vật nào là vua của muôn loài?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Sư Tử thảo luận gì với thần dân?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Sư Tử muốn giao việc cho thần dân bằng cách nào?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Con vật nào bị cho là ngốc và nhát?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Tại sao Sư Tử vẫn giao việc cho Lừa và Thỏ?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Sư Tử giao cho Thỏ việc gì?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Sư tử giao cho Lừa việc gì cho Lừa?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Quan điểm đúng đắn của Sư Tử khi dùng quân là gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Những con vật trong bài thơ như thế nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Bin là một cậu bé có sở thích gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Biểu hiện nào cho thấy Bin rất ham vẽ?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Mẹ đã làm gì khi thấy Bin thích vẽ?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Thấy Bin có đam mê về vẽ, mẹ đã mua vở, màu vẽ và nói gì với em?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Bạn Bin đã vẽ con ngựa như thế nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Vì sao mẹ lại hỏi Bin: \"Con vẽ con gì đây?\"?",
+      "true": "B",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Bin đã nói gì để giải thích cho bức vẽ của mình về con ngựa như thế nào?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Bạn Bin định chữa bức vẽ lỗi của mình như thế nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Lời khuyên nào nên khuyên Bin cho vơi đi nỗi buồn?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Bức thư này là của ai viết cho ai?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Mỗi độ Tết Trung thu về, Bác Hồ nhớ tới ai?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Câu nào trong bức thư cho thấy Hồ Chủ tịch rất yêu thiếu nhi?",
+      "true": "B",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Bác Hồ mong các em thiếu nhi làm những gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Vì sao Bác Hồ không thể trả lời riêng cho từng cháu được?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Nguyên nhân nào mà chàng trai có viên ngọc quý?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Chàng trai cứu con của Long Vương và được trả ơn như thế nào?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Người nào đã đánh tráo viên ngọc của chàng trai?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Con vật nào được nuôi bởi chàng trai?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Ở nhà người thợ kim hoàn, Mèo và Chó đã làm cách gì để lấy lại viên ngọc?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Những con vật nào được kể trong câu chuyện?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Tôm càng gặp chuyện gì khi tập búng càng dưới lòng sông?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Đuôi Cá Con được miêu tả như thế nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Đuôi cá con có tác dụng gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Khi Cá Con đang trình diễn, Tôm Càng đã nhận ra điều gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Tôm Càng có điều gì đáng khen?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Những anh gọng vó màu đen sạm đang ở đâu?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Hai chú dế đã thấy gì dưới đáy của dòng sông?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Hai chú dế nhìn thấy gì dưới đáy sông?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Các anh gọng vó màu đen sạm đang ở đâu?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Những con vật nào được nhắc đến trong bài đọc?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Vũ Cao Bảo sinh vào năm nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Tên của người viết tự thuật này là gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Bạn Vũ Cao Bảo sinh ra ở nơi nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Bạn Vũ Cao Bảo đang học lớp nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Bạn Vũ Cao Bảo đang học trường nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Bạn Vũ Cao Bảo đang sống ở đâu?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Con gà có đặc điểm gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Con sáo có đặc điểm gì?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Chim chìa vôi được mô tả với đặc điểm nào?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Chim chèo bẻo có đặc điểm gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Chim khách có đặc điểm gì đặc biệt?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Chim sẻ được mô tả gắn với đặc điểm nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Loài chim nào được mô tả là sống \"có tình có nghĩa\"?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Loài chim nào có đặc trưng với tiếng kêu gọi hè về?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Loài chim nào được mô tả là lúc nào cũng \"Nhấp nhem buồn ngủ\"?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Tại sao những người trên xe phải ngủ qua đêm trong rừng?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Đến gần sáng, mọi người đã gặp điều gì xảy ra?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Nhân vật Tứ đã nói gì khi con voi đến gần chiếc xe?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Mọi người đã lo lắng ra sao khi con voi đến gần chiếc xe?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Người nào là người muốn bắn con voi?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Người nào đã ngăn việc bắn con voi lại?",
+      "true": "D",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Con voi đã làm điều gì khiến mọi người ngạc nhiên?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Những con voi đã giúp những người đi xe là loài voi gì?",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Voi nhà là con vật như thế nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Vì sao Nhím con lại không quen biết bất kì loài vật nào trong rừng?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Ba chi tiết nào dưới đây cho thấy Nhím con rất nhút nhát?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Vì sao Nhím Nhí mời Nhím con ở lại với mình qua mùa Đông?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Nhím con cảm thấy như thế nào khi ở cùng Nhím Nhí?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Nhân vật tôi nao nức nhớ về những kỉ niệm của buổi tựu trường được thể hiện qua chi tiết nào?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Cảm giác về buổi tựu trường đầu tiên trong lòng tác giả ra sao?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Trong ngày tựu trường đầu tiên, cảnh vật xung quanh mình có gì khác lạ?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Tại sao tác giả thấy cảnh vật xung quanh có sự thay đổi lớn?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Sự bỡ ngỡ và rụt rè của mấy bạn nhỏ trong buổi tựu trường được so sánh với thứ gì?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Nội dung của bài đọc này là gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Bài thơ nhắc đến địa điểm nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Bốn câu thơ \"Đèo cao nắng ánh dao gài thắt lưng.  Nhớ người đan nón chuốt từng sợi giang.  Nhớ cô em gái hái măng một mình.  Nhớ ai tiếng hát ân tình thủy chung. nói lên vẻ đẹp của ai?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Câu thơ \"Đất trời ta cả chiến khu một lòng\" nhắc đến sự đoàn kết của ai?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Loài cây gì đã làm trắng cả khu rừng?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Có những loại cây nào xuất hiện trong khu rừng?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Vì sao khi đứng trước mộ của cô Mai, mẹ lại siết chặt bàn tay bé nhỏ của Nhi ?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Câu chuyện của các cụ già kể về điều gì ?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Vì sao mùi thơm của những bông hoa tím lại làm nôn nao lòng người ?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Vì sao câu chuyện về cô Mai có tên là Những bông hoa tím ?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Gia đình bác thợ gạch ở nơi nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Nơi ở của gia đình bác thợ gạch có đặc điểm gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Tên những đứa con của bác thợ đóng gạch là gì?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Nhân vật tôi đã thích chơi trò gì với con của bác thợ đóng gạch?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Trò ú tim có cái tên khác là gì?",
+      "true": "C",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Nhân vật tôi đã cùng thằng Cu, cái Cún làm việc gì vào những ngày chiều cận Tết?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Cậu bé thích thú đem chiếc chuông gió về nhà treo ở nơi nào?",
+      "true": "A",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Cây nêu là gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Những chiếc chuông gió đã đem lại niềm vui gì đến cho gia đình cậu bé?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Đâu không phải là nội dung của bài đọc này?",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Những câu văn nào tả các chú gà có sử dụng nhân hóa ?",
+      "true": "D",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Bải văn có nội dung gì ?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Tổ ong mật nằm ở đâu?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Tại sao Ong Thợ không tìm mật ở những khu vườn chung quanh?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Quạ Đen đuổi theo Ong Thợ để làm gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Trong đoạn văn trên có những nhân vật nào?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Ong Thợ đã làm gì để Quạ Đen không đuổi kịp?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Ong Thợ bay xa tìm gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Ngoài con Ong, con vật nào khác được nhắc đến?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Con gì đuổi theo Ong thợ?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Trần Quốc Khái là ông tổ nghề gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Khi nhỏ, Trần Quốc Khái ham học như thế nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Trần Quốc Khái học giỏi, đỗ tiến sĩ và làm quan dưới triều đại nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Trần Quốc Khái được nhà vua cử đi đâu?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Nhà vua Trung Quốc nghĩ ra cách gì để thử tài sứ thần Việt Nam?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Khi Trần Quốc Khái vượt qua được thử thách của vua Trung Quốc, chuyện gì đã xảy ra?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Tại sao Trần Quốc Khái được suy tôn là ông tổ nghề thêu?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Trần Quốc Khái đã dạy cho người dân nghề gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Nghề thêu và làm lọng có nguồn gốc từ nơi nào?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Nội dung của bài đọc này là gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Qua việc ong xây tổ, ta thấy ong có những đức tính nào ?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Hình ảnh nào dùng để tả tổ ong ?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Câu văn nào khen cách làm việc của bầy ong ?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Bài đọc này nói về thức quà nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Những dấu hiệu nào báo trước mùa cốm sắp tới?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Tại sao \"Cơn gió mùa hạ lướt qua vùng sen trên hồ, nhuần thấm cái hương thơm của lá\" lại báo trước mùa về của cốm?",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Tại sao hạt lúa non tinh khiết và quý giá?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Cốm mới là thức quà thanh nhã xuất hiện vào mùa nào?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Bạn nhỏ đang làm gì?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Bà của bạn nhỏ bị gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Cảnh vật trong nhà ở trạng thái ra sao?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Cảnh vật ngoài vườn trong trạng thái ra sao?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Bà của bạn nhỏ mơ thấy thứ gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Bài thơ này có nội dung gì?",
+      "true": "C",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Từ nào được nhắc nhiều lần trong bài thơ này?",
+      "true": "D",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Bài thơ Quê hương được chia thành mấy khổ?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Quê hương được định nghĩa bằng những sự vật nào?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Trong khổ thơ đầu tiên, quê hương được so sánh như hình ảnh nào?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Trong khổ thơ thứ 2, quê hương được so sánh như hình ảnh nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Trong khổ thơ thứ ba, quê hương được so sánh như hình  ảnh nào?",
+      "true": "C",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Tại sao quê hương được so sánh với mẹ?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Nội dung của bài thơ này là gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Mâm cỗ trung thu của Tâm được bày như thế nào ?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Tâm thích nhất cái gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Chi tiết nào cho thấy cuộc rước đèn trung thu rất vui?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Tại sao Tâm không thích mâm cỗ nữa?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Trên đỉnh ngồi sao cắm cái gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Nghề nghiệp của chú Cuội là gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Chú Cuội đã sử dụng cây thuốc quý để làm gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Tại sao chú Cuội lấy được con gái phú ông?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Theo em, chú Cuội sống trên mặt trăng thế nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Ngày nay, chúng ta thấy hình ảnh gì trên mặt trăng?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Người và phương tiện tham gia giao thông ở Việt Nam phải đi theo bên phải của đường. Điều này đúng hay sai?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Người và phương tiện tham gia giao thông ở Anh phải đi ở bên nào của đường?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Vì sao quy tắc tham gia giao thông ở nước Anh lại trái ngược hẳn với Việt Nam và nhiều nước trên thế giới như vậy?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Vì sao ở các quốc gia phát triển muộn hơn như Mỹ lại có quy định đi bên phải đường?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Theo em, khi tham gia giao thông ở các quốc gia khác, chúng ta cần làm gì để không đi sai phần đường quy định?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Từ “hiệp sĩ” có nghĩa là gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Thầy giáo làm gì khi thấy Nam ngủ gật trong lớp?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Vì sao bạn nhỏ trong câu chuyện không làm được bài kiểm tra?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Nhìn thấy bạn nhỏ cúi sát đầu vào ngăn bàn chép bài, thầy giáo đã làm gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Vì sao bạn nhỏ không nộp bài kiểm tra mặc dầu đã chép gần xong?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Những học trò nào của giáo sư Vàng Anh tham gia cuộc thi?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Dòng nào nêu đúng tên các bản nhạc mà các học trò của giáo sư Vàng Anh đã biểu diễn trong cuộc thi?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Những từ ngữ, chi tiết nào cho thấy giáo sư Vàng Anh rất yêu mến và trân trọng tài năng của các học trò?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Bạn Đức viết lá thư cho người nào?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Dòng đầu của bức thư, bạn Đức viết gì?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Sau khi ghi địa chỉ, Đức viết gì cho bà phần đầu bức thư?",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Đức đã hỏi thăm bà về những gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Đức không nói với bà điều gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Phần cuối lá thư, Đức hứa với bà điều gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Phần cuối lá thư, Đức đã chúc bà điều gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Phần cuối bức thư, Đức bày tỏ niềm mong ước gì với bà?",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Phần cuối thư thể hiện tình cảm của Đức với bà thế nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Nội dung của bài này là gì?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Thủy làm những gì để chuẩn bị trước khi vào phòng thi?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Những chi tiết cảnh vật bên ngoài thể hiện lên điều gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Thông tin nào không có trong bài đọc này?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Thuỷ dự thi với bộ môn nghệ thuật nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Thuỷ sử dụng loại đàn nào để thi?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Trên đường hành quân, anh bộ đội nghe thấy gì ?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Từ \"nghe\" được nhắc lại nhiều lần có tác dụng gì ?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Anh bộ đội nhớ những gì ở quê nhà ?",
+      "true": "A",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Anh bộ đội chiến đấu vì những mục đích gì ?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Tại sao con ong yêu hoa, con cá yêu nước, con chim yêu bầu trời?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Tại sao núi không chê đất thấp?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Tại sao biển không chê sông nhỏ?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Hai câu thơ  \"Con người muốn sống con ơi / Phải yêu đồng chí, yêu người anh em.\" đưa ra lời khuyên gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Nội dung của bài thơ này là gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Thấy Gà con bị Cáo già bắt, Cún con đã làm gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Vì sao Cáo già lại bỏ Gà con lại và chạy thoát chân?",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Thấy Gà con đã bị thương, Cún con đã làm những gì để cứu bạn?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Cún liền cởi áo của mình ra để làm gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Mẹ đã khen Cún con điều gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Buổi ban đầu trái đất như thế nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Ngày nay kim loại có chủ yếu ở đâu trên trái đất?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Trái đất khác với các hành tinh khác ở điểm nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Cái gì làm thay đổi trái đất bằng nhiều cách khác nhau?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Các bạn nhỏ chơi đá bóng ở nơi nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Tên những nhân vật nào xuất hiện trong bài đọc này?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Vì sao trận bóng phải tạm ngừng?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Thái độ của bác thế nào khi Long suýt tông vào bác đi xe?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Sau lũ trẻ chạy tán loạn, lũ trẻ lại có hành động gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Chuyện gì đã xảy ra khi Quang chơi bóng bổng?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Điều gì đã xảy ra khi bóng đi chệch vỉa hè?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Sau khi Quang vô tình đá bóng đập vào đầu cụ già, chuyện gì xảy ra?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Câu chuyện muốn nói với chúng ta điều gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Ga-ga-rin là người nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Ga-ga-rin bắt đầu chuyến bay tới nơi nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Lúc bắt đầu bay, anh Ga-ga-rin đã cảm thấy thế nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Từ khi tàu xuất phát thì sau bao lâu thì Ga-ga-rin rơi vào trạng thái \"lơ lửng\"?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Ga-ga-rin đã làm gì trong khoảng thời gian bay?",
+      "true": "B",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Đường mòn Hồ Chí Minh là con đường được miêu tả như thế nào?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Đường lên dốc Trường Sơn được diễn tả như thế nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Hình ảnh đoàn quân vượt dốc được so sánh với thứ gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Hình ảnh so sánh \"Đoàn quân nối thành vệt dài từ thung lũng tới đỉnh cao như một sợi dây kéo thẳng đứng.\" nói lên điều gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Bài đọc này có nội dung gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Bài thơ này có mấy khổ?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Dòng sông mà tác giả mãi gọi với lòng tha thiết có tên là gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Trong khổ thơ thứ 3, tác giả ví con sông quê hương như thứ gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Tại sao tác giả ví con sông quê mình như dòng sữa mẹ?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Chi tiết nào biểu hiện dòng sông như dòng sữa mẹ?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Các hình ảnh so sánh nào được miêu tả trong đoạn thơ cuối?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Nội dung của bài thơ này là gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Bạn nhỏ đã sử dụng những màu nào để vẽ về quê hương?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Làng xóm, tre, lúa, sông được bạn nhỏ sử dụng màu sắc nào để vẽ?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Mây trời mùa thu được bé sử dụng màu nào để vẽ?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Mái ngói, nhà ở được vẽ bằng màu sắc nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Hoa gạo đầu xóm được vẽ bởi màu nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Mặt trời được miêu tả bằng màu sắc nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Tại sao bức tranh quê hương đẹp?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Bài thơ vẽ quê hương đã sử dụng thể thơ nào để viết?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Quê ngoại bạn nhỏ trong bài ở đâu?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Ở quê ngoại của bạn nhỏ có những gì mà thành phố không có?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Trong bài thơ, vầng trăng được miêu tả như gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Chuyến về thăm quê đã làm cho bạn nhỏ cảm thấy như thế nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Em hiểu từ “hương trời” trong bài có nghĩa là gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Câu lạc bộ giải trí miễn phí cho trẻ em ở độ tuổi nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Người bạn của tác giả đã trả tiền vé cho những ai?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Người bạn của tác giả lẽ ra tiết kiệm được 3 đô la bằng cách nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Tại sao người bạn của tác giả lại không “tiết kiệm 3 đô la” theo cách đó?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Câu chuyện muốn nói với em điều gì?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Tại sao bạn Lương viết thư cho bạn Hồng?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Bạn Lương đã giới thiệu về mình như như nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Lương đã đọc báo và biết được điều gì về gia đình Hồng?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Lương đã san sẻ nỗi đau cùng bạn Hồng như thế nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Đầu lá thư người ta sẽ viết về nội dung gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Những dòng kết thúc bức thư có tác dụng gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Tác dụng của dòng thư:  \"Hòa Bình, ngày 5 tháng 8 năm 2000\" là gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Lương viết thư cho Hồng để làm gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Cảm xúc của Lương như thế nào khi viết bức thư cho Hồng?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Câu văn nào thể hiện sự tế nhị, tôn trọng bạn của Lương khi đưa tiền quyên góp cho Hồng?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Cương đã xin với mẹ đi học gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Cương xin mẹ đi học nghề rèn để làm gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Phản ứng của mẹ khi nghe Cương xin học nghề rèn như thế nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Mẹ Cương đã nêu lí do gì để phản đối việc Cương xin đi học nghề rèn?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Cương không dùng lập luận nào dưới đây để thuyết phục mẹ cho đi học nghề rèn?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Cách xưng hô của Cương khi trò chuyện với mẹ như thế nào?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Cách trò chuyện của mẹ với Cương như thế nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Trong bài đọc, cử chỉ nào của mẹ được thể hiện khi thuyết phục Cương?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Trong bài đọc, cử chỉ của Cương như thế nào khi thuyết phục mẹ?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Theo lời thuyết phục của Cương, nghề nào là đáng khinh bỉ?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Nội dung của bài đọc này là gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Con người không giống với những con vật ở điểm nào?",
+      "true": "C",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Khi con người trong trạng thái nổi giận hoặc căm thù, nó sẽ có hại như thế nào cho con người?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Tác dụng của việc tạo ra tiếng cười cho bệnh nhân là gì?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Theo bài đọc, người có tính hài hước có lợi ích là gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Qua bài đọc này, chúng ta rút ra được điều gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Mặt trời tỏa những tia nắng như thế nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Hoa hỏi gió và sương điều gì ?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Gió và sương trả lời hoa thế nào ?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Bài thơ được chia làm mấy khổ thơ?",
+      "true": "D",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Hình ảnh trăng hồng được ví với thứ gì?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Câu thơ nào được lặp đi lặp lại trong bài?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Sự vật nào được nhắc đi nhắc lại trong mỗi khổ thơ?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Trong khổ đầu của bài thơ, trăng được so sánh với những gì?",
+      "true": "D",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Trong khổ thơ thứ hai, trăng được so sánh với hình ảnh nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Tình cảm của tác giả đối với ánh trăng và quê hương như thế nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Trong bài thơ, trăng được ví với những hình ảnh nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Bài thơ được viết bởi thể thơ nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Cho dù đất không được tốt nhưng tre vẫn như thế nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Qua bài thơ, chúng ta thấy được khả năng thích nghi của cây tre như thế nào?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Hình dáng của cây tre như thế nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Bốn câu thơ \"Chẳng may thân gãy cành rơi / Vẫn nguyên cái gốc truyền đời cho măng / Nòi tre đâu chịu mọc cong / Chưa lên đã nhọn như chông lạ thường.\" thể hiện đức tính gì của cây tre Việt Nam?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Hai câu thơ \"Lưng trần phơi nắng phơi sương / Có manh áo cộc, tre nhường cho con.\" cho thấy đức tính gì của cây tre?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Hai dòng thơ \"Nòi tre đâu chịu mọc cong / Chưa lên đã nhọn như chông lạ thường.\" cho thấy đức tính gì của cây tre Việt Nam?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Bài thơ này đã cho thấy những đức tính nào của cây tre?",
+      "true": "B",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Tên của chiếc trống đồng được nhắc trong bài đọc là gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Trống đồng Đông Sơn khác nhau như thế nào?",
+      "true": "C",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Mặt giữa của trống đồng có hoa văn gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Ngoài họa tiết ngôi sao ở giữa, vòng ngoài trên mặt trống đồng được trang trí bằng những họa tiết nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Nội dung của bài đọc này là gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Chi tiết nào không đúng về chú bé Bu-ra-ti-nô?",
+      "true": "C",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Tên của chú bé người gỗ là gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Hai nhân vật Ba-ra-ba và Đu-rê-ma được đánh giá là những con người như thế nào?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Bu-ra-ti-nô cần biết về bí mật gì từ lão Ba-ra-ba?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Tại sao Bu-ra-ti-nô lại khiến tên Ba-ra-ba sợ xanh mặt và nói ra sự thật?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Ai đã tố cáo chú bé Bu-ra-ti-nô?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Tại sao cáo và mèo lại tố cáo Bu-ra-ti-nô?",
+      "true": "C",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Bu-ra-ti-nô đã gặp phải điều gì được xem là nguy hiểm?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Bu-ra-ti-nô đã làm gì để thoát thân?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Đêm nay, anh chiến sĩ làm nhiệm vụ gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Nét đẹp cũa trăng Trung thu độc lập được miêu tả như thế nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Chi tiết nào không phải là tưởng tượng của anh chiến sĩ về đất nước trong đêm trăng tương lai?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Anh chiến sĩ đã ước mong điều gì trong những đêm trăng Trung thu của tương lai?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Trăng của ngày mai như thế nào so với trăng đêm nay?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Những lớp học nào mang nhiều trải nghiệm thiên nhiên cho học sinh?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Người ta làm mát ngôi nhà bằng cách nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Năng lượng điện dùng trong trường học này lấy từ đâu?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Bạn có thể tham gia những lớp học nào ở ngôi trường này?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Hồ Ta-nu-ki ở nước nào?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Đối tượng chính được bài thơ miêu tả là gì?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Đâu không phải là lý do mà tác giả lại yêu truyện cổ nước nhà?",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Những câu thơ \"Thị thơm thị giấu người thơm / Chăm làm thì được áo cơm cửa nhà / Đẽo cày theo ý người ta / Sẽ thành khúc gỗ, chẳng ra việc gì\" gợi cho em nhớ tới những truyện cổ nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Hai câu thơ \"Ở hiền thì lại gặp hiền / Người ngay thì được phật, tiên độ trì\" gợi cho em nhớ tới câu tục ngữ nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Hai câu thơ \"Tôi nghe truyện cổ thầm thì / Lời cha ông dạy cũng vì đời sau\" có ý nghĩa gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Nội dung của bài thơ này là gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Câu thơ \"Thị thơm thì giấu người thơm\" gợi em nhớ tới truyện cổ nào?",
+      "true": "D",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Hai câu thơ \"Đẽo cày theo ý người ta / Sẽ thành khúc gỗ chẳng ra việc gì\" gợi nhắc tới truyện cổ nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Bài thơ này được viết bằng thể thơ nào?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Bạn nhỏ thuộc tuổi con giáp nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Mẹ bạn nhỏ cho rằng tuổi ngựa tính nết thế nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "\"Ngựa con\" theo ngọn gió rong chơi ở những nơi nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Trong khổ thơ cuối, \"ngựa con\" muốn gửi thông điệp gì với người mẹ?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Tình cảm của cậu bé \"tuổi ngựa\" đối với mẹ như thế nàoì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Tại sao Cao Bá Quát văn hay nhưng thường bị điểm kém?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Bà cụ hàng xóm đã nhờ Cao Bá Quát làm điều gì?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Điều gì đã khiến Cao Bá Quát phải ân hận?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Lá thư không giúp bà cụ được kêu oan, Cao Bá Quát nhận ra được điều gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Sau khi nhận ra văn hay cũng chưa đủ, Cao Bá Quát quyết định đã làm gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Cao Bá Quát kiên trì luyện chữ trong thời gian bao nhiêu?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Sau này, Cao Bá Quát nổi tiếng về thứ gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Giữa Cao Bá Quát và Xi-ôn-cốp-xki có điểm gì đặc biệt chung?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Nội dung của bài đọc này là gì?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Vì sao thuở đi học Cao Bá Quát thường bị điểm kém?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Quan thét lính đuổi bà cụ ra khỏi huyện đường vì:",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Cao Bá Quát đã rút ra bài học gì sau khi nghe bà cụ kể lại sự việc?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Tại sao Cao Bá Quát phải luyện viết?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Tại sao bài văn của Cao Bá Quát hay nhưng vẫn bị thầy cho điểm thấp?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Cao Bá Quát đã ân hận vì điều gì?",
+      "true": "B",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Cuộc thi vẽ với chủ đề là gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Tổ chức nào đã đánh giá và tổng kết kết quả cuộc thi vẽ này?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Có bao nhiêu bức tranh được trao giải thưởng?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Các em đã nhận thức tốt về chủ đề cuộc thi như thế nào?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Có bao nhiêu bức tranh được đem trưng bày trong triển lãm?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Các em thiếu nhi đã thể hiện nhận thức đúng đắn về phòng tránh tai nạn qua loại hình nghệ thuật nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Không gian trong ngôi nhà của bà khi Thanh trở về như thế nào ?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Dòng nào dưới đây cho thấy bà của Thanh đã già ?",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Câu chuyện này kể về ai?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Sở thích của cậu bé Lê-ô-nác-đô đa Vin-xi là gì?",
+      "true": "B",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Đầu tiên, thầy giáo dạy cậu bé vẽ gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Cậu bé có thái độ như thế nào khi chỉ được thầy dạy vẽ trứng?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Tại sao trong những ngày đầu học vẽ, cậu bé Lê-ô-nác-đô cảm thấy chán ngán?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Vì sao thầy giáo Vê-rô-ki-ô cho cậu bé vẽ trứng?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Khi nghe thầy giải thích về bài học \"vẽ trứng\", thái độ của Lê-ô-nác-đô ra sao?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Lê-ô-nác-đô đa Vin-ki đã thành công như thế nào?",
+      "true": "A",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Theo bạn, nguyên nhân nào đã khiến cho Lê-ô-nác-đô đa Vin-xi trở thành họa sĩ nổi tiếng?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Nguyên nhân nào quan trọng nhất khiến Lê-ô-nác-đô đa Vin-xi trở nên nổi tiếng?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Nội dung của bài đọc này là gì?",
+      "true": "A",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Bài văn miêu tả cảnh đẹp Ba Vì vào mùa nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Dòng nào dưới đây liệt kê đầy đủ các chi tiết cho thấy vẻ đẹp đầy sức sống của rừng cây Ba Vì?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Từ nào dưới đây đồng nghĩa với từ “trong veo”?",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Vị ngữ trong câu “Tiếng chim gù, chim gáy, khi gần, khi xa như mở rộng mãi ra không gian mùa thu xứ Đoài” là những từ ngữ nào ?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Chủ ngữ trong câu “Từ Tam Đảo nhìn về phía tây, vẻ đẹp của Ba Vì biến ảo lạ lùng từng mùa trong năm, từng giờ trong ngày” là những từ nào ?",
+      "true": "C",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Trong bài văn, cái gì được diễn tả lác đác?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Nhân vật nào trong lịch sử Việt Nam được kể trong câu chuyện này?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Hoàn cảnh gia đình của Bạch Thái Bưởi như thế nào?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Bạch Thái Bưởi bắt đầu đi làm lúc bao nhiêu tuổi?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Năm 21 tuổi, Bạch Thái Bưởi bắt đầu làm việc gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Không bao lâu sau thì Bạch Thái Bưởi làm việc gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Bạch Thái Bưởi không làm việc gì trước khi thành lập công ty vận tải đường thủy?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Điều gì đã xảy ra khi Bạch Thái Bưởi mở công ty vận tải đường thủy?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Cụm từ \"một bậc anh hùng kinh tế\" có nghĩa là gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Nhờ vào đâu mà Bạch Thái Bưởi thành công?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Tại sao cậu bé lại cười được?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Cậu bé đã phát hiện ra những chuyện buồn cười ở nơi đâu?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Tại sao những chuyện cậu bé kể lại gây cười?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Câu chuyện mà cậu bé kể đã khiến cả triều đình như thế nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Thông điệp mà bài đọc muốn nói là gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Đặc điểm của vương quốc của nhà vua có gì đặc biệt?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Trong vương quốc này, chỉ có ai cười được?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Tại sao cuộc sống ở vương quốc nọ lại buồn chán như vậy?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Người nào đã nhận ra những \"mối nguy cơ\" về vương quốc buồn tẻ?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Nhà vua đã làm như thế nào để thay đổi tình hình?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Kết quả của việc vua cử vị đại thần đi du học như thế nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Từ \"du học\" có nghĩa là gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Ở cuối truyện, tên lính vào tâu với vua vừa xảy ra việc gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Câu chuyện là cuộc đối đáp của những nhân vật nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Tên sĩ quan cao cấp của bọn phát xít khi lên tàu đã giơ thẳng tay và hô vang điều gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Cụ già đã có lời nói, hành động gì khi tên phát xít hô vang: \"Hít-le muôn năm!\"?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Tên sĩ quan có biểu hiện như thế nào trước lời chào của cụ già?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Vì sao tên sĩ quan Đức có thái độ bực tức với ông cụ người Pháp?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Nhà văn Đức Si-le được ông cụ người Pháp đánh giá thế nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Tên sĩ quan có thái độ như thế nào khi cụ già nhận xét Si-le là nhà văn quốc tế?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Cụ già đã chứng minh Si-le là nhà văn quốc tế cho tên sĩ quan bằng cách nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Biểu hiện của tên phát xít ra sao khi nghe cụ già chứng minh Si-le là nhà văn quốc tế?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Tên phát xít đã thắc mắc điều gì với cụ già?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Em hiểu thái độ của ông cụ đối với người Đức và tiếng Đức như thế nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Lời đáp của ông cụ ở cuối truyện: \"Có chứ, Si-le đã dành cho các ngài vở Những tên cướp\" có ngụ ý gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Theo lời người nhà hiền triết, người phụ nữ được Thượng đế tạo nên có những điểm tốt đẹp đặc sắc nào?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Nhà hiền triết giải thích tại sao phụ nữ lại khóc?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Nhà hiền triết khuyên chúng ta nên làm gì khi thấy phụ nữ khóc?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Câu chuyện muốn nói với em điều gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Từ nào không thể thay thế cho từ Thượng đế trong câu chuyện trên?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Thái sư Trần Thủ Độ có công lập nên triều đại nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Linh Từ Quốc Mẫu có quan hệ như thế nào với Trần Thủ Độ?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Trước việc làm của người câu đương, Trần Thủ Độ xử trí ra sao?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Trước việc làm của người quân hiệu, Trần Thủ Độ xử lí ra sao?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Khi có viên quan tâu với vua rằng mình chuyên quyền, Trần Thủ Độ nói thế nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Qua truyện trên, Trần Thủ Độ hiện lên là một con người như thế nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Vì sao Trần Thủ Độ lại thưởng vàng, lụa cho người quân hiệu?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Cụ Ún làm nghề gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Khi mắc bệnh cụ đã làm gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Vì sao cụ không chịu mổ mà trốn viện về nhà?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Cụ Ún nhận ra điều gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Từ nào dưới đây trái nghĩa với từ chìm?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Cụ Ún làm nghề gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Khi mắc bệnh, cụ Ún đã chữa trị bằng cách nào và kết quả ra sao?",
+      "true": "A",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Vì sao bị sỏi thận mà cụ Ún trốn về nhà, không chịu mổ?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Nhờ đâu mà cụ Ún khỏi bệnh?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Khi cụ Ún bị bệnh, ai là người xin đưa cụ đi bệnh viện",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Câu nói cuối bài giúp em hiểu cụ Ún đã thay đổi cách nghĩ như thế nào ?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Nghe tin con người thuyền chài bị bệnh nặng, Hải Thượng Lãn Ông đã làm gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Vì sao có thể nói Hải Thượng Lãn Ông là người không màng danh lợi?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Em hiểu hai câu thơ Công danh trước mắt trôi như nước - Nhân nghĩa trong lòng chẳng đổi phương như thế nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Đâu là ý kiến sai  Nghĩa của hai câu: Công danh trước mắt trôi như nước - Nhân nghĩa trong lòng chẳng đổi phương như thế nào?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Nhan đề \"Thầy thuốc như mẹ hiền\" để nói về nhân vật nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Thầy thuốc trong bài có tên là gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Những chi tiết nói lên lòng nhân ái của Lãn Ông trong việc ông chũa bệnh cho con người thuyền chài là gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Điều gì thể hiện lòng nhân ái của Lãn Ông trong việc ông chữa bệnh cho người phụ nữ ?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Tìm đại từ trong câu: “Xét về việc thì người bệnh chết do tay thầy thuốc khác, song về tình thì tôi như mắc phải bệnh giết người. Càng nghĩ càng hối hận.”",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Vì sao có thể nói Lãn Ông là một người không màng danh lợi?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Ngày khai trường tháng 9 năm 1945 có gì đặc biệt so với những ngày khai trường khác?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Bác Hồ đã tưởng tượng ra cảnh gì trong ngày tựu trường của các em?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Bác đã khẳng định từ giờ phút này giở đi các em sẽ được làm điều gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Bác khẳng định các em được hưởng sự may mắn đó là nhờ đâu?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Bác khẳng định học sinh có trách nhiệm như thế nào trong công cuộc kiến thiết đất nước?",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Nội dung của bài \"Thư gửi các học sinh\" là gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "\"80 năm giời nô lệ\" là Bác muốn nhắc tới sự đô hộ của nước nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "\"Kiến thiết đất nước\" có nghĩa là gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Ha-li-ma đến gặp vị giáo sĩ để làm gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Giáo sĩ có điều kiện gì cho Ha-li-ma trước khi đưa nàng lời khuyên?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Ha-li-ma nghĩ ra cách gì để làm thân với sư tử?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Khi bị lấy ba sợi lông bờm, phản ứng của con sư tử như thế nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Vì sao khi gặp ánh mắt của Ha-li-ma, con sư tử đang giận dữ bỗng \"cụp mắt xuống, rồi lẳng lặng bỏ đi\"?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Tiếng đàn ba-la-lai-ca gắn với hình ảnh cô gái nước nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Biện pháp nghệ thuật nào được sử dụng trong ba câu thơ sau:  Cả công trường say ngủ cạnh dòng sông  Những tháp khoan nhô lên trời ngẫm nghĩ  Những xe ủi, xe ben sóng vai nhau nằm nghỉ",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Những sự vật được nhân hóa trong ba câu thơ sau là:  Cả ​công trường say ngủ cạnh dòng sông  Những tháp khoan nhô lên trời ngẫm nghĩ  Những xe ủi, xe ben sóng vai nhau nằm nghỉ",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Tiếng đàn ba-la-lai-ca được cảm nghe thấy trong không gian nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Nội dung của bài thơ là gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Dòng nào nêu đúng nghĩa những âm thanh ở đồng quê được miêu tả trong bài?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Dòng nào miêu tả tiếng chim sáo?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Tiếng chim vít vịt được miêu tả bằng những hình ảnh nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Tiếng hót của chim tu hú gợi ta hình ảnh gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Nội dung của bài văn này là gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Nhân vật \"tôi\" nghe thấy tiếng rao trong thời gian nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Nhân vật \"tôi\" có cảm giác như thế nào khi nghe thấy tiếng rao đêm?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Người dũng cảm cứu em bé là ai?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Chi tiết nào sau đây miêu tả ngoại hình của người bán bánh giò?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Người bán bánh giò thực chất có thân thế ra sao?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Trong câu chuyện, chiến công mà anh thương binh lập được là gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Anh thương binh trong câu chuyện có phẩm chất gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Con chim nhỏ chết trong thời gian nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Điều gì khiến \"tôi\" không giúp đỡ con chim nhỏ",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Con chim sẻ chết đi, để lại cái gì?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Hình ảnh nào sau đây để lại ấn tượng sâu sắc trong tâm trí tác giả?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Tại sao khi được mời vào nhà, ba vị thần lại không vào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "“Mời vị thần Tình Yêu” là ý kiến của ai?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Câu nói: “Bởi vì ở đâu có Tình Yêu thì ở đó sẽ có Thành Công và Giàu Sang”. có nghĩa gì ?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Câu chuyện muốn nói với em điều gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Khi mời Tình Yêu thì sẽ có những ai sẽ vào cùng?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Bạch Dương Mẹ đã chăm sóc các con chu đáo như thế nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Bạch Dương Mẹ đã làm những gì để bảo vệ các con trong cơn dông tố?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Chi tiết nào nói về tình yêu thương con của Bạch Dương Mẹ làm em xúc động nhất?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Câu chuyện muốn nói với chúng ta điều gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Những tác nhân nào đã tác động đến Bạch Dương mẹ nhưng nó vẫn đứng vững?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Trong bài viết, tác giả nhắc đến kĩ thuật tranh làng Hồ đạt đến trình độ nào?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Trong kĩ thuật vẽ tranh của làng Hồ, màu đen được làm từ chất liệu nào?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Màu trắng điệp được làm từ chất liệu gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Vì sao tác giả biết ơn những người nghệ sĩ dân gian làng Hồ?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Cuộc sống khi đưa vào tranh làng Hồ được tác giả nhận xét như thế nào?",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Giang Văn Minh đỗ đến thứ bậc nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Giang Văn Minh viện dẫn chuyện gì khiến vua Minh phải bãi bỏ lệ \"góp giỗ Liễu Thăng\"",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Trong câu chuyện trên, ai là người trí dũng song toàn?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Vì sao vua nhà Minh sai người ám hại Giang Văn Minh?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "“Ai cũng sống, sống như ông, thật đáng sống. Ai cũng chết, chết như ông, chết như sống” Câu trên là lời điếu văn của ai dành cho Giang Văn Minh?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Giang Văn Minh có những phẩm chất nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Vua Lê Thần Tông xưng danh Giang Văn Minh như thế nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Hình ảnh nào ở làng quê gắn bó thân thiết với tác giả “như hình với bóng”?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Tại sao các bạn nhỏ coi con đê là bạn?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Hình ảnh con đê được tác giả tả như thế nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Tai sao tác giả cho rằng con đê “che chở, bao bọc lấy dân làng tôi như cả cả một vùng rộng lớn”?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Nội dung bài văn này là gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Tác giả đã sử dụng biện pháp nghệ thuật gì trong câu văn sau?           “Những trận lũ lớn đỏ ngầu phù sa hung dữ, con đê lại gồng mình lên để không chỉ bảo vệ tính mạng con người, gia súc mà còn bảo vệ cả mùa màng…”",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Từ nào sau đây đồng nghĩ với từ tuổi thơ?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Từ nào trong câu văn sau phải hiểu theo nghĩa chuyển?  \"Những trận lũ lớn đỏ ngầu phù sa hung dữ, con đê lại gồng mình lên để không chỉ bảo vệ tính mạng con người, gia súc mà còn bảo vệ cả mùa màng…”",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Từ chúng trong câu “Chúng cũng nô đùa, chơi trò đuổi bắt, chơi ô ăn quan trên đê mỗi khi bố mẹ vắng nhà ra đồng, ra bãi làm việc.” chỉ những ai ?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Đâu không phải là nguyên nhân khiến một phần diện tích rừng ngập mặn bị mất?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Đâu không phải là hậu quả khi phá rừng ngập mặn?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Vì sao  các tỉnh ven biển có phong trào trồng rừng ngập mặn?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Đâu không phải là tác dụng của rừng ngập mặn khi được phục hồi?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Sau bốn năm trồng rừng, xã Thạch Khê có những biến đổi gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Vì sao địa điểm được tả trong bài được gọi là \"cổng trời\"?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Chọn ý sai  Bài thơ mở ra một không gian như thế nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Điều gì đã khiến cho cánh rừng sương giá như ấm lên?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Hình ảnh \"vạt áo chàm thấp thoáng - Nhuộm xanh cả nắng chiều\" được dùng để nói về ai?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Nội dung chính của bài văn là gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Đoạn đường sắt gần nhà Út Vịnh mấy năm nay thường có những sự cố gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Trường của Út Vịnh đã phát động phong trào gì để góp phần bảo vệ an toàn đường sắt?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Út Vịnh đã làm gì để thực hiện nhiệm vụ giữ gìn an toàn đường sắt?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Khi nghe thấy tiếng còi tàu vang lên giục giã, Út Vịnh nhìn ra đường sắt và đã thấy điều gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Hành động cứu hai em nhỏ đang chơi trên đường tàu nói lên phẩm chất gì của Út Vịnh?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Em học tập được ở Út Vịnh điều gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Chi tiết nào không vẽ lên hình ảnh một ngôi nhà đang xây?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Đâu không phải là hình ảnh so sánh nói lên vẻ đẹp của ngôi nhà",
+      "true": "B",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Đâu không phải là hình ảnh nhân hóa ngôi nhà",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Đâu không phải là hình ảnh nhân hóa ngôi nhà đang xây",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Ngôi nhà được ví như cái gì lớn lên giữa bầu trời xanh?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Theo em, quốc vương đặt tiệc mời sứ giả nhằm mục đích gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Vị sứ giả đã làm gì để thoát khỏi tình huống nguy hiểm?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Tại sao lúc sau, tất cả mọi người tham dự bữa tiệc lại phủ nhận hành động “lật con cá lên” của vị sứ giả?",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Qua chuyện, em thấy vị sứ giả là người như thế nào?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây phù hợp khi nói về tình huống và cách giải quyết của vị sứ giả trong câu chuyện trên?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Trong truyền thuyết Sự tích Hồ Gươm có đề cập đến cuộc khởi nghĩa nào trong lịch sử dân tộc?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Giặc ngoại xâm được nhắc đến trong truyền thuyết Sự tích Hồ Gươm là giặc nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Địa bàn diễn ra cuộc khởi nghĩa được nhắc đến trong truyền thuyết thuộc tỉnh nào của nước ta?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Trong truyền thuyết Sự tích Hồ Gươm, đức Long Quân quyết định cho nghĩa quân mượn vật gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Nhân vật nào trong truyền thuyết nhận được thanh gươm đầu tiên?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Sau khi nhận được báu vật của đức Long Quân, uy thế của nghĩa quân như thế nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Ý nghĩa của truyền thuyết Sự tích Hồ Gươm là gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Trên báu vật của đức Long Quân có khắc hai chữ gì và ý nghĩa của nó ra sao?",
+      "true": "C",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Vì sao đức Long Quân lại cho nghĩa quân Lam Sơn và Lê lợi mượn gươm báu?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Trong truyền thuyết Sự tích Hồ Gươm, đức Long Quân đã sai ai lên đòi lại báu vật?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Trong truyện Thạch Sanh, mẹ Thạch Sanh mang thai chàng trong trường hợp nào?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Câu nào dưới đây không nói về hoàn cảnh của Thạch Sanh khi chàng lớn lên?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Trong truyện Thạch Sanh, vì sao Lí Thông muốn làm bạn với Thạch Sanh?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Trong truyện Thạch Sanh, chi tiết nào sau đây không mang tính tưởng tượng?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Trong truyện Thạch Sanh, mẹ con Lí Thông là người như thế nào?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Thạch Sanh đã nhận được báu vật gì sau khi giết chết chằn tinh?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Lí Thông đã có âm mưu gì sau khi Thạch Sanh cứu được công chúa?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Trong truyện Thạch Sanh, hồn của các con vật bị Thạch Sanh tiêu diệt đã bày ra âm mưu gì để hại chàng?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Chi tiết nào dưới đây không phải là việc làm của Thạch Sanh trong truyện?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Việc Thạch Sanh dùng tiếng đàn để cảm hóa quân mười tám nước chư hầu và thết đãi họ bằng niêu cơm thần có ý nghĩa gì?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nhân vật Thánh Gióng trong truyện Thánh Gióng theo tương truyền xuất hiện vào đời Hùng Vương thứ mấy?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Trong truyện Thảnh Gióng, cha mẹ Thánh Gióng là người thế nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Câu nào dưới đây không nói về sự mang thai của bà mẹ và quá trình lớn lên của Thánh Gióng?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Trong truyện Thánh Gióng, cậu bé Gióng cất tiếng nói đầu tiên khi nào?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Thánh Gióng đòi nhà vua phải sắm cho mình những vật dụng gì để đi đánh giặc?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Khi Thánh Gióng gặp sứ giả, điều kì lạ nào đã xảy ra?",
+      "true": "B",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Chi tiết nào sau đây trong truyện Thánh Gióng không mang yếu tố tưởng tượng kì ảo?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Trong truyện Thánh Gióng, sau khi roi sắt bị gãy, Thánh Gióng đã dùng vật gì để tiếp tục đánh giặc?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Để ghi nhớ công ơn của Thánh Gióng, vua Hùng đã phong cho Thánh Gióng danh hiệu gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Truyện Thầy bói xem voi thuộc thể loại nào?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Nhân vật chính trong truyện Thầy bói xem voi là ai?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Thầy bói là những người:",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Câu: “Thầy nào cũng phàn nàn không biết hình thù con voi thế nào” chỉ điều gì?",
+      "true": "B",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Trong truyện, năm ông thầy bói đã sờ vào những bộ phận nào của con voi?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Khi sờ vào tai voi, thầy bói bảo nó giống thứ gì sau đây?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Trong truyện, năm ông thầy bói đã sờ vào con voi thật nhưng không thầy nào nói đúng về con vật này. Sai lầm của họ là ở chỗ nào?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Truyện Thầy bói xem voi cho chúng ta bài học gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Truyện Thầy bói xem voi phê phán điều gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Cuộc tranh luận của năm thầy bói dẫn đến kết quả gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Trong truyện, hành động nào của viên Thái y lệnh chứng tỏ ông rất thương dân nghèo?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Nhân vật chính trong truyện bộc lộ tính cách qua tình huống nào?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Trong truyện, Thái y lệnh đã căn cứ vào đâu để chọn ai chữa bệnh trước?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Việc viên Thái y lệnh chọn chữa bệnh trước cho dân thường mà không chữa bệnh cho quý nhân đã chứng tỏ điều gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Truyện Thầy thuốc giỏi cốt nhất ở tấm lòng ca ngợi điều gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Phẩm chất cao quý của viên Thái y lệnh thể hiện ở điểm nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Câu nào dưới đây không nói về thể loại truyện cười?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Truyện Treo biển thuộc thể loại:",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Trong những truyện dưới đây, truyện nào không thuộc thể loại truyện cười?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Trong truyện Treo biển, cửa hàng bán loại thực phẩm nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Trong truyện, sau mỗi lần có người góp ý, chủ cửa hàng đã làm gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Ông chủ cửa hàng trong truyện là người như thế nào?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Truyện Treo biển muốn phê phán điều gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Kết quả cuối cùng của việc ông chủ luôn lắng nghe khách hàng là gì?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Truyện Treo biển có nội dung và ý nghĩa giống truyện nào dưới đây?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Truyện Treo biển nhắn nhủ chúng ta điều gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Văn bản Vượt thác được trích từ tác phẩm nào?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Câu nào dưới đây không nói về tác phẩm Quê nội?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Trong đoạn trích trên, tác giả đề cập đến một loại gió nổi bật của vùng đất miền Trung. Đó là loại gió nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Hình ảnh dượng Hương Thư khi vượt thác được tác giả miêu tả như thế nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Hình ảnh dượng Hương Thư khi vượt thác được tác giả ví với điều gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Những chi tiết tác giả khắc họa trong đoạn trích cho thấy vượt thác là công việc như thế nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Tác giả đã lấy vị trí nào làm điểm nhìn để miêu tả cảnh vượt thác?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Đoạn trích trên làm nổi bật điều gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Trong đoạn trích, khung cảnh thiên nhiên được miêu tả như thế nào khi thuyền sắp vượt thác?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Bài thơ Bài ca nhà tranh bị gió thu phá gồm mấy đoạn?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Bài thơ được viết theo phương thức nào?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Ý nghĩa nổi bật của chi tiết “trẻ con cướp tranh”?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Chi tiết nào không xuất hiện trong đoạn thứ ba của đoạn thơ?",
+      "true": "A",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Nỗi khổ của nhà thơ được thể hiện như thế nào?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Trong nỗi khổ đau nhà thơ ước mơ gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Chủ nghĩa nhân đạo cao cả của nhà thơ được thể hiện rõ nhất qua?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Nội dung chính của bài thơ Bài ca nhà tranh bị gió thu phá là gì?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Văn bản Ca Huế trên sông Hương được viết theo hình thức nào?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Dòng nào nói đúng nhất những nội dung mà văn bản Ca Huế trên sông Hương muốn đề cập đến?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Đêm ca Huế diễn ra trong khoảng thời gian nào?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Phương tiện nào được dùng để tổ chức đêm ca Huế trên sông Hương?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Dòng nào nói đúng nhất những nguyên nhân tạo nên nét độc đáo của đêm ca Huế trên sông Hương?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Khi biểu diễn, các ca công vận trang phục gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Một thứ quà của lúa non: Cốm thuộc thể loại gì?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Bài văn đã viết về những phương diện nào?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Đặc sắc nghệ thuật của bài văn trên là:",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Nội dung của bài là gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Bài viết “Đức tính giản dị của Bác Hồ”, tác giả đã đề cập đến sự giản dị của Bác ở những phương diện nào?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Phép lập luận nào được sử dụng chủ yếu trong bài văn?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Để làm sáng tỏ đức tính giản dị của Bác Hồ, tác giả đã sử dụng các dẫn chứng như thế nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Viết về sự giản dị của Bác Hồ, tác giả đã dựa trên những cơ sở nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Dòng nào nói đúng nhất những nguyên nhân tạo nên sức thuyết phục của đoạn trích Đức tính giản dị của Bác Hồ?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Chứng cứ nào không được tác giả dùng để chứng minh sự giản dị trong bữa ăn của Bác Hồ?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Trong bài viết, những câu văn có nội dung chính đánh giá, bình luận của tác giả thường xuất hiện ở vị trí nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Tính chất nào phù hợp với bài viết Đức tình giản dị của Bác Hồ?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Theo tác giả, sự giản dị trong đời sống vật chất của Bác Hồ bắt nguồn từ lí do nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Vì sao tác giả coi cuộc sống của Bác Hồ là cuộc sống thực sự văn minh?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Trong văn bản Cổng trường mở ra, tâm trạng của người mẹ trước đêm con khai trường thế nào?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Tâm trạng của đứa con trước đêm khai trường?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Người mẹ nhớ lại kỉ niệm nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Trong bài, ngày khai trường trở thành ngày lễ của toàn xã hội nước nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Câu văn nào nói lên tầm quan trọng của nhà trường đối với thế hệ trẻ?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Nội dung của bài Cổng trường mở ra là gì?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Ai là nhân vật chính trong truyện",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Ý nghĩa nhan đề của tác phẩm là gì?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nhân vật Thành đối xử với em gái như thế nào?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Trong truyện hai con búp bê có ý nghĩa tượng trưng cho điều gì?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nhân vật Thủy trong truyện là người như thế nào?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Chi tiết khi Thủy đến chia tay lớp học, cô giáo tặng Thủy đồ vật gì?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nội dung câu chuyện Cuộc chia tay của những con búp bê là gì?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Tại sao sau khi dắt Thủy ra khỏi trường, tâm trạng của Thành lại “kinh ngạc thấy mọi người vẫn đi lại bình thường và nắng vẫn vàng ươm trùm lên cảnh vật”?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nguyễn Thiếp là người thầy, là nhân sĩ nổi tiếng vào thời kì nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Quê hương của Thanh Tịnh là ở đâu?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Tác giả Thanh Tịnh đã từng đi làm ở các sở tư rồi vào nghề dạy học và bắt đầu viết văn, làm thơ.",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Nhân vật chính trong văn bản\" Tôi đi học” là ai?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Chủ đề của văn bản “Tôi đi học” nằm ở phần nào? ",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Câu văn nào không sử dụng biện pháp so sánh để nói lên tâm trạng của nhân vật “tôi”?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Đặc sắc nghệ thuật của truyện ngắn \" Tôi đi học\"?",
+      "true": "C",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Sức cuốn hút của tác phẩm \"Tôi đi học\" là:",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Câu văn \"Tôi bặm tay ghì thật chặt, nhưng một quyển vở cũng xệch ra và chênh đầu chúi xuống đất\" trong văn bản “Tôi đi học” của Thanh Tịnh cho ta hiểu điều gì?",
+      "true": "C",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Trong tác phẩm “Tôi đi học” của Thanh Tịnh, câu văn nào sau đây không nói lên tâm trạng hồi hộp, cảm giác bỡ ngỡ của nhân vật \"tôi\" trong buổi tựu trường đầu tiên?",
+      "true": "A",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Hình ảnh \"bàn tay\" trong hai câu văn: \"Tôi cảm thấy sau lưng tôi có một bàn tay dịu dàng đẩy tôi tới trước...Một bàn tay quan nhẹ vuốt mái tóc tôi\" nhằm diễn tả ý gì?",
+      "true": "C",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Chất thơ trong sáng, nhẹ nhàng và rung động và thấm thía của truyện \"Tôi đi học\" được thể hiện qua phương thức biểu đạt nào?",
+      "true": "A",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": " “Tôi đi học” của Thanh Tịnh được viết theo thể loại nào?",
+      "true": "B",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Ý nào nói đúng nhất hoàn cảnh sáng tác của bài thơ Tức cảnh Pác Bó ?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Dòng nào nói đúng nhất giọng điệu chung của bài Tức cảnh Pác Bó ?",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Nhận định nào nói đúng nhất về con người Bác trong bài thơ Tức cảnh Pác Bó ?",
+      "true": "B",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Dòng nào diễn tả đúng nhất nghĩa của từ “chông chênh” ?",
+      "true": "A",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Nhận xét nào nói đúng nhất tâm trạng của Bác Hồ được thể hịên qua câu thơ cuối",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Trung tâm của bức tranh Pác Bó trong bài thơ “Tức cảnh Pác Bó”là:",
+      "true": "B",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Trong bài thơ, cuộc sống vật chất của Bác Hồ như thế nào?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Những hình ảnh nào trong bài thơ đề cập đến những sinh hoạt vật chất hàng ngày của Bác?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Bài thơ “Tức cảnh Pác Bó” được viết theo phương thức biểu đạt nào?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Hình ảnh người chiến sĩ gánh trên vai nhiệm vụ cao cả, thiêng liêng được thể hiện qua câu thơ nào dưới đây?",
+      "true": "C",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Bài thơ “Tức cảnh Pác Bó” được sáng tác bằng thể thơ gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Dòng nào nhận xét đúng về diễn biến thái độ của chị Dậu với tên cai lệ trong đoạn trích Tức nước vỡ bờ?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nhận định nào sau đây nói đúng nhất nội dung chính của đoạn trích Tức nước vỡ bờ?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Trong đoạn trích Tức nước vỡ bờ, tác giả chủ yếu miêu tả các nhân vật bằng cách nào?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nếu viết: “Trong tác phẩm Tắt đèn thông qua hình tượng nhân vật chị Dậu, tác giả đã ca ngợi phẩm chất tốt đẹp của người nông dân.” câu văn sai vì sao?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Hãy nêu những sự việc tiêu biểu trong đoạn trích Tức nước vỡ bờ (trích Tắt đèn của Ngô Tất Tố)?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Câu văn nào sau đây thể hiện thái độ bắt đầu có sự phản kháng của chị Dậu đối với tên cai lệ?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Câu trả lời của chị Dậu khi nghe anh Dậu khuyên can: “Thà ngồi tù. Để cho chúng nó làm tình làm tội mãi thế, tôi không chịu được” nói lên thái độ gì của chị?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Theo em, vì sao chị Dậu được gọi là điển hình về người nông dân Việt Nam trước Cách mạng tháng Tám?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Tắt đèn của Ngô Tất Tố được viết theo thể loại nào",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Đoạn trích Thuế máu nằm ở chương thứ mấy của tác phẩm Bản án chế độ thực dân Pháp ?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Bản án chế độ thực dân Pháp được viết bằng tiếng gì ?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nội dung chủ yếu của bản án chế độ thực dân Pháp là gì?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nguyên nhân chính của việc các quan cai trị thực dan thay đổi thái độ đối với người dân thuộc địa?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Cụm từ “cuộc chiến tranh vui tươi\" mà Nguyễn ái Quốc sử dụng trong đoạn trích thuế máu nói về cuộc chiến tranh nào ?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Dòng nào nói đúng nhất giọng điệu chủ đạo của câu “ấy thế mà cuộc chiến tranh vui tươi vừa bùng nổ, thì lập tức họ biến thành những đứa “con yêu\", những người “bạn hiền\" của các quan cai trị phụ mẫu nhân hậu, thậm chí của cả các quan toàn quyền lớn, toàn quyền bé nữa\" ?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Theo lời tổng kết của tác giả “Bản án chế độ thực dân Pháp”, có bao nhiêu người dân thuộc địa đã chết trong cuộc chiến tranh phi nghĩa đó?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Ý nào dưới đây không thể hiện hành động trốn tránh và chống đối việc phải \"đi lính tình nguyện\" của những người dân thuộc địa ?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Thái độ của các quan cai trị thực dân đối với những người dân thuộc địa sau khi chiến tranh kết thúc như thế nào?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Có thể thay từ \" bỏ xác\" trong câu \"một số khác đã bỏ xác tại những miền hoang vu thơ mộng vùng Ban-căng\" bằng từ nào?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nghĩa của từ \"tấp nập\" là gì ?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Có thể thay thế từ \"tấp nập\" trong câu \"Các bạn đã tấp nập đầu quân\" bằng từ nào?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Những tư liệu tác giả đưa ra trong đoạn trích Thuế máu có tính chất như thế nào?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Sự ra đời của tác phẩm “Bản án chế độ thực dân Pháp” có tác dụng như thế nào?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "“Những ngày thơ ấu” của Nguyên Hồng được viết theo thể loại nào?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Văn bản : “Trong lòng mẹ” có sự kết hợp các phương thức biểu đạt nào dưới đây?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Em hiểu gì về những sự kiện được nói tới trong hồi kí?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nghĩa của từ “tàn nhẫn” là gì?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Câu văn nào không nói đúng ý nghĩa của hình ảnh so sánh: \"Và cái lầm đó không những làm tôi thẹn mà còn tủi cực nữa, khác gì cái ảo ảnh của một dòng nước trong suốt chảy dưới bóng râm đã hiện ra trước con mắt gần rạn nứt của người bộ hành ngã gục giữa sa mạc\" (Trong lòng mẹ, Nguyên Hồng)?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Từ \"kịch\" trong câu \"Nhưng, nhận ra những ý nghĩa cay độc trong giọng nói và trên nét mặt khi cười rất kịch của cô tôi kia, tôi cúi đầu không đáp\" (Trong lòng mẹ, Nguyên Hồng) có thể hiểu như thế nào?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Cách hiểu nào đúng với tâm trạng Hồng được miêu tả trong câu văn: \"Chỉ vì tôi thương mẹ tôi và căm tức sao mẹ tôi lại vì sợ hãi những thành kiến tàn ác mà xa lìa anh em tôi, để sinh nở một cách giấu giếm...\"? (Trong lòng mẹ, Nguyên Hồng)",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Hành động \"Nhưng gần đến ngày giỗ đầu thầy tôi, tôi không viết thư gọi mẹ tôi cũng về\" trong văn bản Trong lòng mẹ cho em hiểu gì về mẹ bé Hồng?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Trong văn bản Trong lòng mẹ, từ ngữ nào đúng tâm địa bà cô của bé Hồng?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Mục đích chính của tác giả khi viết: \"Tôi cười dài trong tiếng khóc...\" trong văn bản Trong lòng mẹ là gì?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Hiểu thế nào về lời bé Hồng từ chối vào Thanh Hóa thăm mẹ: \"Không! Cháu không muốn vào. Cuối năm thế nào mợ cháu cũng về\"? (Trong lòng mẹ, Nguyên Hồng)",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Câu văn nào sau đây không nói lên vẻ đẹp của người mẹ được nhìn qua con mắt sung sướng và hạnh phúc đến cực điểm của bé Hồng trong văn bản Trong lòng mẹ?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nhận định nào sau đây nói đúng nhất về nội dung đoạn trích “Trong lòng mẹ”?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Em hiểu gì về chú bé Hồng qua đoạn trích “Trong lòng mẹ”?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nội dung chính được thể hiện trong truyện Những ngôi sao xa xôi là gì?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nhân vật chính Phương Định được khắc họa ở những phương diện nào?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Văn bản được viết theo phương thức biểu đạt nào chính?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Ngôi kể được sử dụng trong văn bản là?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Nội dung chính của văn bản Rô-bin-xơn ngoài đảo hoang là gì?",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Đảo hoang mà Rô-bin-xơn sống thuộc miền khí hậu nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Văn bản trong nói về thời điểm nào trong thời gian Rô-bin-xơn sống trên hoang đảo?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Trang phục của Rô-bin-xơn được làm bằng chất liệu gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Nhận xét nào sau đây nói đúng về chân dung của Rô-bin-xơn?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Nhận xét nào sau đây chưa chính xác?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Thông qua lời kể cho thấy nhân vật là người như thế nào?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Đoạn trích Rô-bin-xơn ở ngoài đảo hoang là bức chân dung tự họa bằng giọng kể hài hước, chân thật về cuộc sống gian khổ, tinh thần lạc quan của nhân vật khi chỉ có một mình trên đảo hoang suốt mấy chục năm trời đúng hay sai?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Phong cách của Hồ Chí Minh là sự kết hợp giữa?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Vì sao Hồ Chủ tịch lại có vốn văn hóa sâu rộng?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Văn bản này thuộc thể loại nào?",
+      "true": "D",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Lối sống rất bình dị, rất Việt Nam, rất phương Đông của Bác được thể hiện như thế nào?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Lối sống của Bác là sự kết hợp giữa giản dị và thanh cao, vì sao?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Trong quá trình tiếp thu tinh hoa văn hóa nước ngoài, Người tiếp thu một cách có chọn lọc, không ảnh hưởng thụ động, biết tiếp thu cái hay, cái đẹp phê phán hạn chế, tiêu cực, đúng hay sai?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Hồ Chí Minh có cách sống giản dị, đạm bạc nhưng rất như thế nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Trong bài viết, để làm nổi bật vẻ đẹp của phong cách Hồ Chí Minh tác giả không sử dụng biện pháp nghệ thuật nào?",
+      "true": "C",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "rong đoạn văn sau, tác giả sử dụng biện pháp nghệ thuật gì để làm nổi bật phong cách Hồ Chí Minh?  \"Nếp sống giản dị và thanh đạm của Bác Hồ cũng như các vị danh nho xưa, hoàn toàn không phải cách tự thần thánh hóa, tự làm cho khác đời, hơn đời, mà đây là một lối sống thanh cao, một cách di dưỡng tinh thần, một quan niệm về thẩm mĩ cuộc sống, có khả năng đem lại hạnh phúc thanh cao cho tâm hồn và thể xác.\"",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Nhận định nào sau đây nêu đầy đủ nhất về nội dung của văn bản Tiếng nói của văn nghệ?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Theo tác giả, tại sao con người cần tới tiếng nói của văn nghệ?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Ý nào sau đây nói về “con đường” độc đáo của văn nghệ đến với người đọc?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Trong văn bản trên, người viết đã dẫn ra những tác giả văn học nào để làm dẫn chứng?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Vở kịch Tôi và chúng ta viết về cái gì?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Xung đột chủ yếu trong đoạn trích là xung đột nào?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Xung đột được thể hiện qua đoạn trích thuộc phần nào của vở kịch?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Bối cảnh của đoạn trích trong vở kịch ở đâu?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Dòng nào sau đây nêu nhận xét đúng nhất về tính cách nhân vật Hoàng Việt đoạn trích?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nghệ thuật nổi bật nhất của vở kịch Tôi và chúng ta là gì?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Vở kịch tôi và chúng ta thể hiện cuộc đấu tranh gay gắt, để phát triển sản xuất, để đem lại quyền lợi, hạnh phúc cho mọi người, cần phá bỏ cách nghĩ, cơ chế lạc hậu, cũ kĩ, cần mạnh dạn đổi mới phương thức tổ chức, lề lối hoạt động, đúng hay sai?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Văn bản này được chia làm mấy phần?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Ở phần “Sự thách thức”, bản Tuyên bố nêu lên thực tế của trẻ em trên thế giới ra sao?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Ở phần “nhiệm vụ” bản tuyên bố nêu nhiều điểm mà quốc gia, cộng đồng quốc tế phải nỗ lực phối hợp hành động?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Ở phần cơ hội, em nhận thấy có điều gì thuận lợi trong sự bảo vệ, chăm sóc trẻ em trong bối cảnh hiện nay?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Qua bản Tuyên bố, cho thấy tầm quan trọng, tính cấp bách của nhiệm vụ toàn cầu, vì sự sống còn, quyền được bảo vệ, phát triển của trẻ em. Đúng hay sai?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Nhận định nào nói đúng nhất về văn bản Tuyên bố thế giới về sự sống còn, quyền được bảo vệ và phát triển của trẻ em ?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Việc nhắc lại nhiều lần từ “phải” và “được” trong đoạn văn trên có tác dụng gì?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Nhận định nói đúng về tình trạng trẻ em trên thế giới hiện nay?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Nhận định nói đúng nhất những thuận lợi đối với nhiệm vụ bảo vệ, chăm sóc trẻ em hiện nay được trình bày trong phần “cơ hội”?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Để thực hiện được nhiệm vụ, bản tuyên bố đề cách thức hoạt động như thế nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Những nhiệm vụ được đặt ra trong bản tuyên bố này?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Bài khúc hát ru những em bé lớn trên lưng mẹ viết về những em bé của dân tộc nào?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Bài thơ có mấy khúc hát ru?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Cụm từ “những em bé lớn trên lưng mẹ” nên hiểu thế nào cho đúng?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Nhận định nói đúng nhất những nét đặc biệt trong cách cấu tạo bài thơ là gì?",
+      "true": "A",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Theo em, ý nghĩa của việc lặp lại trong các đoạn thơ nhằm tạo âm điệu tha thiết, vương vấn của lời ru đúng hay sai?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Nhân vật trữ tình trong bài thơ là ai?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Nhận định nói đầy đủ hoàn cảnh, công việc của người mẹ được nói đến trong bài thơ?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Nhận định nào nói đúng nhất ý nghĩa của câu thơ “Lưng núi thì to mà lưng mẹ nhỏ” ?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Tìm biện pháp nghệ thuật sử dụng trong câu thơ “Lưng núi thì to mà lưng mẹ thì nhỏ”?",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Biện pháp nghệ thuật ẩn dụ sử dụng trong câu thơ “Lưng núi thì to mà lưng mẹ thì nhỏ” có tác dụng gì?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Theo em, vào thời điểm mà bài thơ ra đời thì việc “mơ thấy Bác Hồ” hàm ý điều gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Nhận định nào nói đúng nhất ý nghĩa của các câu thơ cuối mỗi khúc hát ru?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Ý nào không nói lên vẻ đẹp của người mẹ phải thể hiện qua bài thơ?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Nhận định không phù hợp với nội dung tư tưởng được thể hiện qua bài thơ?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Thời thơ ấu của M. Go-rơ-ki được viết theo thể loại nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Vì sao nói Thời thơ ấu được viết theo thể loại đó?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Đoạn trích Những đứa trẻ được kể theo ngôi nào?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": " Nội dung của đoạn trích Những đứa trẻ là gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Nhận định nào đúng với câu văn “Tôi thấy khó mà tin rằng những đứa trẻ này cũng bị đánh đòn như tôi, tôi thấy tức thay cho chúng?”",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Cuộc trò truyện của nhân vật tôi và những đứa trẻ ở đầu đoạn trích cho thấy chúng có một tình bạn tuổi thơ trong trắng. Đúng hay sai?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Mẹ khác thì gọi là dì ghẻ, cho thấy điều gì ở con người của nhân vật tôi?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": " Câu “chúng ngồi sát vào nhau, giống như những chú gà con” sử dụng biện pháp nghệ thuật gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Các câu văn “Không được ư? Trời ơi, biết bao nhiêu lần những người chết, thậm chí đã bị xả ra từng mảnh, mà chỉ cần vảy cho một ít nước phép là sống lại, có biết bao nhiêu người chết mà không phải chết thật, vì phép của bọn phù thủy.” được viết theo phương thức nào?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Dấu hiệu nào trong các câu văn dưới đây giúp người đọc nhận ra phương thức biểu đạt trong đoạn văn trên?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Thực chất câu văn trên là lời nói của nhân vật “tôi” với ai?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Câu nói cho thấy điều gì của nhân vật “tôi”?",
+      "true": "C",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Câu văn sau:  \"Hai em nó im lặng nghe, thằng bé nhất mím chặt môi và phồng má lên, còn thằng kia thì chống khuỷu tay lên đầu gối, cúi về phía tôi, tay kia quàng lên vai em nó, ấn em nó cúi xuống\" được viết theo phương thức nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Dấu ba chấm trong câu văn sau được dùng để làm gì?  - Nó ở… bên kia sang…",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Khi nhìn thấy “mấy đứa trẻ con lặng lẽ bước ra khỏi chiếc xe và đi vào nhà”, nhân vật “tôi” lại nghĩ đến những con vật nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Nhận định nào nói đúng nhất tác dụng của sự liên tưởng ấy?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Trong con mắt của nhân vật “tôi”, ông đại tá Ốp-xi-an-ni-cốp hiện lên là một người như thế nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Câu văn “nó thường sống một cách buồn bã: ngày trước, ngày kia, đã có thời… dường như nó đã sống trên trái đất này một trăm năm, chứ không phải mười một năm” nói lên điều gì ở nhân vật “thằng lớn”?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Câu văn “Tôi còn nhớ nó có đôi bàn tay nhỏ nhắn, những ngón tay thon và người mảnh dẻ, yếu ớt, cặp mắt rất sáng, nhưng dịu dàng như ánh sáng trong ngọn đèn nhà thờ” viết theo phương thức biểu đạt nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Vì sao nhà văn không đặt tên cho những đứa trẻ?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Nhận định nào không phù hợp với nghệ thuật kể chuyện của Go-rơ-ki trong đoạn trích Những đứa trẻ?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Bài thơ sau của Ba-sô thể hiện điều gì ? \"Lệ trào nóng hổi/tan trên tay tóc mẹ/làn sương thu\"",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Hình ảnh \"làn sương thu\" gợi liên tưởng đến điều gì?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Cảnh sắc nào được gợi lên trong bài thơ sau của Ba-sô là gì? \"Vắng lặng u trầm/thấm sâu vào đá/tiếng ve ngâm.\"",
+      "true": "C",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Nét độc đáo trong những hình ảnh liên tưởng của bài thơ số 7 là gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Hình ảnh liên tưởng trong bài thơ trên có ý nghĩa gì?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Tác phẩm \"Chinh phụ ngâm\" của Đặng Trần Côn được viết theo thể loại nào?",
+      "true": "B",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Bản dịch \"Chinh phụ ngâm\" của Đoàn Thị Điểm được viết theo thể thơ nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "\"Tình cảnh lẻ loi của người chinh phụ\" là gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Đặng Trần Côn đã từng sáng tác những thể loại gì?",
+      "true": "D",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Dòng nào dưới đây nhận xét không đúng về \"Chinh phụ ngâm\"?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Dòng nào dưới đây nói không đúng về tiểu sử Đoàn Thị Điểm?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Những tư tưởng nào dưới đây được thể hiện trong tác phẩm \"Chinh phụ ngâm\"?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "\"Tình cảnh lẻ loi của người chinh phụ\" là gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Các câu thơ sau: \"Dạo hiên vắng thầm gieo từng bước,/ Ngồi rèm thưa ru thác đòi phen./Ngoài rèm thưa thước chẳng mách tin,/Trong rèm, dường đã có đèn biết chăng?\" Có thể được hiểu là:",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Dòng nào dưới đây nhận xét không đúng về \"Chinh phụ ngâm\"?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Nhận định nào sau đây không đúng về câu thơ \"Hoa đèn kia với bóng người khá thương\"?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "\"Gà eo óc gáy sương năm trống/Hòe phất phơ rủ bóng bốn bên/Khắc giờ đằng đẵng như niên/Mối sầu dằng dặc tựa miền biển xa.\" Trong khổ thơ trên, thời gian chờ đợi đối với người chinh phụ trở nên thật đáng sợ vì nó:",
+      "true": "A",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Hai thủ pháp nghệ thuật có hiệu quả rõ nhất trong khổ thơ dẫn ở câu 10 là gì?",
+      "true": "D",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "\"Hương gượng đốt hồn đà mê mải/Gương gượng soi lệ lại châu chan/Sắt cầm gượng gảy ngón đàn,/Dây uyên kinh đứt phím loan ngại chùng.\" Chữ \"gượng\" được lặp lại liên tiếp ba lần trong khổ thơ trên có tác dụng gì? Câu trả lời nào sau đây là rất chung chung?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Câu \"Dây uyên kinh đứt phím loan ngại chùng\" trong khổ thơ dẫn ở câu trên cần giải thích như thế nào cho thỏa đáng?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Các từ ngữ, hình ảnh có nhiều nét chung về nghĩa: \"năm trống, bốn bên; đằng đẵng như niên, dằng dặc tựa miền biển xa, thăm thẳm đường lên bằng trời; thăm thẳm xa vời khôn thấu, đau đáu nào xong,... \"được sử dụng trong đoạn trích có tác dụng tô đậm ấn tượng gì về tình cảnh của người chinh phụ?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Cụm từ \"người thiết tha lòng\" hiểu cho đúng và sát nghĩa là:",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Cụm từ \"khí thế nuốt trâu\" được hiểu là:",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Dòng nào không gắn với nội dung bài thơ \"Tỏ lòng\" ?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Biện pháp nghệ thuật chủ yếu được sử dụng trong câu thơ thứ hai là gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Dòng nào nêu đúng nhất lí do “thẹn” của nhà thơ ?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Chủ thể trữ tình của \"Tỏ lòng\" là :",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Bài \"Tỏ lòng\" gợi cho em cảm nhận được điều gì?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Tình cảm, cảm xúc nào không được thể hiện trong bài thơ \"Tỏ lòng\" ?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Hai câu thơ cuối thể hiện phẩm chất gì của nhân vật trữ tình?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Việc trao duyên của Thúy Kiều cho Thúy Vân diễn ra khi nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Vấn đề chủ yếu trong đoạn trích \"Trao duyên\" của SGK là gì ?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Dòng nào sau đây xác định không đúng vị trí của việc Thúy Kiều trao duyên cho Thúy Vân?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Vấn đề chủ yếu trong đoạn trích \"Trao duyên\" của SGK là gì ?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Câu thơ \"Keo loan chắp mối tơ thừa mặc em\" diễn tả tâm trạng gì của Thúy Kiều khi trao duyên cho em?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "\"Của chung\" trong câu \"Duyên này thì giữ vật này của chung\" chỉ những ai ?",
+      "true": "D",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Hành động “trao duyên” trong đoạn trích \"Trao duyên\" của Nguyễn Du thể hiện rõ nhất phẩm chất nào ở nhân vật Thúy Kiều?",
+      "true": "C",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Đoạn trích \"Trao duyên\" thể hiện tài năng nghệ thuật xuất sắc của Nguyễn Du ở đâu?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Dòng nào sau đây xác định không đúng vị trí của việc Thúy Kiều trao duyên cho Thúy Vân?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Thành công quan trọng và đặc sắc nhất về nghệ thuật của Nguyễn Du trong đoạn trích này là gì ?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Khi trao duyện, việc Kiều dùng nhiều từ ngữ nhắc đến cái chết có ý nghĩa gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Chọn từ cậy (không dùng từ nhờ) trong câu \"Cậy em em có chịu lời\", Nguyễn Du đã nói được một điều tinh tế trong đoạn mở lời “trao duyên” của Thúy Kiều, vì?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Chọn từ \"thưa\" (không dùng từ \"nói\") trong câu \"Ngồi lên cho chị lạy rồi sẽ thưa\", Nguyễn Du đã nói được một điều tinh tế trong đoạn mở lời “trao duyên” của Thúy Kiều, vì?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Nỗi niềm, tâm trạng của nàng Kiều hàm chứa trong hai câu thơ: \"Trông ra ngọn cỏ lá cây – Thấy hiu hiu gió thì hay chị về\" hiểu đủ và đúng nhất là gì?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Câu \"Chiếc vành với bức tờ mây – Duyên này thì giữ vật này của chung\" có thể giải nghĩa như thế nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Hình ảnh ẩn dụ \"trâm gãy gương tan\" có ngụ ý gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Vì sao Triệu Đà lại cầu hôn Mị Châu cho con trai ?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Hình ảnh ngọc trai - giếng nước có ý nghĩa gì ?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Truyện An Dương Vương và Mị Châu – Trọng Thủy nhằm mục đích gì?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nguyên nhân chính gây ra sự sụp đổ cơ đồ Âu Lạc và cái chết của hai cha con An Dương Vương và Mị Châu trong Truyện An Dương Vương và Mị Châu – Trong Thủy là:",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Chi tiết máu của Mị Châu chảy xuống biển thành Ngọc nói lên điều gì ?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Truyền thuyết này xuất hiện lần đầu tiên trong tác phẩm nào?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Ý nghĩa quan trọng nhất của câu truyện là gì?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Tại sao An Dương Vương lại kết tình thông gia với kẻ thù?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Bi kịch của Trọng Thủy xuất phát từ mâu thuẫn nào dưới đây?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Dòng nào không phải là sai lầm của An Dương Vương trong câu chuyện?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Việc An Dương Vương chém đầu con gái mình là Mị Châu thể hiện điều gì?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "\"Kẻ nào ngồi sau ngựa chính là giặc đó!\". Câu nói này của Rùa Vàng có ý nghĩa gì?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Cái chết của nhân vật Trọng Thủy chủ yếu thể hiện điều gì?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Đâu không phải là nguyên nhân khiến sáng tác thơ văn của người xưa không lưu truyền đầy đủ cho đời sau?",
+      "true": "B",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "\"Trích diễm thi tập\" là tuyển tập tác phẩm văn chương thuộc thể loại nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Nhan đề \"Trích diễm thi tập\" có nghĩa là gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "\"Trích diễm thi tập\" gồm mấy quyển, được biên soạn trong thời gian nào?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Tập thơ đã tuyển chọn các tác phẩm được các nhà thơ sáng tác trong khoảng thời gian nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Dòng nào dưới đây nêu không đúng đặc điểm chung của các bài tựa?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Qua công việc của Hoàng Đức Lương, ta hiểu thêm điều gì về con người tác giả?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Bài tựa của Hoàng đức Lương chủ yếu đề cập đến vấn đề gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Theo Hoàng Đức Lương, lí do thứ nhất \"làm cho thơ văn không lưu truyền hết ở trên đời\" là gì?",
+      "true": "D",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Cái mà Hoàng Đức Lương gọi là \"sắc đẹp ngoài cả sắc đẹp, vị ngon ngoài cả vị ngon\", thực chất là:",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Theo Hoàng Đức Lương, lí do thứ hai \"làm cho thơ văn không lưu truyền hết ở trên đời\" là gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "\"Thỉnh thoảng, cũng có người thích thơ văn, nhưng lại ngại vì công việc nặng nề, tài lực kém cỏi, nên đều làm được nửa chừng rồi lại bỏ dở.\" Câu văn trên cho thấy người sưu tầm, giới thiệu thơ là những người:",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Theo Hoàng Đức Lương, lí do thứ ba \"làm cho thơ văn không lưu truyền hết ở trên đời\" là gì?",
+      "true": "B",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Theo Hoàng Đức Lương, lí do thứ tư \"làm cho thơ văn không lưu truyền hết ở trên đời\" là gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Theo Hoàng Đức Lương, còn có lí do nào khác \"làm cho thơ văn không lưu truyền hết ở trên đời\" ?",
+      "true": "A",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Sử thi Ô-đi-xê là tác phẩm nổi tiếng của nước nào?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Chiếc giường mà Uy-lít-xơ làm có đặc điểm gì nổi bật ?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Sử thi Ô-đi-xê là câu chuyện về người anh hùng nào?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Uy-lít-xơ được coi là biểu tượng về điều gì ?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Chiếc giường trong đoạn trích có đặc điểm gì nổi bật?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nhân vật Pê-nê-lốp luôn được nhắc đến với phẩm chất nào?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Vì sao Pê-nê-lốp đem chiếc giường chứ không phải vật khác để thử thách Uy-lít-xơ?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Chi tiết nào không miêu tả thái độ của Pê-nê-lốp khi nhận ra Uy-lít-xơ?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Trong đoạn trích, biện pháp nghệ thuật nào không sử dụng để khắc họa tính cách nhân vật?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Đoạn trích “Uy-lít-xơ trở về” có mấy nhân vật?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Con trai của Uy-lít-xơ tên là gì?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nhũ mẫu Ơ-ri-clê đã nhận ra Uy-lít-xơ qua dấu hiệu nào?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nàng Pê-nê-lốp đã chờ đợi Uy-lít-xơ trong vòng bao nhiêu năm?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Tâm trạng của Uy-lít-xơ trước những người thân khi trở về là tâm trạng như thế nào?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Niềm hạnh phúc đoàn viên của vợ chồng Uy-lít-xơ được so sánh với hình ảnh gì?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Biện pháp nghệ thuật nào được sử dụng ở cuối đoạn trích miêu tả cuộc đoàn viên của Uy-lít-xơ và Pê-nê-lốp?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Pháp Thuận là ai?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Bài thơ \"Vận nước\" ra đời trong hoàn cảnh nào?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Hình ảnh so sánh \"Quốc tộ như đằng lạc\" (Vận nước như mây cuốn) nhằm diễn tả điều gì?",
+      "true": "B",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Từ nào được coi là điểm kết tụ cảm xúc của toàn bài thơ?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Nghệ thuật nổi bật của bài thơ là gì?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Thể thơ của bài thơ là gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Địa danh nào sau đây là quê hương của Trần Tế Xương?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Năm sinh, năm mất của nhà thơ Tú Xương là:",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Đáp án nào dưới đây đúng về cuộc đời Tú Xương?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Điểm khác biệt giữa Tú Xương và các nhà thơ khác thời phong kiến là gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Các sáng tác của Tú Xương chủ yếu là:",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Các sáng tác của Tú Xương chủ yếu tập trung vào hai phương diện nào sau đây:",
+      "true": "C",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Nhận định nào sau đây đúng về nguồn gốc sâu xa trong các sáng tác của Trần Tế Xương?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Nhận định nào sau đây đúng về Tú Xương?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Bài thơ Thương vợ được viết theo thể thơ nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Nội dung chính của hai câu thơ sau: “Lặn lội thân cò khi quãng vắng, Eo sèo mặt nước buổi đò đông” là gì?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Nội dung chính của hai câu thơ dưới đây là: \"Cha mẹ thói đời ăn ở bạc, Có chồng hờ hững cũng như không\"",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Thương vợ thuộc mảng thơ:",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Công việc của bà Tú là:",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Bà Tú phải làm việc trong những khoảng thời gian nào?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Địa điểm bà Tú thường buôn bán là:",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Câu thơ “Nuôi đủ năm con với một chồng” thể hiện:",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Trần Tế Xương mượn hình ảnh con cò trong ca dao để nói lên điều gì?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Biện pháp nghệ thuật đặc sắc nào được sử dụng trong hai câu thực?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Từ “nợ” trong tác phẩm được hiểu là:",
+      "true": "B",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Hai câu luận trong Thương vợ đã sử dụng sáng tạo:",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Câu thơ “Lặn lội thân cò khi quãng vắng” trong bài Thương vợ có nội dung gần với câu ca dao nào nhất?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Lời “chửi” ở hai câu thơ cuối là lời của ai?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Nội dung nào sau đây đúng khi nói về bài thơ “Tràng giang” của Huy Cận?",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Dòng nào nói chính xác về sự ra đời bài thơ “Tràng giang” của Huy Cận?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Ấn tượng về một vòm trời mỗi lúc một thêm cao, sâu đến rợn ngợp trong dòng thơ \"Nắng xuống, trời lên sâu chót vót\" (Tràng giang, Huy Cận) không được trực tiếp tạo ra từ đâu?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Ý nào sau đây chưa đúng về nhà thơ Huy Cận?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Ấn tượng, cảm giác chung dễ thấy nhất về khung cảnh, không khí của tràng giang trong bài thơ “Tràng giang” của Huy Cận toát ra từ khổ thơ thứ hai là gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Dòng nào dưới đây nêu không sát nội dung cảm xúc của bài thơ “Trang Giang” được gửi gắm qua lời đề từ: “Bâng khuâng trời rộng nhớ sông dài”?",
+      "true": "C",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Nếu hình ảnh cành củi khô trong dòng thơ “Củi một cành khô lạc mấy dòng” được thay thế bằng một hình ảnh khác: “cánh bèo” thì sức gợi cảm của dòng thơ này chắc chắn sẽ thay đổi như thế nào?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Tác giả bài Văn tế nghĩa sĩ Cần Giuộc là ai?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Mục đích của tác phẩm Văn tế nghĩa sĩ Cần Giuộc là:",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Văn tế nghĩa sĩ Cần Giuộc ra đời vào khoảng thời gian nào?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Văn tế nghĩa sĩ Cần Giuộc thuộc thể loại nào?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Bài văn tế thường có bố cục gồm những phần nào?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nhận định nào sau đây không đúng với tinh thần bài thơ Văn tế nghĩa sĩ Cần Giuộc?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Ý nào không phải nét đặc sắc nghệ thuật trong bài Văn tế nghĩa sĩ Cần Giuộc?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Bài Văn tế nghĩa sĩ Cần Giuộc viết về:",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Đáp án nào không nói đúng ý nghĩa sự hi sinh của những người nghĩa sĩ Cần Giuộc trong tác phẩm Văn tế nghĩa sĩ Cần Giuộc?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Bài văn tế nào dưới đây có giọng điệu hài hước, dí dỏm, khác biệt so với những bài thơ khác?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Tiếng than “Hỡi ôi!” thể hiện:",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Câu “Súng giặc đất rền; lòng dân trời tỏ” sử dụng nghệ thuật gì?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Câu “Súng giặc đất rền; lòng dân trời tỏ” gợi cho em liên tưởng đến câu thơ nào trong bài thơ Chạy giặc (Nguyễn Đình Chiểu)?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "“Mười năm công vỡ ruộng, chưa ắt còn danh nổi như phao; một trận nghĩa đánh Tây, tuy là mất tiếng vang như mõ” cho thấy điều gì?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Trước khi giặc đến, cuộc sống của những người nông dân như thế nào?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Các từ trong bài Văn tế nghĩa sĩ Cần Giuộc : \"Hỡi ôi, Khá thương thay, Ôi thôi thôi, Hỡi ôi thương thay\" có ý nghĩa gì?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Câu văn nào thể hiện tinh thần chiến đấu bền bỉ của nghĩa sĩ Cần Giuộc ngay cả khi họ đã hi sinh?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nội dung câu: \"Thà thác mà đặng câu địch khái, về theo tổ phụ cũng vinh; hơn còn mà chịu chữ đầu Tây, ở với man di rất khổ\" (Văn tế nghĩa sĩ Cần Giuộc, Nguyễn Đình Chiểu) gần với câu tục ngữ:",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Tác giả Lê Hữu Trác tên hiệu là gì?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Lê Hữu Trác sinh ra ở đâu?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Đáp án nào không phải là nội dung đúng về bộ Hải Thượng y tông tâm lĩnh?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nội dung nào dưới đây đúng về tác giả Lê Hữu Trác?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Thể loại của Thượng kinh kí sự?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Vị trí của tác phẩm Thượng kinh kí sự trong bộ Hải Thượng y tông tâm lĩnh?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Vào phủ chúa Trịnh trích từ tác phẩm nào dưới đây?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Trong đoạn trích Vào phủ chúa Trịnh, câu nào sau đây là lời nhận xét của Lê Hữu Trác về bệnh của thế tử Trịnh Cán?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Để viết mở bài phân tích văn bản “Vào phủ chúa Trịnh” cần đảm bảo những ý nào sau đây?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Đáp án nào thể hiện sự đấu tranh giằng co bên trong con người Lê Hữu Trác khi kê đơn cho thế tử:",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Những từ ngữ nào sau đây trong đoạn trích nói lên thái độ của Lê Hữu Trác đối với danh lợi?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Qua đoạn trích, em có nhận xét gì về phẩm chất của tác giả Lê Hữu Trác?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Luận điểm chính của Vào phủ chúa Trịnh?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Lời giải thích nào sau đây về khái niệm luân lí không đúng với quan niệm của Phan Châu Trinh trong bài diễn thuyết \"Về luân lí xã hội ở nước ta\"?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Ý nào sau đây chưa chính xác về tác giả Phan Châu Trinh?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Trong sự nghiệp văn học của mình, Phan Châu Trinh nổi tiếng nhất là thể loại văn học nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Phan Châu Trinh chủ trương cứu nước bằng con đường nào?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Đoạn trích “Về luân lí xã hội ở nước ta” gồm mấy phần?",
+      "true": "B",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Theo Phân Châu Trinh, luân lí nhân loại, nhất là ở phương Tây, đã phát triển qua mấy thời kì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Cách giải thích nào sau đây rất xa với chú ý của Phan Châu Trinh trong câu văn: \"Một tiếng bạn bè không thể thay cho xã hội luân lí được, cho nên không cần cắt nghĩa làm gì?\"",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Ý nào sau đây không đúng khi Phan Châu Trinh tỏ ra là một nhà diễn thuyết?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Nội dung của đoạn trích “Về luân lí xã hội ở nước ta” là gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Tác giả của vở kịch là ai?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Văn bản “Vĩnh biệt cửu trùng đài” là một hồi trong vở kich nào?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Thông tin nào sau đây chưa chính xác về tác giả Nguyễn Huy Tưởng?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Lời tựa đề \"Than ôi ! Như Tô phải hay những kẻ giết Như Tô phải? Ta chẳng biết.” thể hiện suy nghĩ gì của tác giả?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nguyên nhân nào dẫn đến mâu thuẫn dân chúng đã đứng lên đấu tranh chống lại triều đình?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Vở kịch Vũ Như Tô viết về giai đoạn đoạn lịch sử nào?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Tác giả của bài thơ Vịnh khoa thi Hương là ai?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Vịnh khoa thi hương còn có tên gọi khác là gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Vịnh khoa thi Hương được sáng tác năm bao nhiêu?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Vịnh khoa thi Hương được viết bằng thể thơ gì?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Đáp án nào không phải là nghệ thuật được sử dụng trong bài thơ Vịnh khoa thi Hương?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "câu đề bài thơ thông báo về sự kiện gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "“Trường Nam” và “trường Hà” trong hai câu đề là nói đến những trường nào sau đây:",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Sự xuất hiện của những nhân vật nào làm cho trường thi trở nên lố bịch nhất?",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Hai câu luận bài thơ Vịnh khoa thi Hương sử dụng nghệ thuật gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Vì sao kì thi Hương lại phải tổ chức thi ở Trường Nam?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Vịnh khoa thi Hương của Trần Tế Xương là một bài thơ kết hợp hai yếu tố: trữ tình và trào phúng. Anh (chị) hãy cho biết giá trị châm biếm của bài thơ bộc lộc rõ nét nhất qua hai câu thơ nào?",
+      "true": "C",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Giá trị tư tưởng ở hai câu kết bài thơ là gì?",
+      "true": "A",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Sau nhan đề bài thơ “Vội vàng”, Xuân Diệu có lời đề tặng nhà thơ nào?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Điệp ngữ \"này đây\" được sử dụng mấy lần ở đầu và giữa các dòng thơ trong đoạn từ dòng thứ 5 đến dòng 11?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Tập thơ đầu tay của Xuân Diệu là gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Bài thơ “Vội Vàng” của Xuân Diệu được in trong tác phẩm nào của ông?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Nhịp điệu gấp gáp trong cuộc chạy đua với thời gian, theo lời giục giã của Xuân Diệu trong đoạn cuối bài thơ “Vội vàng” được tạo ra không phải bằng biện pháp nghệ thuật nào?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Câu thơ \"Và này đây ánh sáng chớp hàng mi - Mỗi buổi sớm, thần Vui hằng gõ cửa\" trong bài thơ “Vội vàng” của Xuân Diệu cho thấy ánh sáng mùa xuân không phải là thứ ánh sáng mang đặc tính nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Trong bài thơ “Vội vàng” của Xuân Diệu, \"tôi\" đã thể hiện ước muốn \"tắt nắng, buộc gió\", nói một cách giản dị và thực chất, là ước muốn điều gì?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Trong đoạn thơ từ \"Mùi tháng năm\" đến \"Chẳng bao giờ nữa...\" (Vội vàng, Xuân Diệu), tác giả đã nhìn vào đâu để thấy những điềm báo nguy cơ tất cả sẽ tàn phai?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Biện pháp tu từ nổi bật trong các câu thơ “Của ong bướm này đây tuần tháng mật / này đây hoa của đồng nội xanh rì / này đây lá của cành tơ phơ phất / của yến anh này đây khúc tình si / và này đây ánh sáng chớp hàng mi” ?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Ở phần đầu bài thơ “Vội vàng” của Xuân Diệu, nhân vật trữ tình xưng \"tôi\", phần cuối bài thơ lại xưng \"ta\". Việc thay đổi cách xưng gọi như vậy, chủ yếu nhằm dụng ý gì?",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Bức tranh thiên nhiên trong bài thơ “Vội vàng” được nhà thơ Xuân Diệu gợi lên đã có được vẻ đẹp nào?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Cảm nhận dòng chảy của thời gian, điều nhà thơ Xuân Diệu sợ nhất thể hiện trong bài thơ “Vội vàng” là sự tàn phai của thứ gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Dấu chấm giữa dòng thơ “Tôi sung sướng. Nhưng vội vàng một nửa” nhằm diễn tả điều gì?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Hình ảnh “con tàu” ở đây được hiểu là gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "“Tây Bắc” được hiểu là gì?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Ý nghĩa của bốn câu thơ: “Tây Bắc ư? Có riêng gì Tây Bắc  Khi lòng ta đã hóa những con tàu  Khi Tổ quốc bốn bề lên tiếng hát  Tâm hồn ta là Tây Bắc, chứ còn đâu” là gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Giá trị nội dung của bài thơ “Tiếng hát con tàu” là gì",
+      "true": "C",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Giá trị nghệ thuật của bài thơ Tiếng hát con tàu là:",
+      "true": "B",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Con đường thơ của Tố Hữu được đánh dấu bằng 5 tập thơ chính. Sắp xếp nào sau đây đúng theo trình tự thời gian sáng tác của tập thơ đó?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Đáp án nào sau đây không phải nội dung thơ của Tố Hữu?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Nhận xét nào sau đây phù hợp với nội dung tập thơ “Từ ấy” của Tố Hữu?",
+      "true": "B",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Quê hương của nhà thơ Tố Hữu ở:",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Tố Hữu xuất thân trong một gia đình như thế nào?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Đáp án nào không phải phong cách nghệ thuật thơ Tố Hữu?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Bài thơ Việt Bắc được ra đời trong hoàn cảnh nào?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Vị trí của đoạn trích trong bài thơ Việt Bắc là:",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Việc xuất hiện khối lượng lớn các sự vật, hiện tượng trong bài thơ nói lên điều gì?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Trong bài thơ, từ “viết” được lặp lại ở tất cả các khổ thơ, trừ khổ thơ cuối cùng. Cách hiểu nào đúng nhất về nghĩa của từ này?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Hai từ “Tự do” kết thúc bài thơ đưa người đọc trở về với nhan đề tác phẩm. Cách kết cấu có tác dụng gì?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Nội dung lời tuyên bố của Hồ Chí Minh khi kết thúc bản Tuyên ngôn Độc lập là gì?",
+      "true": "C",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "\"Tuyên ngôn Độc lập” của Hồ Chí Minh được viết theo thể loại nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Gía trị nội dung của Tuyên ngôn Độc lập là gì?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Dòng nào dưới đây không thể hiện đúng giá trị nghệ thuật của Tuyên ngôn độc lập?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Bản Tuyên ngôn Độc lập chia thành mấy phần?",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Cơ sở pháp lí của bản tuyên ngôn độc lập là gì?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Trong Tuyên ngôn độc lập, tác giả đã tố cáo tội ác của:",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Chi tiết: “Chúng lập ra nhà tù nhiều hơn trường học. Chúng thẳng tay chém giết những người yêu nước thương nòi của ta. Chúng tắm các cuộc khởi nghĩa của ta trong biển máu” tố cáo tội ác của Pháp ở lĩnh vực nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Nhân dân Việt Nam đã nổi dậy giành chính quyền, lấy lại đất nước từ đế quốc nào?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Chi tiết “Pháp chạy, Nhật hàng, vua Bảo Đại thoái vị” thể hiện điều gì?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Trong Tuyên ngôn độc lập, chủ tịch Hồ Chí Minh đã khẳng định sự thật nào?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Đối tượng mà Tuyên ngôn độc lập hướng tới là ai?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Việc sử dụng cặp đại từ xưng hô mình – ta có tác dụng gì",
+      "true": "C",
+      "pred": "C",
+      "correct": true
+    },
+    {
+      "question": "Bốn câu thơ sau đây: “ – Tiếng ai tha thiết bên cồn  Bâng khuâng trong dạ, bồn chồn bước đi  Áo chàm đưa buổi phân li  Cầm tay nhau biết nói gì hôm nay” là lời của ai ?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Câu thơ nào sau đây diễn tả cảm giác trống vắng, gợi nhớ quá khứ sâu nặng. Tác giả mượn cái thừa để nói cái thiếu?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Từ “mình” trong hai câu thơ sau: “Mình đi, mình có nhớ mình  Tân Trào, Hồng Thái, mái đình, cây đa? được hiểu như thế nào?",
+      "true": "C",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Nội dung chính của 4 câu thơ sau: \" – Ta với mình, mình với ta  Lòng ta sau trước, mặn mà đinh ninh  Mình đi, mình lại nhớ mình  Nguồn bao nhiêu nước, nghĩa tình bấy nhiêu\"  là gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Trong bài thơ Việt Bắc của Tố Hữu, nỗi nhớ Việt Bắc được so sánh với nỗi nhớ gì?",
+      "true": "A",
+      "pred": "A",
+      "correct": true
+    },
+    {
+      "question": "Bốn mùa trong bức tranh tứ bình về cảnh và người ở Việt Bắc được sắp xếp theo trình tự nào sau đây?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Trong bài thơ “Việt Bắc” , hình ảnh người dân miền núi được thể hiện qua hình ảnh hoán dụ nào?",
+      "true": "D",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Bài thơ “Việt Bắc” thể hiện sự nhớ nhung trong sự chia ly giữa ai với ai?",
+      "true": "C",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Bài \"Việt Bắc\" mang đặc điểm nào sau đây?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Nội dung chính của bài thơ \"Việt Bắc\" là gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Dòng nào sau đây chưa đúng với bài thơ \"Việt Bắc\"?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Cấu tứ của bài thơ là cuộc chia tay của \"mình – ta\". Dòng nào dưới đây hiểu đúng cuộc chia tay đó?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "\"Mình về mình có nhớ ta/mười lăm năm ấy thiết tha mặn nồng\"…Thời gian \"Mười lăm năm ấy\" trong câu thơ trên nên hiểu như thế nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Trong bài \"Việt Bắc\", sau 8 dòng thơ mở đầu là mạch thơ hoài niệm (nhớ) về \"mười lăm năm ấy\" theo trật tự nào dưới đây?",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Cụm địa danh nào sau đây không có trong bài thơ “Việt Bắc” của Tố Hữu?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Dòng nào chưa nói đúng đặc điểm của hình ảnh thiên nhiên Việt Bắc trong hoài niệm của nhà thơ?",
+      "true": "D",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Trong đoạn thơ nhớ về cảnh Việt Bắc bốn mùa, tác giả nhớ về cảnh ở mùa nào trước tiên?",
+      "true": "D",
+      "pred": "A",
+      "correct": false
+    },
+    {
+      "question": "Trong số các hình ảnh sau đây trong bài thơ hình ảnh nào chưa gợi rõ nét riêng của con người Việt Bắc?",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "Vẻ đẹp tiêu biểu của con người Việt Bắc mà Tố Hữu tập trung ca ngợi nhất trong bài thơ là gì?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Trong đoạn thơ diễn tả về \"Tin vui chiến thắng trăm miền\", địa danh nào được nhà thơ nhắc đến đầu tiên?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Chủ đề của tác phẩm là gì?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Sống trong nhà thống lí Pá Tra, Mị có thân phận tủi nhục, thấp hèn. Tô Hoài đã so sánh thân phận của Mị với con gì?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Căn phòng Mị ở được miêu tả qua những chi tiết nào?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Ngày xưa, khi chưa trở thành con dâu gạt nợ nhà thống lí Pá Tra, Mị là một cô gái xinh đẹp, tài năng như thế nào?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Chi tiết nào sau đây thể hiện sự phản khảng đầu tiên của Mị khi trở thành con dâu gạt nợ nhà thống lí?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Yếu tố nào tác động đến sự hồi sinh của Mị?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Dấu hiệu đầu tiên của việc sức sống tiềm tàng, sức phản kháng trỗi dậy của Mị trong đêm tình mùa xuân thể hiện qua việc gì?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Hành động “lấy ống mỡ xắn một miếng bỏ thêm vào đĩa dầu” của Mị thể hiện điều gì?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Tác nhân nào đã đánh thức lòng yêu thương của Mị, dẫn đến hành động cắt dây trói cứa A Phủ trong đêm tình mùa xuân?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Vì sao A Phủ trở thành người ở cho nhà thống lí Pá Tra?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Điểm giống nhau giữa nhân vật Mị và A Phủ mà tác giả muốn đề cao là gì?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Văn bản “Những ngày đầu của nước Việt Nam mới” của tác giả nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Quê của tác giả Võ Nguyên Giáp ở đâu?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Văn bản thuộc chương mấy của tập hồi kí “Những năm tháng không thể nào quyên” ?",
+      "true": "C",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Nội dung chính của đoạn sau là:  “Trước kia mỗi chiều đi làm về, Tràng chỉ đi một mình, anh thường đùa vui với lũ trẻ trong xóm ngụ cư.…Việc xảy ra thật hắn cũng không ngờ, hắn cũng chỉ tầm phơ tầm phào đâu có hai bận, ấy thế mà thành vợ thành chồng.",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nội dung chính của đoạn sau là:  “Tràng chợt đứng dừng lại, lắng tai nghe. Ngoài đầu ngõ có tiếng người húng hắng ho, một bà lão từ ngoài rặng tre long khong đi vào…Bà cụ nghẹn lời không nói được nữa, nước mắt cứ chảy xuống ròng ròng”.",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nội dung chính của đoạn sau là:  “Ít lâu nay hắn đẩy xe thóc Liên đoàn lên tỉnh. Mỗi bận qua cửa nhà kho lại thấy mỗi chị con gái ngồi vêu ra ở đấy…Hôm ấy hắn đưa thị vào chợ tỉnh bỏ tiền ra mua cho thị cái thúng con và vài thứ lặt vặt và ra hàng cơm đánh một bữa thật no nê rồi cùng đẩy xe bò về…”.",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nội dung chính của đoạn sau là:  “Sáng hôm sau, mặt trời lên bằng con sào, Tràng mới trở dậy. Trong người êm ái lửng lơ như người vừa ở trong giấc mơ đi ra…Trong óc Tràng vẫn thấy đám người đói và lá cờ đỏ bay phấp phới”.",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nhan đề “Vợ nhặt” mang ý nghĩa gì?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Giá trị hiện thực của truyện ngắn Vợ nhặt là gì?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Vợ nhặt mang giá trị nhân đạo nào?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Đáp án nào dưới đây không phải nghệ thuật của tác phẩm Vợ nhặt?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nhan đề “Vợ nhặt” gợi ra điều gì?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Tình huống truyện của Vợ nhặt là gì?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Công việc của Tràng là gì?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Chi tiết miêu tả ngoại hình của nhân vật Tràng?",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Đáp án nào không đúng khi nói về vẻ đẹp tâm hồn của nhân vật Tràng?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Tâm trạng của Tràng như thế nào khi đưa thị về nhà?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Buổi sáng hôm sau khi thức dậy, trước khung cảnh nhà cửa được dọn dẹp sạch sẽ, trong lòng Tràng có những thay đổi như thế nào?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Nhân vật thị trong truyện ngắn Vợ nhặt là người có xuất thân như thế nào?",
+      "true": "D",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Chi tiết nào đúng về miêu tả ngoại hình nhân vật thị trong truyện ngắn Vợ nhặt của Kim Lân?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Khi ranh giới giữa sự sống và cái chết vô cùng mong manh, quyết định theo không Tràng về làm vợ của thị thể hiện điều gì?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Tâm trạng bà cụ Tứ thay đổi như thế nào khi biết chuyện Tràng đưa thị về làm vợ?",
+      "true": "C",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Một biểu hiện ở Tràng được Kim Lân nhắc đến nhiều lần khi anh mới \"nhặt\" được vợ đối lập với biểu hiện tâm trạng thường có của người đang ở trong cảnh đói khát bi thảm là:",
+      "true": "A",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Kết thúc truyện ngắn Vợ nhặt là hình ảnh gì?",
+      "true": "B",
+      "pred": "X",
+      "correct": false
+    },
+    {
+      "question": "Xuân Quỳnh quê ở:",
+      "true": "A",
+      "pred": "B",
+      "correct": false
+    },
+    {
+      "question": "Xuân Quỳnh sinh ra trong một gia đình như thế nào?",
+      "true": "C",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Chọn đáp án đúng:",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "Tác phẩm nào dưới đây không phải thơ của Xuân Quỳnh:",
+      "true": "C",
+      "pred": "D",
+      "correct": false
+    },
+    {
+      "question": "Chọn đáp án đúng:",
+      "true": "A",
+      "pred": "C",
+      "correct": false
+    },
+    {
+      "question": "X. Xvai-gơ là nhà văn của nước nào?",
+      "true": "B",
+      "pred": "B",
+      "correct": true
+    },
+    {
+      "question": "X. Xvai-gơ đặc biệt nổi tiếng khi viết thể loại văn bản nào sau đây?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    },
+    {
+      "question": "Nội dung nào dưới đây không đúng về tác giả Xtê – phan Xvai – gơ?",
+      "true": "D",
+      "pred": "D",
+      "correct": true
+    }
+  ]
+}
