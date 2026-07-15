@@ -134,17 +134,24 @@ def main():
     from transformers import AutoModelForCausalLM, AutoTokenizer
     from peft import PeftModel
 
+    try:
+        from transformers.utils import logging as hf_logging
+        hf_logging.set_verbosity_error()
+    except Exception:
+        pass
+
     adapter_dir = Path(args.adapter_dir)
     cfg = json.load(open(adapter_dir / "adapter_config.json", encoding="utf-8"))
     base_model = cfg.get("base_model_name_or_path", args.base_model)
     peft_type = (cfg.get("peft_type") or "").upper()
-    if peft_type == "TINYLORA":
+    _required_cfg = {"TINYLORA": "TinyLoraConfig", "DELORA": "DeloraConfig"}.get(peft_type)
+    if _required_cfg:
         try:
-            from peft import TinyLoraConfig  # noqa: F401
+            getattr(__import__("peft", fromlist=[_required_cfg]), _required_cfg)
         except Exception as e:
             raise RuntimeError(
-                f"PEFT {__import__('peft').__version__} không có TinyLoraConfig "
-                f"({type(e).__name__}: {e}). Cài bản PEFT hỗ trợ TinyLoRA rồi chạy lại."
+                f"PEFT {__import__('peft').__version__} không có {_required_cfg} "
+                f"({type(e).__name__}: {e}). Cài peft>=0.19 (TinyLoRA/DeLoRA) rồi chạy lại."
             ) from e
 
     samples = json.load(open(args.samples_json, encoding="utf-8"))
@@ -167,6 +174,13 @@ def main():
     model.eval()
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
+
+    # Chỉ dùng max_new_tokens → tránh spam "Both max_new_tokens and max_length".
+    model.generation_config.max_length = None
+    model.generation_config.max_new_tokens = args.max_new_tokens
+    for _k in ("temperature", "top_p", "top_k"):
+        if hasattr(model.generation_config, _k):
+            setattr(model.generation_config, _k, None)
 
     use_span = not args.no_span_postprocess
     preds = []
@@ -191,6 +205,7 @@ def main():
         pred = align_to_context(pred_raw, s["context"]) if use_span else pred_raw
         preds.append({
             "id": s.get("id", ""),
+            "uit_id": s.get("uit_id", ""),
             "question": s.get("question", ""),
             "is_impossible": s.get("is_impossible"),
             "has_label": s.get("has_label", True),
