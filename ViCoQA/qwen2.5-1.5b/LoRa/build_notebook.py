@@ -121,14 +121,32 @@ def train_one_variant(variant, max_seq_length, dataset, eval_dataset=None):
 
     eval_on = USE_EARLY_STOPPING and eval_dataset is not None
     clear_gpu()
-    model, tokenizer = FastLanguageModel.from_pretrained(
+    _force_single_gpu_train_env = lambda: (
+        os.environ.__setitem__("ACCELERATE_BYPASS_DEVICE_MAP", "true"),
+        os.environ.__setitem__("ACCELERATE_NUM_PROCESSES", "1"),
+        [os.environ.pop(k, None) for k in (
+            "WORLD_SIZE", "LOCAL_RANK", "RANK", "MASTER_ADDR", "MASTER_PORT",
+            "GROUP_RANK", "ROLE_RANK", "ROLE_NAME", "LOCAL_WORLD_SIZE",
+        )],
+    )
+    _force_single_gpu_train_env()
+    import inspect
+    load_kwargs = dict(
         model_name=BASE_MODEL_NAME,
         max_seq_length=max_seq_length,
         dtype=None,
         load_in_4bit=LOAD_IN_4BIT,
         load_in_8bit=LOAD_IN_8BIT,
     )
+    if "device_map" in inspect.signature(FastLanguageModel.from_pretrained).parameters:
+        load_kwargs["device_map"] = {"": 0}
+    model, tokenizer = FastLanguageModel.from_pretrained(**load_kwargs)
     model = apply_adapter(model, name)
+    if hasattr(model, "hf_device_map"):
+        try:
+            delattr(model, "hf_device_map")
+        except Exception:
+            pass
 
     train_args = dict(
         **TRAIN_COMMON,
