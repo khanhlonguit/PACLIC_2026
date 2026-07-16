@@ -151,13 +151,41 @@ def _strip_hf_device_map(obj, seen=None):
             _strip_hf_device_map(child, seen)
 
 
+def _patch_transformers_warmup():
+    """Skip transformers caching_allocator_warmup (~1.4 GiB prealloc)."""
+    try:
+        import transformers.modeling_utils as mu
+
+        def _skip_warmup(model, expanded_device_map, hf_quantizer=None, **kwargs):
+            if torch.cuda.is_available():
+                free, _ = torch.cuda.mem_get_info()
+                print(f"[V5] skip caching_allocator_warmup (free={free / 1024**3:.2f} GiB)", flush=True)
+            return None
+
+        mu.caching_allocator_warmup = _skip_warmup
+    except Exception as e:
+        print(f"[V5] warmup patch failed: {e}", flush=True)
+
+
+def _assert_before_load():
+    free, _ = torch.cuda.mem_get_info()
+    free_gib = free / 1024**3
+    need = 4.0
+    if free_gib < need:
+        raise RuntimeError(
+            f"BLOCKED from_pretrained: free={free_gib:.2f} GiB < {need} GiB. "
+            "GPU zombie — restart container/reboot, KHÔNG cố train trong Jupyter."
+        )
+
+
 def train_one_variant(variant, max_seq_length, dataset, eval_dataset=None):
     from unsloth import FastLanguageModel, is_bfloat16_supported
     from trl import SFTTrainer
     from transformers import TrainingArguments, EarlyStoppingCallback
     import inspect, sys
 
-    print(">>> TRAIN_FIX_V4 <<<", flush=True)
+    print(">>> TRAIN_FIX_V5 <<<", flush=True)
+    _patch_transformers_warmup()
     _force_single_gpu_train_env()
     preflight_vram(min_free_gib=MIN_FREE_VRAM_GIB)
 
@@ -177,10 +205,14 @@ def train_one_variant(variant, max_seq_length, dataset, eval_dataset=None):
             load_in_4bit=LOAD_IN_4BIT,
             load_in_8bit=LOAD_IN_8BIT,
         )
+        # device_map=None: tránh transformers warmup 1.4 GiB (OOM khi free < 2 GiB)
         if "device_map" in inspect.signature(FastLanguageModel.from_pretrained).parameters:
-            load_kwargs["device_map"] = {"": 0}
+            load_kwargs["device_map"] = None
 
+        _assert_before_load()
         model, tokenizer = FastLanguageModel.from_pretrained(**load_kwargs)
+        if torch.cuda.is_available():
+            model = model.to("cuda:0")
         model = apply_adapter(model, name)
         _strip_hf_device_map(model)
         if hasattr(model, "print_trainable_parameters"):
@@ -512,8 +544,9 @@ Sau đó:
 ### Cách chạy
 1. Pip cells → **Restart Kernel**
 2. Warnings → Config → Data → Profiling → Dataset format
-3. Chạy **Train loop** (cell cuối section Train) — phải thấy `>>> TRAIN_FIX_V4 <<<`
-4. Chạy cell eval cuối (`RUN_METRIC_EVAL=True` / `RUN_SUBMISSION_EXPORT=True`)
+3. Chạy **Train loop** — phải thấy `>>> TRAIN_FIX_V5 <<<`
+4. **Hoặc** thoát Jupyter, train bằng script: `python train_unsloth.py --method lora`
+5. Chạy cell eval cuối
 
 **Nếu OOM với free ~0.7 GiB / total 23.5 GiB:** GPU zombie — restart container/reboot, không phải lỗi code.
 """),
@@ -553,7 +586,7 @@ try:
     hf_logging.set_verbosity_error()
 except Exception:
     pass
-print("Env OK | PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True")
+print("Env OK | PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True | V5")
 """),
 ]
 
@@ -575,6 +608,9 @@ from transformers import AutoTokenizer
 print("PyTorch:", torch.__version__, "| CUDA:", torch.cuda.is_available())
 if torch.cuda.is_available():
     print("GPU:", torch.cuda.get_device_name(0))
+
+NOTEBOOK_VERSION = "V5"
+print(f"NOTEBOOK_VERSION = {NOTEBOOK_VERSION}  (train cell phải in >>> TRAIN_FIX_V5 <<<)")
 
 BASE_MODEL_NAME = "Qwen/Qwen2.5-1.5B-Instruct"
 
@@ -600,7 +636,7 @@ LOAD_IN_8BIT = False
 MAX_SEQ_CAP = 4096
 MIN_SEQ_LENGTH = 512
 MAX_NEW_TOKENS = 64
-MIN_FREE_VRAM_GIB = 6.0
+MIN_FREE_VRAM_GIB = 8.0
 
 SMOKE_TEST = False
 SMOKE_TRAIN_SAMPLES = 200
@@ -882,12 +918,38 @@ cells.extend([
     code(DATA_CELL),
     code(PROFILE_CELL),
     code(FORMAT_CELL),
-    md("## Train 4 adapters tuần tự\n\nCell train gọi `preflight_vram()` — **không gọi from_pretrained** nếu GPU zombie (~22GB used, free < 6 GiB)."),
+    md("## Train\n\n**Cell train phải ~150 dòng, in `TRAIN_FIX_V5`.** Nếu cell dài 300+ dòng → notebook cũ, chạy `python build_notebook.py`."),
     code(TRAIN_CELL),
+    code("""# === GPU DIAGNOSTIC (chạy trước train loop) ===
+import subprocess as _sp
+print("NOTEBOOK_VERSION =", NOTEBOOK_VERSION)
+try:
+    print(_sp.check_output(["nvidia-smi"], text=True))
+except Exception as e:
+    print("nvidia-smi:", e)
+report_vram("diagnostic")
+if torch.cuda.is_available():
+    free_gib = torch.cuda.mem_get_info()[0] / 1024**3
+    if free_gib < MIN_FREE_VRAM_GIB:
+        raise RuntimeError(
+            f"GPU zombie: free={free_gib:.2f} GiB. Restart container/reboot. "
+            "Hoặc: python train_unsloth.py --preflight-only"
+        )
+"""),
     code("""# === TRAIN LOOP ===
-preflight_vram(min_free_gib=MIN_FREE_VRAM_GIB)
+# Khuyến nghị khi Jupyter OOM: !python train_unsloth.py --method lora
+USE_SUBPROCESS_TRAIN = False  # True = train process sạch, thoát Jupyter VRAM leak
 
-if RUN_TRAINING:
+if USE_SUBPROCESS_TRAIN:
+    import subprocess, sys
+    for method in TRAIN_METHODS:
+        print(f"\\n>>> subprocess train: {method}", flush=True)
+        r = subprocess.run([sys.executable, "train_unsloth.py", "--method", method], cwd=".")
+        if r.returncode != 0:
+            raise RuntimeError(f"train_unsloth.py --method {method} failed (exit {r.returncode})")
+    print("\\n✅ Subprocess train xong")
+elif RUN_TRAINING:
+    preflight_vram(min_free_gib=MIN_FREE_VRAM_GIB)
     variant_map = {v["name"]: v for v in ADAPTER_VARIANTS}
     trained_paths = {}
     for method in TRAIN_METHODS:
