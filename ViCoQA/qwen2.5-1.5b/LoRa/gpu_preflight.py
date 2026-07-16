@@ -6,7 +6,7 @@ import sys
 
 import torch
 
-MIN_FREE_GIB = 6.0
+MIN_FREE_GIB = 8.0
 
 
 def main():
