@@ -120,7 +120,9 @@ def _force_single_gpu_train_env():
     os.environ["WORLD_SIZE"] = "1"
     os.environ["LOCAL_RANK"] = "0"
     os.environ["RANK"] = "0"
-    for k in ("MASTER_ADDR", "MASTER_PORT", "GROUP_RANK", "ROLE_RANK", "ROLE_NAME", "LOCAL_WORLD_SIZE"):
+    os.environ["MASTER_ADDR"] = "127.0.0.1"
+    os.environ["MASTER_PORT"] = "29500"
+    for k in ("GROUP_RANK", "ROLE_RANK", "ROLE_NAME", "LOCAL_WORLD_SIZE"):
         os.environ.pop(k, None)
     try:
         from accelerate.state import AcceleratorState
@@ -184,7 +186,7 @@ def train_one_variant(variant, max_seq_length, dataset, eval_dataset=None):
     from transformers import TrainingArguments, EarlyStoppingCallback
     import inspect, sys
 
-    print(">>> TRAIN_FIX_V5 <<<", flush=True)
+    print(">>> TRAIN_FIX_V5.1 <<<", flush=True)
     _patch_transformers_warmup()
     _force_single_gpu_train_env()
     preflight_vram(min_free_gib=MIN_FREE_VRAM_GIB)
@@ -252,7 +254,10 @@ def train_one_variant(variant, max_seq_length, dataset, eval_dataset=None):
             ))
         else:
             train_args[_eval_key] = "no"
+        _force_single_gpu_train_env()
         train_args = {k: v for k, v in train_args.items() if k in _ta_params or k == "output_dir"}
+        if "local_rank" in _ta_params:
+            train_args["local_rank"] = -1
 
         _force_single_gpu_train_env()
         sft_kwargs = dict(
@@ -577,8 +582,11 @@ os.environ["PYTHONWARNINGS"] = "ignore"
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 os.environ["ACCELERATE_BYPASS_DEVICE_MAP"] = "true"
 os.environ["ACCELERATE_NUM_PROCESSES"] = "1"
-for _k in ("WORLD_SIZE", "LOCAL_RANK", "RANK", "MASTER_ADDR", "MASTER_PORT"):
-    os.environ.pop(_k, None)
+os.environ["WORLD_SIZE"] = "1"
+os.environ["RANK"] = "0"
+os.environ["LOCAL_RANK"] = "0"
+os.environ["MASTER_ADDR"] = "127.0.0.1"
+os.environ["MASTER_PORT"] = "29500"
 for _n in ("transformers", "datasets", "torch", "unsloth", "peft", "accelerate", "huggingface_hub"):
     logging.getLogger(_n).setLevel(logging.ERROR)
 try:
@@ -609,7 +617,7 @@ print("PyTorch:", torch.__version__, "| CUDA:", torch.cuda.is_available())
 if torch.cuda.is_available():
     print("GPU:", torch.cuda.get_device_name(0))
 
-NOTEBOOK_VERSION = "V5"
+NOTEBOOK_VERSION = "V5.1"
 print(f"NOTEBOOK_VERSION = {NOTEBOOK_VERSION}  (train cell phải in >>> TRAIN_FIX_V5 <<<)")
 
 BASE_MODEL_NAME = "Qwen/Qwen2.5-1.5B-Instruct"
