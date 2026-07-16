@@ -7,10 +7,16 @@ OUT = Path(__file__).parent / "train_qwen_lora_unsloth.ipynb"
 
 
 def cell(cell_type, src):
+    if isinstance(src, list):
+        lines = src
+    else:
+        lines = src.splitlines(keepends=True)
+        if lines and not lines[-1].endswith("\n"):
+            lines[-1] += "\n"
     c = {
         "cell_type": cell_type,
         "metadata": {},
-        "source": src if isinstance(src, list) else src.splitlines(keepends=True),
+        "source": lines,
         "id": uuid.uuid4().hex[:8],
     }
     if cell_type == "code":
@@ -108,109 +114,156 @@ TRAIN_CELL = r'''def apply_adapter(model, method_name):
     raise ValueError(f"Unknown method: {method_name}")
 
 
+def _force_single_gpu_train_env():
+    os.environ["ACCELERATE_BYPASS_DEVICE_MAP"] = "true"
+    os.environ["ACCELERATE_NUM_PROCESSES"] = "1"
+    os.environ["WORLD_SIZE"] = "1"
+    os.environ["LOCAL_RANK"] = "0"
+    os.environ["RANK"] = "0"
+    for k in ("MASTER_ADDR", "MASTER_PORT", "GROUP_RANK", "ROLE_RANK", "ROLE_NAME", "LOCAL_WORLD_SIZE"):
+        os.environ.pop(k, None)
+    try:
+        from accelerate.state import AcceleratorState
+        AcceleratorState._reset_state(reset_partial_state=True)
+    except Exception:
+        pass
+    try:
+        import accelerate.accelerator as acc_mod
+        acc_mod.Accelerator.verify_device_map = lambda self, model: False
+    except Exception:
+        pass
+
+
+def _strip_hf_device_map(obj, seen=None):
+    if seen is None:
+        seen = set()
+    if obj is None or id(obj) in seen:
+        return
+    seen.add(id(obj))
+    if hasattr(obj, "hf_device_map"):
+        try:
+            delattr(obj, "hf_device_map")
+        except Exception:
+            obj.hf_device_map = None
+    for attr in ("model", "base_model", "module", "pretrained_model"):
+        child = getattr(obj, attr, None)
+        if isinstance(child, torch.nn.Module):
+            _strip_hf_device_map(child, seen)
+
+
 def train_one_variant(variant, max_seq_length, dataset, eval_dataset=None):
     from unsloth import FastLanguageModel, is_bfloat16_supported
     from trl import SFTTrainer
     from transformers import TrainingArguments, EarlyStoppingCallback
-    import sys
+    import inspect, sys
+
+    print(">>> TRAIN_FIX_V4 <<<", flush=True)
+    _force_single_gpu_train_env()
+    preflight_vram(min_free_gib=MIN_FREE_VRAM_GIB)
 
     name = variant["name"]
     print("\n" + "=" * 60)
-    print(f" TRAIN VARIANT: {name.upper()}")
+    print(f" TRAIN VARIANT: {name.upper()} | 4bit={LOAD_IN_4BIT}")
     print("=" * 60)
 
     eval_on = USE_EARLY_STOPPING and eval_dataset is not None
-    clear_gpu()
-    _force_single_gpu_train_env = lambda: (
-        os.environ.__setitem__("ACCELERATE_BYPASS_DEVICE_MAP", "true"),
-        os.environ.__setitem__("ACCELERATE_NUM_PROCESSES", "1"),
-        [os.environ.pop(k, None) for k in (
-            "WORLD_SIZE", "LOCAL_RANK", "RANK", "MASTER_ADDR", "MASTER_PORT",
-            "GROUP_RANK", "ROLE_RANK", "ROLE_NAME", "LOCAL_WORLD_SIZE",
-        )],
-    )
-    _force_single_gpu_train_env()
-    import inspect
-    load_kwargs = dict(
-        model_name=BASE_MODEL_NAME,
-        max_seq_length=max_seq_length,
-        dtype=None,
-        load_in_4bit=LOAD_IN_4BIT,
-        load_in_8bit=LOAD_IN_8BIT,
-    )
-    if "device_map" in inspect.signature(FastLanguageModel.from_pretrained).parameters:
-        load_kwargs["device_map"] = {"": 0}
-    model, tokenizer = FastLanguageModel.from_pretrained(**load_kwargs)
-    model = apply_adapter(model, name)
-    if hasattr(model, "hf_device_map"):
-        try:
-            delattr(model, "hf_device_map")
-        except Exception:
-            pass
+    model, tokenizer, trainer = None, None, None
 
-    train_args = dict(
-        **TRAIN_COMMON,
-        fp16=not is_bfloat16_supported(),
-        bf16=is_bfloat16_supported(),
-        output_dir=variant["output_dir"],
-        disable_tqdm=False,
-        logging_strategy="steps",
-        logging_steps=SAVE_STEPS,
-        logging_first_step=False,
-        log_level="error",
-        log_level_replica="error",
-        save_strategy="steps",
-        save_steps=SAVE_STEPS,
-        save_total_limit=SAVE_TOTAL_LIMIT,
-        report_to="none",
-    )
-    callbacks = []
-    import inspect
-    _ta_params = inspect.signature(TrainingArguments.__init__).parameters
-    _eval_key = "eval_strategy" if "eval_strategy" in _ta_params else "evaluation_strategy"
-    if eval_on:
-        # transformers mới: evaluation_strategy → eval_strategy
-        train_args.update({
-            _eval_key: "steps",
-            "eval_steps": EVAL_STEPS,
-            "load_best_model_at_end": True,
-            "metric_for_best_model": "eval_loss",
-            "greater_is_better": False,
-        })
-        callbacks.append(EarlyStoppingCallback(
-            early_stopping_patience=EARLY_STOPPING_PATIENCE,
-            early_stopping_threshold=EARLY_STOPPING_THRESHOLD,
-        ))
-    else:
-        train_args[_eval_key] = "no"
+    try:
+        load_kwargs = dict(
+            model_name=BASE_MODEL_NAME,
+            max_seq_length=max_seq_length,
+            dtype=None,
+            load_in_4bit=LOAD_IN_4BIT,
+            load_in_8bit=LOAD_IN_8BIT,
+        )
+        if "device_map" in inspect.signature(FastLanguageModel.from_pretrained).parameters:
+            load_kwargs["device_map"] = {"": 0}
 
-    trainer = SFTTrainer(
-        model=model,
-        processing_class=tokenizer,
-        train_dataset=dataset,
-        eval_dataset=eval_dataset if eval_on else None,
-        dataset_text_field="text",
-        max_seq_length=max_seq_length,
-        dataset_num_proc=1,
-        packing=False,
-        args=TrainingArguments(**train_args),
-        callbacks=callbacks,
-    )
-    cfg_cls, tr_cls = type(trainer.args), type(trainer)
-    sys.modules["trl.trainer.sft_config"] = sys.modules[cfg_cls.__module__]
-    sys.modules["trl.trainer.sft_trainer"] = sys.modules[tr_cls.__module__]
-    sys.modules[cfg_cls.__module__].SFTConfig = cfg_cls
-    sys.modules[tr_cls.__module__].SFTTrainer = tr_cls
+        model, tokenizer = FastLanguageModel.from_pretrained(**load_kwargs)
+        model = apply_adapter(model, name)
+        _strip_hf_device_map(model)
+        if hasattr(model, "print_trainable_parameters"):
+            model.print_trainable_parameters()
 
-    trainer.train()
-    Path(variant["save_path"]).mkdir(parents=True, exist_ok=True)
-    model.save_pretrained(variant["save_path"])
-    tokenizer.save_pretrained(variant["save_path"])
-    print(f"Saved adapter → {variant['save_path']}")
+        train_args = dict(
+            **TRAIN_COMMON,
+            fp16=not is_bfloat16_supported(),
+            bf16=is_bfloat16_supported(),
+            output_dir=variant["output_dir"],
+            disable_tqdm=False,
+            logging_strategy="steps",
+            logging_steps=SAVE_STEPS,
+            logging_first_step=False,
+            log_level="error",
+            log_level_replica="error",
+            save_strategy="steps",
+            save_steps=SAVE_STEPS,
+            save_total_limit=SAVE_TOTAL_LIMIT,
+            report_to="none",
+            dataloader_num_workers=0,
+        )
+        _ta_params = inspect.signature(TrainingArguments.__init__).parameters
+        _eval_key = "eval_strategy" if "eval_strategy" in _ta_params else "evaluation_strategy"
+        callbacks = []
+        if eval_on:
+            train_args.update({
+                _eval_key: "steps",
+                "eval_steps": EVAL_STEPS,
+                "load_best_model_at_end": True,
+                "metric_for_best_model": "eval_loss",
+                "greater_is_better": False,
+            })
+            callbacks.append(EarlyStoppingCallback(
+                early_stopping_patience=EARLY_STOPPING_PATIENCE,
+                early_stopping_threshold=EARLY_STOPPING_THRESHOLD,
+            ))
+        else:
+            train_args[_eval_key] = "no"
+        train_args = {k: v for k, v in train_args.items() if k in _ta_params or k == "output_dir"}
 
-    del trainer, model, tokenizer
-    clear_gpu()
-    return variant["save_path"]
+        _force_single_gpu_train_env()
+        sft_kwargs = dict(
+            model=model,
+            train_dataset=dataset,
+            eval_dataset=eval_dataset if eval_on else None,
+            args=TrainingArguments(**train_args),
+            callbacks=callbacks,
+        )
+        _sft_params = inspect.signature(SFTTrainer.__init__).parameters
+        if "processing_class" in _sft_params:
+            sft_kwargs["processing_class"] = tokenizer
+        elif "tokenizer" in _sft_params:
+            sft_kwargs["tokenizer"] = tokenizer
+        for k, v in [("dataset_text_field", "text"), ("max_seq_length", max_seq_length),
+                     ("packing", False), ("dataset_num_proc", 1)]:
+            if k in _sft_params:
+                sft_kwargs[k] = v
+
+        trainer = SFTTrainer(**sft_kwargs)
+        if hasattr(trainer, "accelerator"):
+            trainer.accelerator.verify_device_map = lambda model: False
+
+        cfg_cls, tr_cls = type(trainer.args), type(trainer)
+        sys.modules["trl.trainer.sft_config"] = sys.modules[cfg_cls.__module__]
+        sys.modules["trl.trainer.sft_trainer"] = sys.modules[tr_cls.__module__]
+        sys.modules[cfg_cls.__module__].SFTConfig = cfg_cls
+        sys.modules[tr_cls.__module__].SFTTrainer = tr_cls
+
+        trainer.train()
+        Path(variant["save_path"]).mkdir(parents=True, exist_ok=True)
+        model.save_pretrained(variant["save_path"])
+        tokenizer.save_pretrained(variant["save_path"])
+        print(f"Saved adapter → {variant['save_path']}")
+        return variant["save_path"]
+    finally:
+        if trainer is not None:
+            del trainer
+        if model is not None:
+            del model
+        if tokenizer is not None:
+            del tokenizer
+        clear_gpu(verbose=True)
 '''
 
 EVAL_CELL = r'''PREFIX_RE = re.compile(
@@ -459,8 +512,10 @@ Sau đó:
 ### Cách chạy
 1. Pip cells → **Restart Kernel**
 2. Warnings → Config → Data → Profiling → Dataset format
-3. Chạy **Train All Variants**
+3. Chạy **Train loop** (cell cuối section Train) — phải thấy `>>> TRAIN_FIX_V4 <<<`
 4. Chạy cell eval cuối (`RUN_METRIC_EVAL=True` / `RUN_SUBMISSION_EXPORT=True`)
+
+**Nếu OOM với free ~0.7 GiB / total 23.5 GiB:** GPU zombie — restart container/reboot, không phải lỗi code.
 """),
     code("!pip uninstall torch torchvision torchaudio xformers transformers trl unsloth unsloth_zoo -y"),
     code("!pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 --no-cache-dir"),
@@ -486,6 +541,11 @@ print("TinyLoraConfig params:", ", ".join(k for k in sig if k != "self"))
 warnings.filterwarnings("ignore")
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 os.environ["PYTHONWARNINGS"] = "ignore"
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
+os.environ["ACCELERATE_BYPASS_DEVICE_MAP"] = "true"
+os.environ["ACCELERATE_NUM_PROCESSES"] = "1"
+for _k in ("WORLD_SIZE", "LOCAL_RANK", "RANK", "MASTER_ADDR", "MASTER_PORT"):
+    os.environ.pop(_k, None)
 for _n in ("transformers", "datasets", "torch", "unsloth", "peft", "accelerate", "huggingface_hub"):
     logging.getLogger(_n).setLevel(logging.ERROR)
 try:
@@ -493,7 +553,7 @@ try:
     hf_logging.set_verbosity_error()
 except Exception:
     pass
-print("Warnings suppressed.")
+print("Env OK | PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True")
 """),
 ]
 
@@ -503,6 +563,7 @@ import gc
 import re
 import string
 import unicodedata
+import subprocess
 from collections import Counter
 from pathlib import Path
 
@@ -514,7 +575,6 @@ from transformers import AutoTokenizer
 print("PyTorch:", torch.__version__, "| CUDA:", torch.cuda.is_available())
 if torch.cuda.is_available():
     print("GPU:", torch.cuda.get_device_name(0))
-    print(f"VRAM: {torch.cuda.get_device_properties(0).total_memory / 1024**3:.1f} GB")
 
 BASE_MODEL_NAME = "Qwen/Qwen2.5-1.5B-Instruct"
 
@@ -535,11 +595,12 @@ RUN_TRAINING = True
 RUN_METRIC_EVAL = True
 RUN_SUBMISSION_EXPORT = True
 
-LOAD_IN_4BIT = False
+LOAD_IN_4BIT = True
 LOAD_IN_8BIT = False
 MAX_SEQ_CAP = 4096
 MIN_SEQ_LENGTH = 512
 MAX_NEW_TOKENS = 64
+MIN_FREE_VRAM_GIB = 6.0
 
 SMOKE_TEST = False
 SMOKE_TRAIN_SAMPLES = 200
@@ -609,11 +670,88 @@ def load_tokenizer(model_path=BASE_MODEL_NAME):
     return tok
 
 
-def clear_gpu():
+def clear_gpu(verbose=False):
     gc.collect()
-    if torch.cuda.is_available():
-        torch.cuda.empty_cache()
+    if not torch.cuda.is_available():
+        return
+    try:
         torch.cuda.synchronize()
+    except Exception:
+        pass
+    torch.cuda.empty_cache()
+    try:
+        torch.cuda.ipc_collect()
+    except Exception:
+        pass
+    gc.collect()
+    torch.cuda.empty_cache()
+    if verbose:
+        report_vram("after clear_gpu")
+
+
+def report_vram(label="VRAM"):
+    if not torch.cuda.is_available():
+        print(f"[{label}] CUDA not available")
+        return 0.0
+    free, total = torch.cuda.mem_get_info()
+    free_gib = free / 1024**3
+    total_gib = total / 1024**3
+    used_driver = total_gib - free_gib
+    pt_alloc = torch.cuda.memory_allocated() / 1024**3
+    print(
+        f"[{label}] driver_used={used_driver:.2f} GiB | free={free_gib:.2f}/{total_gib:.2f} GiB "
+        f"| pytorch_alloc={pt_alloc:.3f} GiB",
+        flush=True,
+    )
+    return free_gib
+
+
+def release_stale_training_objects():
+    stale = (
+        "model", "tokenizer", "trainer", "model_eval", "tokenizer_eval",
+        "tokenizer_prof", "tokenizer_fmt", "trained_paths",
+    )
+    g = globals()
+    for name in stale:
+        if name in g:
+            try:
+                del g[name]
+            except Exception:
+                pass
+    clear_gpu(verbose=False)
+
+
+def preflight_vram(min_free_gib=None):
+    """Chặn train nếu GPU gần đầy. clear_gpu KHÔNG fix zombie VRAM."""
+    min_free = MIN_FREE_VRAM_GIB if min_free_gib is None else min_free_gib
+    release_stale_training_objects()
+    clear_gpu(verbose=True)
+    free_gib = report_vram("preflight")
+
+    try:
+        out = subprocess.check_output(
+            ["nvidia-smi", "--query-gpu=memory.used,memory.total", "--format=csv,noheader,nounits"],
+            text=True,
+        )
+        used_mb, total_mb = [int(x.strip()) for x in out.split(",")]
+        print(f"[preflight] nvidia-smi used={used_mb} MiB / total={total_mb} MiB", flush=True)
+    except Exception as e:
+        print(f"[preflight] nvidia-smi skip: {e}", flush=True)
+
+    if free_gib < min_free:
+        pt_alloc = torch.cuda.memory_allocated() / 1024**3 if torch.cuda.is_available() else 0
+        raise RuntimeError(
+            f"\n❌ GPU KHÔNG ĐỦ VRAM: free={free_gib:.2f} GiB (cần ≥ {min_free} GiB).\n"
+            f"   PyTorch process chỉ alloc ~{pt_alloc:.2f} GiB → VRAM bị process khác/zombie giữ.\n"
+            "   clear_gpu() KHÔNG giải phóng được trường hợp này.\n\n"
+            "   CÁCH SỬA:\n"
+            "   1) Kernel → Restart Kernel\n"
+            "   2) Chạy !nvidia-smi — nếu Memory-Usage vẫn ~22GB mà No processes:\n"
+            "      → restart container / reboot máy / sudo nvidia-smi --gpu-reset\n"
+            "   3) Khi free ≥ 10 GiB mới train lại notebook từ đầu.\n"
+        )
+    print(f"✅ preflight OK | free={free_gib:.2f} GiB", flush=True)
+    return free_gib
 '''
 
 DATA_CELL = r'''def load_vicoqa_split(path):
@@ -711,6 +849,8 @@ else:
 print(f"max_seq_length = {max_seq_length}")
 for k, v in length_stats.items():
     print(f"  {k}: {v}")
+del tokenizer_prof
+clear_gpu()
 '''
 
 FORMAT_CELL = r'''tokenizer_fmt = load_tokenizer()
@@ -742,20 +882,25 @@ cells.extend([
     code(DATA_CELL),
     code(PROFILE_CELL),
     code(FORMAT_CELL),
-    md("## Train 4 adapters tuần tự\n\nChỉnh `TRAIN_METHODS` nếu chỉ muốn train 1–2 cái trước."),
+    md("## Train 4 adapters tuần tự\n\nCell train gọi `preflight_vram()` — **không gọi from_pretrained** nếu GPU zombie (~22GB used, free < 6 GiB)."),
     code(TRAIN_CELL),
-    code("""if RUN_TRAINING:
+    code("""# === TRAIN LOOP ===
+preflight_vram(min_free_gib=MIN_FREE_VRAM_GIB)
+
+if RUN_TRAINING:
     variant_map = {v["name"]: v for v in ADAPTER_VARIANTS}
     trained_paths = {}
     for method in TRAIN_METHODS:
         if method not in variant_map:
             raise ValueError(f"Unknown TRAIN_METHODS item: {method}")
+        print(f"\\n>>> Starting {method} ...", flush=True)
         path = train_one_variant(
             variant_map[method], max_seq_length, dataset,
             eval_dataset=eval_dataset if USE_EARLY_STOPPING else None,
         )
         trained_paths[method] = path
-    print("\\n✅ Train xong tất cả methods:")
+        preflight_vram(min_free_gib=MIN_FREE_VRAM_GIB)
+    print("\\n✅ Train xong:")
     for k, v in trained_paths.items():
         print(f"  {k}: {v}")
 else:
