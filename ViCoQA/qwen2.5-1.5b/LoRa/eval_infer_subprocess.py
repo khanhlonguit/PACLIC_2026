@@ -96,12 +96,76 @@ def parse_args():
     p.add_argument("--adapter-dir", required=True)
     p.add_argument("--dialogs-json", required=True)
     p.add_argument("--output", required=True)
-    p.add_argument("--base-model", default="Qwen/Qwen2.5-1.5B-Instruct")
+    p.add_argument(
+        "--base-model", default="Qwen/Qwen2.5-1.5B-Instruct",
+        help="Base HF model (ưu tiên hơn unsloth path trong adapter_config.json)",
+    )
     p.add_argument("--max-seq-length", type=int, default=2048)
     p.add_argument("--max-new-tokens", type=int, default=64)
     p.add_argument("--max-dialogs", type=int, default=0, help="0 = all dialogs")
     p.add_argument("--log-every", type=int, default=20)
+    p.add_argument("--load-in-4bit", action="store_true", help="BnB 4bit base (mặc định: bf16/fp16)")
     return p.parse_args()
+
+
+def resolve_base_model(adapter_cfg: dict, cli_base: str) -> str:
+    """Unsloth lưu base unsloth/...-bnb-4bit trong adapter_config — không dùng cho eval."""
+    cfg_base = (adapter_cfg.get("base_model_name_or_path") or "").strip()
+    fallback = cli_base or "Qwen/Qwen2.5-1.5B-Instruct"
+    if not cfg_base:
+        return fallback
+    low = cfg_base.lower()
+    if "unsloth" in low or "bnb-4bit" in low or "bnb-8bit" in low:
+        print(
+            f"[Sub] adapter_config base={cfg_base!r} → dùng --base-model {fallback}",
+            flush=True,
+        )
+        return fallback
+    return cfg_base
+
+
+def load_tokenizer_for_eval(adapter_dir: Path, base_model: str):
+    from transformers import AutoTokenizer
+
+    tok_files = ("tokenizer.json", "tokenizer_config.json", "tokenizer.model")
+    if any((adapter_dir / f).exists() for f in tok_files):
+        print(f"[Sub] Tokenizer từ adapter dir (offline): {adapter_dir}", flush=True)
+        try:
+            return AutoTokenizer.from_pretrained(str(adapter_dir), local_files_only=True)
+        except Exception:
+            return AutoTokenizer.from_pretrained(str(adapter_dir))
+    print(f"[Sub] Tokenizer từ base model: {base_model}", flush=True)
+    try:
+        return AutoTokenizer.from_pretrained(base_model, local_files_only=True)
+    except Exception:
+        return AutoTokenizer.from_pretrained(base_model)
+
+
+def load_base_model_for_eval(base_model: str, dtype, device: str, load_in_4bit: bool):
+    from transformers import AutoModelForCausalLM
+
+    kwargs = dict(torch_dtype=dtype, low_cpu_mem_usage=True)
+    if load_in_4bit:
+        from transformers import BitsAndBytesConfig
+        kwargs["quantization_config"] = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_compute_dtype=dtype,
+            bnb_4bit_use_double_quant=True,
+            bnb_4bit_quant_type="nf4",
+        )
+        kwargs["device_map"] = {"": 0} if device == "cuda" else None
+    else:
+        kwargs["device_map"] = None
+
+    try:
+        model = AutoModelForCausalLM.from_pretrained(base_model, local_files_only=True, **kwargs)
+    except Exception as e:
+        print(f"[Sub] local_files_only failed ({e}) — thử tải từ Hub...", flush=True)
+        model = AutoModelForCausalLM.from_pretrained(base_model, **kwargs)
+
+    if not load_in_4bit:
+        model = model.to(device)
+    return model
 
 
 def main():
@@ -112,7 +176,6 @@ def main():
         )
 
     import torch
-    from transformers import AutoModelForCausalLM, AutoTokenizer
     from peft import PeftModel
 
     try:
@@ -123,7 +186,7 @@ def main():
 
     adapter_dir = Path(args.adapter_dir)
     cfg = json.load(open(adapter_dir / "adapter_config.json", encoding="utf-8"))
-    base_model = cfg.get("base_model_name_or_path", args.base_model)
+    base_model = resolve_base_model(cfg, args.base_model)
     peft_type = (cfg.get("peft_type") or "").upper()
     _required_cfg = {"TINYLORA": "TinyLoraConfig", "DELORA": "DeloraConfig"}.get(peft_type)
     if _required_cfg:
@@ -148,10 +211,12 @@ def main():
 
     dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    print(f"[Sub] Loading base (dtype={dtype}, device={device})...", flush=True)
-    tokenizer = AutoTokenizer.from_pretrained(base_model)
-    model = AutoModelForCausalLM.from_pretrained(base_model, torch_dtype=dtype).to(device)
-    model = PeftModel.from_pretrained(model, str(adapter_dir), is_trainable=False).to(device)
+    print(f"[Sub] Loading base (dtype={dtype}, device={device}, 4bit={args.load_in_4bit})...", flush=True)
+    tokenizer = load_tokenizer_for_eval(adapter_dir, base_model)
+    model = load_base_model_for_eval(base_model, dtype, device, args.load_in_4bit)
+    model = PeftModel.from_pretrained(model, str(adapter_dir), is_trainable=False)
+    if not args.load_in_4bit:
+        model = model.to(device)
     if not getattr(model, "peft_config", None):
         raise RuntimeError("Adapter not attached.")
     print(f"[Sub] Adapter OK: {list(model.peft_config.keys())}", flush=True)
