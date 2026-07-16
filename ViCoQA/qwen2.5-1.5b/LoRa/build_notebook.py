@@ -192,8 +192,9 @@ def train_one_variant(variant, max_seq_length, dataset, eval_dataset=None):
     preflight_vram(min_free_gib=MIN_FREE_VRAM_GIB)
 
     name = variant["name"]
+    use_4bit = load_in_4bit_for_method(name)
     print("\n" + "=" * 60)
-    print(f" TRAIN VARIANT: {name.upper()} | 4bit={LOAD_IN_4BIT}")
+    print(f" TRAIN VARIANT: {name.upper()} | 4bit={use_4bit}")
     print("=" * 60)
 
     eval_on = USE_EARLY_STOPPING and eval_dataset is not None
@@ -204,7 +205,7 @@ def train_one_variant(variant, max_seq_length, dataset, eval_dataset=None):
             model_name=BASE_MODEL_NAME,
             max_seq_length=max_seq_length,
             dtype=None,
-            load_in_4bit=LOAD_IN_4BIT,
+            load_in_4bit=use_4bit,
             load_in_8bit=LOAD_IN_8BIT,
         )
         # device_map=None: tránh transformers warmup 1.4 GiB (OOM khi free < 2 GiB)
@@ -641,6 +642,13 @@ RUN_SUBMISSION_EXPORT = True
 
 LOAD_IN_4BIT = True
 LOAD_IN_8BIT = False
+
+
+def load_in_4bit_for_method(method_name):
+    """DeLoRA init gọi torch.norm trên base.weight — 4bit BnB là Byte, không tương thích."""
+    if method_name == "delora":
+        return False
+    return LOAD_IN_4BIT
 MAX_SEQ_CAP = 4096
 MIN_SEQ_LENGTH = 512
 MAX_NEW_TOKENS = 64
