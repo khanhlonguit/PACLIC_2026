@@ -31,7 +31,7 @@ from transformers import AutoTokenizer
 HERE = Path(__file__).resolve().parent
 DATASET_ROOT = HERE.parent.parent  # ViCoQA/
 
-NOTEBOOK_VERSION = "V5"
+NOTEBOOK_VERSION = "V5.1"
 BASE_MODEL_NAME = "Qwen/Qwen2.5-1.5B-Instruct"
 SYSTEM_PROMPT = (
     "Bạn là trợ lý hỏi-đáp tiếng Việt. Dựa trên đoạn văn dưới đây, "
@@ -95,6 +95,8 @@ def _force_single_gpu():
     os.environ["WORLD_SIZE"] = "1"
     os.environ["LOCAL_RANK"] = "0"
     os.environ["RANK"] = "0"
+    os.environ["MASTER_ADDR"] = "127.0.0.1"
+    os.environ["MASTER_PORT"] = "29500"
     try:
         from accelerate.state import AcceleratorState
         AcceleratorState._reset_state(reset_partial_state=True)
@@ -279,7 +281,7 @@ def train_one(method_name: str, max_seq_length: int, train_ds, eval_ds):
     from transformers import TrainingArguments, EarlyStoppingCallback
 
     variant = next(v for v in ADAPTER_VARIANTS if v["name"] == method_name)
-    print(f"\n>>> TRAIN_FIX_V5 | {method_name} | 4bit={LOAD_IN_4BIT} <<<", flush=True)
+    print(f"\n>>> TRAIN_FIX_V5.1 | {method_name} | 4bit={LOAD_IN_4BIT} <<<", flush=True)
     _force_single_gpu()
     preflight()
     assert_before_load()
@@ -335,6 +337,8 @@ def train_one(method_name: str, max_seq_length: int, train_ds, eval_ds):
         else:
             train_args[ek] = "no"
         train_args = {k: v for k, v in train_args.items() if k in _ta or k == "output_dir"}
+        if "local_rank" in _ta:
+            train_args["local_rank"] = -1
 
         sft_kw = dict(model=model, train_dataset=train_ds, eval_dataset=eval_ds if eval_on else None,
                       args=TrainingArguments(**train_args), callbacks=callbacks)
