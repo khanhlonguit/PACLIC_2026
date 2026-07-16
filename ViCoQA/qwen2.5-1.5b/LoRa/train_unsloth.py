@@ -44,6 +44,12 @@ MIN_FREE_VRAM_GIB = 8.0
 MIN_LOAD_VRAM_GIB = 4.0
 PROFILING_CONFIG_PATH = HERE / "profiling_config.json"
 
+
+def load_in_4bit_for_method(method_name: str) -> bool:
+    if method_name == "delora":
+        return False
+    return LOAD_IN_4BIT
+
 TARGET_MODULES = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
 
 ADAPTER_VARIANTS = [
@@ -281,7 +287,8 @@ def train_one(method_name: str, max_seq_length: int, train_ds, eval_ds):
     from transformers import TrainingArguments, EarlyStoppingCallback
 
     variant = next(v for v in ADAPTER_VARIANTS if v["name"] == method_name)
-    print(f"\n>>> TRAIN_FIX_V5.1 | {method_name} | 4bit={LOAD_IN_4BIT} <<<", flush=True)
+    use_4bit = load_in_4bit_for_method(method_name)
+    print(f"\n>>> TRAIN_FIX_V5.2 | {method_name} | 4bit={use_4bit} <<<", flush=True)
     _force_single_gpu()
     preflight()
     assert_before_load()
@@ -292,7 +299,7 @@ def train_one(method_name: str, max_seq_length: int, train_ds, eval_ds):
             model_name=BASE_MODEL_NAME,
             max_seq_length=max_seq_length,
             dtype=None,
-            load_in_4bit=LOAD_IN_4BIT,
+            load_in_4bit=use_4bit,
             load_in_8bit=False,
         )
         # Không truyền device_map → tránh transformers warmup 1.4 GiB
