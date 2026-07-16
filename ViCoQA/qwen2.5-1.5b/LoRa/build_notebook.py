@@ -147,18 +147,24 @@ def train_one_variant(variant, max_seq_length, dataset, eval_dataset=None):
         report_to="none",
     )
     callbacks = []
+    import inspect
+    _ta_params = inspect.signature(TrainingArguments.__init__).parameters
+    _eval_key = "eval_strategy" if "eval_strategy" in _ta_params else "evaluation_strategy"
     if eval_on:
-        train_args.update(
-            evaluation_strategy="steps",
-            eval_steps=EVAL_STEPS,
-            load_best_model_at_end=True,
-            metric_for_best_model="eval_loss",
-            greater_is_better=False,
-        )
+        # transformers mới: evaluation_strategy → eval_strategy
+        train_args.update({
+            _eval_key: "steps",
+            "eval_steps": EVAL_STEPS,
+            "load_best_model_at_end": True,
+            "metric_for_best_model": "eval_loss",
+            "greater_is_better": False,
+        })
         callbacks.append(EarlyStoppingCallback(
             early_stopping_patience=EARLY_STOPPING_PATIENCE,
             early_stopping_threshold=EARLY_STOPPING_THRESHOLD,
         ))
+    else:
+        train_args[_eval_key] = "no"
 
     trainer = SFTTrainer(
         model=model,
