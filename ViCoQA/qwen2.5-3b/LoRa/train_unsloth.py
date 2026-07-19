@@ -80,6 +80,27 @@ SAVE_STEPS = 200
 SAVE_TOTAL_LIMIT = 3
 
 
+def resolve_resume_checkpoint(output_dir, resume_flag):
+    """resume_flag: False | True | path str. True = lấy checkpoint-* mới nhất."""
+    if not resume_flag:
+        return None
+    if isinstance(resume_flag, str) and resume_flag not in ("True", "true", "1"):
+        p = Path(resume_flag)
+        if not p.is_absolute():
+            p = HERE / p
+        if not p.exists():
+            raise FileNotFoundError(f"Checkpoint không tồn tại: {p}")
+        return str(p)
+    out = Path(output_dir) if Path(output_dir).is_absolute() else HERE / output_dir
+    if not out.exists():
+        return None
+    ckpts = sorted(
+        [p for p in out.glob("checkpoint-*") if p.is_dir()],
+        key=lambda p: int(p.name.split("-")[-1]),
+    )
+    return str(ckpts[-1]) if ckpts else None
+
+
 def _patch_transformers_warmup():
     """Transformers warmup pre-alloc ~1.4 GiB — skip khi VRAM thấp."""
     try:
@@ -280,7 +301,7 @@ def apply_adapter(model, method_name):
     raise ValueError(method_name)
 
 
-def train_one(method_name: str, max_seq_length: int, train_ds, eval_ds):
+def train_one(method_name: str, max_seq_length: int, train_ds, eval_ds, resume_flag=False):
     import inspect
     import sys
     from unsloth import FastLanguageModel, is_bfloat16_supported
@@ -364,7 +385,15 @@ def train_one(method_name: str, max_seq_length: int, train_ds, eval_ds):
         if hasattr(trainer, "accelerator"):
             trainer.accelerator.verify_device_map = lambda m: False
 
-        trainer.train()
+        resume_ckpt = resolve_resume_checkpoint(variant["output_dir"], resume_flag)
+        if resume_ckpt:
+            print(f"Resume from checkpoint: {resume_ckpt}", flush=True)
+            trainer.train(resume_from_checkpoint=resume_ckpt)
+        elif resume_flag:
+            print("RESUME=True nhưng chưa có checkpoint-* — train từ đầu.", flush=True)
+            trainer.train()
+        else:
+            trainer.train()
         save_path = HERE / variant["save_path"]
         save_path.mkdir(parents=True, exist_ok=True)
         model.save_pretrained(str(save_path))
@@ -383,6 +412,13 @@ def main():
     parser.add_argument("--method", choices=[v["name"] for v in ADAPTER_VARIANTS])
     parser.add_argument("--all", action="store_true")
     parser.add_argument("--preflight-only", action="store_true")
+    parser.add_argument(
+        "--resume",
+        nargs="?",
+        const=True,
+        default=False,
+        help="Resume từ checkpoint mới nhất (hoặc truyền path: --resume outputs_vicoqa_3b_lora/checkpoint-600)",
+    )
     args = parser.parse_args()
 
     print(f"=== train_unsloth.py {NOTEBOOK_VERSION} ===", flush=True)
@@ -405,7 +441,7 @@ def main():
     train_ds, eval_ds = prepare_datasets(max_seq_length)
 
     for m in methods:
-        train_one(m, max_seq_length, train_ds, eval_ds)
+        train_one(m, max_seq_length, train_ds, eval_ds, resume_flag=args.resume)
         preflight()
 
     print("\n✅ Done", flush=True)

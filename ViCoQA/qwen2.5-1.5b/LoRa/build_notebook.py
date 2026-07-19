@@ -759,9 +759,10 @@ def report_vram(label="VRAM"):
 
 
 def release_stale_training_objects():
+    # Không xóa trained_paths — train loop cần giữ dict qua nhiều variant
     stale = (
         "model", "tokenizer", "trainer", "model_eval", "tokenizer_eval",
-        "tokenizer_prof", "tokenizer_fmt", "trained_paths",
+        "tokenizer_prof", "tokenizer_fmt",
     )
     g = globals()
     for name in stale:
