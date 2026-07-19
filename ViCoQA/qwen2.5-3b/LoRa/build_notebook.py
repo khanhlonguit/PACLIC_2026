@@ -180,7 +180,26 @@ def _assert_before_load():
         )
 
 
-def train_one_variant(variant, max_seq_length, dataset, eval_dataset=None):
+def resolve_resume_checkpoint(output_dir, resume_flag):
+    """resume_flag: False | True | path str. True = lấy checkpoint-* mới nhất."""
+    if not resume_flag:
+        return None
+    if isinstance(resume_flag, str) and resume_flag not in ("True", "true", "1"):
+        p = Path(resume_flag)
+        if not p.exists():
+            raise FileNotFoundError(f"Checkpoint không tồn tại: {p}")
+        return str(p)
+    out = Path(output_dir)
+    if not out.exists():
+        return None
+    ckpts = sorted(
+        [p for p in out.glob("checkpoint-*") if p.is_dir()],
+        key=lambda p: int(p.name.split("-")[-1]),
+    )
+    return str(ckpts[-1]) if ckpts else None
+
+
+def train_one_variant(variant, max_seq_length, dataset, eval_dataset=None, resume_flag=RESUME_FROM_CHECKPOINT):
     from unsloth import FastLanguageModel, is_bfloat16_supported
     from trl import SFTTrainer
     from transformers import TrainingArguments, EarlyStoppingCallback
@@ -288,7 +307,15 @@ def train_one_variant(variant, max_seq_length, dataset, eval_dataset=None):
         sys.modules[cfg_cls.__module__].SFTConfig = cfg_cls
         sys.modules[tr_cls.__module__].SFTTrainer = tr_cls
 
-        trainer.train()
+        resume_ckpt = resolve_resume_checkpoint(variant["output_dir"], resume_flag)
+        if resume_ckpt:
+            print(f"Resume from checkpoint: {resume_ckpt}", flush=True)
+            trainer.train(resume_from_checkpoint=resume_ckpt)
+        elif resume_flag:
+            print("RESUME_FROM_CHECKPOINT=True nhưng chưa có checkpoint — train từ đầu.", flush=True)
+            trainer.train()
+        else:
+            trainer.train()
         Path(variant["save_path"]).mkdir(parents=True, exist_ok=True)
         model.save_pretrained(variant["save_path"])
         tokenizer.save_pretrained(variant["save_path"])
@@ -698,6 +725,8 @@ EARLY_STOPPING_THRESHOLD = 0.001
 EVAL_STEPS = 200
 SAVE_STEPS = 200
 SAVE_TOTAL_LIMIT = 3
+# Resume: False | True (checkpoint mới nhất) | "outputs_vicoqa_3b_lora/checkpoint-600"
+RESUME_FROM_CHECKPOINT = False
 
 TRAIN_COMMON = dict(
     per_device_train_batch_size=1,
@@ -783,9 +812,10 @@ def report_vram(label="VRAM"):
 
 
 def release_stale_training_objects():
+    # Không xóa trained_paths — train loop cần giữ dict qua nhiều variant
     stale = (
         "model", "tokenizer", "trainer", "model_eval", "tokenizer_eval",
-        "tokenizer_prof", "tokenizer_fmt", "trained_paths",
+        "tokenizer_prof", "tokenizer_fmt",
     )
     g = globals()
     for name in stale:

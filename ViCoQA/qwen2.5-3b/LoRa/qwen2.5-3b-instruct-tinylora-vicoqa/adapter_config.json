@@ -1,0 +1,31 @@
+{
+  "auto_mapping": null,
+  "base_model_name_or_path": "unsloth/Qwen2.5-3B-Instruct",
+  "bias": "none",
+  "fan_in_fan_out": false,
+  "inference_mode": true,
+  "init_v_bound": 0.02,
+  "init_weights": true,
+  "layers_pattern": null,
+  "layers_to_transform": null,
+  "modules_to_save": null,
+  "peft_type": "TINYLORA",
+  "peft_version": "0.19.1",
+  "projection_seed": 3407,
+  "r": 2,
+  "revision": null,
+  "save_projection": true,
+  "target_modules": [
+    "v_proj",
+    "down_proj",
+    "o_proj",
+    "gate_proj",
+    "k_proj",
+    "q_proj",
+    "up_proj"
+  ],
+  "task_type": "CAUSAL_LM",
+  "tinylora_dropout": 0.0,
+  "u": 64,
+  "weight_tying": 0.0
+}
