@@ -20,6 +20,8 @@ from __future__ import annotations
 import math
 import os
 import string
+import threading
+import time
 import unicodedata
 from collections import Counter
 from pathlib import Path
@@ -32,6 +34,11 @@ try:
     _WANDB_AVAILABLE = True
 except ImportError:
     pass
+
+try:
+    from transformers import TrainerCallback
+except ImportError:
+    TrainerCallback = object  # type: ignore[misc, assignment]
 
 
 # ---------------------------------------------------------------------------
@@ -145,7 +152,7 @@ def init_run(
         name=run_name,
         config=config,
         tags=_tags,
-        reinit=True,
+        reinit="finish_previous",
     )
     print(f"[wandb] Run started: {run.name} | {run.url}", flush=True)
     return run
@@ -219,7 +226,7 @@ _ADAPTER_FILENAMES = {
 # Module 3 — Artifact Auto-Saver Callback
 # ---------------------------------------------------------------------------
 
-class WandbAdapterArtifactCallback:
+class WandbAdapterArtifactCallback(TrainerCallback):
     """TrainerCallback that uploads adapter weights to W&B Artifacts.
 
     Triggers:
@@ -235,6 +242,7 @@ class WandbAdapterArtifactCallback:
         upload_checkpoints: bool = True,
         best_eval_loss: float = float("inf"),
     ):
+        super().__init__()
         self.variant = variant
         self.project = project
         self.run = run
@@ -313,7 +321,7 @@ class WandbAdapterArtifactCallback:
 # Module 4 — Visual Generation Table Callback
 # ---------------------------------------------------------------------------
 
-class WandbGenerationTableCallback:
+class WandbGenerationTableCallback(TrainerCallback):
     """TrainerCallback that logs greedy-decoded predictions to a wandb.Table.
 
     Runs at every evaluation step and at train_end.
@@ -330,6 +338,7 @@ class WandbGenerationTableCallback:
         max_context_chars: int = 300,
         seed: int = 3407,
     ):
+        super().__init__()
         import random
 
         self.tokenizer = tokenizer
@@ -425,10 +434,11 @@ class WandbGenerationTableCallback:
 # Module 2 (extra) — Metrics Callback: perplexity + throughput
 # ---------------------------------------------------------------------------
 
-class WandbMetricsCallback:
+class WandbMetricsCallback(TrainerCallback):
     """TrainerCallback that adds eval/perplexity and train/tokens_per_second."""
 
     def __init__(self):
+        super().__init__()
         self._t0: float | None = None
         self._tokens_seen_t0: int = 0
 
@@ -472,6 +482,224 @@ class WandbMetricsCallback:
 
         if extra:
             wandb.log(extra, step=state.global_step)
+
+
+# ---------------------------------------------------------------------------
+# Module Hardware — WandbHardwareCallback (pynvml power + VRAM + ETA)
+# ---------------------------------------------------------------------------
+
+def _pynvml_available() -> bool:
+    try:
+        import pynvml  # noqa: F401
+        return True
+    except ImportError:
+        return False
+
+
+class WandbHardwareCallback(TrainerCallback):
+    """TrainerCallback that monitors GPU power, VRAM, energy, and ETA.
+
+    Background thread polls pynvml every `poll_interval_s` seconds and
+    accumulates energy: energy_wh += power_w * dt / 3600.
+
+    Logs to W&B on every on_log call:
+      gpu/power_watts           — instantaneous power draw (W)
+      gpu/energy_wh             — cumulative energy consumed (Wh)
+      gpu/peak_vram_allocated_gib
+      gpu/peak_vram_reserved_gib
+      gpu/vram_allocated_gib    — current allocated VRAM
+      train/eta_seconds         — estimated time remaining
+      train/elapsed_seconds
+    """
+
+    def __init__(self, gpu_index: int = 0, poll_interval_s: float = 5.0):
+        super().__init__()
+        self.gpu_index = gpu_index
+        self.poll_interval_s = poll_interval_s
+
+        self._nvml_ok = _pynvml_available()
+        self._handle = None
+        self._lock = threading.Lock()
+
+        # energy accumulation
+        self._energy_wh: float = 0.0
+        self._last_poll_t: float | None = None
+        self._last_power_w: float = 0.0
+
+        # peak VRAM (also tracked via torch)
+        self._peak_vram_alloc_gib: float = 0.0
+        self._peak_vram_reserved_gib: float = 0.0
+
+        # timing for ETA
+        self._train_start_t: float | None = None
+        self._total_steps: int = 0
+
+        # background thread
+        self._stop_event = threading.Event()
+        self._poll_thread: threading.Thread | None = None
+
+    def _init_nvml(self) -> None:
+        if not self._nvml_ok:
+            return
+        try:
+            import pynvml
+            pynvml.nvmlInit()
+            self._handle = pynvml.nvmlDeviceGetHandleByIndex(self.gpu_index)
+            print(f"[wandb-hw] pynvml OK — GPU {self.gpu_index}: "
+                  f"{pynvml.nvmlDeviceGetName(self._handle)}", flush=True)
+        except Exception as exc:
+            print(f"[wandb-hw] pynvml init failed ({exc}), hardware metrics disabled.", flush=True)
+            self._nvml_ok = False
+
+    def _read_power_w(self) -> float | None:
+        """Return instantaneous power in Watts, or None on failure."""
+        if not self._nvml_ok or self._handle is None:
+            return None
+        try:
+            import pynvml
+            return pynvml.nvmlDeviceGetPowerUsage(self._handle) / 1000.0
+        except Exception:
+            return None
+
+    def _read_vram_gib(self) -> tuple[float, float] | None:
+        """Return (used_gib, total_gib) or None."""
+        if not self._nvml_ok or self._handle is None:
+            return None
+        try:
+            import pynvml
+            info = pynvml.nvmlDeviceGetMemoryInfo(self._handle)
+            return info.used / 1024**3, info.total / 1024**3
+        except Exception:
+            return None
+
+    def _poll_loop(self) -> None:
+        """Background thread: poll power + VRAM every poll_interval_s."""
+        while not self._stop_event.is_set():
+            now = time.time()
+            power_w = self._read_power_w()
+
+            with self._lock:
+                if power_w is not None:
+                    if self._last_poll_t is not None:
+                        dt = now - self._last_poll_t
+                        avg_power = (power_w + self._last_power_w) / 2.0
+                        self._energy_wh += avg_power * dt / 3600.0
+                    self._last_power_w = power_w
+                    self._last_poll_t = now
+
+                # VRAM via torch (always available if torch is imported)
+                try:
+                    import torch
+                    if torch.cuda.is_available():
+                        alloc = torch.cuda.memory_allocated(self.gpu_index) / 1024**3
+                        reserved = torch.cuda.memory_reserved(self.gpu_index) / 1024**3
+                        peak_alloc = torch.cuda.max_memory_allocated(self.gpu_index) / 1024**3
+                        peak_res = torch.cuda.max_memory_reserved(self.gpu_index) / 1024**3
+                        if alloc > self._peak_vram_alloc_gib:
+                            self._peak_vram_alloc_gib = peak_alloc
+                        if reserved > self._peak_vram_reserved_gib:
+                            self._peak_vram_reserved_gib = peak_res
+                except Exception:
+                    pass
+
+            self._stop_event.wait(self.poll_interval_s)
+
+    # ------------------------------------------------------------------
+    # Trainer callback interface
+    # ------------------------------------------------------------------
+
+    def on_train_begin(self, args, state, control, **kwargs):
+        self._init_nvml()
+        self._train_start_t = time.time()
+        self._total_steps = int(state.max_steps or 0)
+        self._energy_wh = 0.0
+        self._last_poll_t = None
+        self._peak_vram_alloc_gib = 0.0
+        self._peak_vram_reserved_gib = 0.0
+
+        # Reset torch peak memory counters
+        try:
+            import torch
+            if torch.cuda.is_available():
+                torch.cuda.reset_peak_memory_stats(self.gpu_index)
+        except Exception:
+            pass
+
+        self._stop_event.clear()
+        self._poll_thread = threading.Thread(target=self._poll_loop, daemon=True, name="wandb-hw-poll")
+        self._poll_thread.start()
+        print(f"[wandb-hw] Hardware monitor started (poll every {self.poll_interval_s}s)", flush=True)
+
+    def on_log(self, args, state, control, logs=None, **kwargs):
+        if not _WANDB_AVAILABLE:
+            return
+
+        step = state.global_step
+        extra: dict[str, Any] = {}
+
+        with self._lock:
+            # Energy and power
+            extra["gpu/energy_wh"] = round(self._energy_wh, 4)
+            extra["gpu/power_watts"] = round(self._last_power_w, 2)
+            extra["gpu/peak_vram_allocated_gib"] = round(self._peak_vram_alloc_gib, 3)
+            extra["gpu/peak_vram_reserved_gib"] = round(self._peak_vram_reserved_gib, 3)
+
+        # Current VRAM via torch
+        try:
+            import torch
+            if torch.cuda.is_available():
+                extra["gpu/vram_allocated_gib"] = round(
+                    torch.cuda.memory_allocated(self.gpu_index) / 1024**3, 3
+                )
+        except Exception:
+            pass
+
+        # Elapsed + ETA
+        if self._train_start_t is not None:
+            elapsed = time.time() - self._train_start_t
+            extra["train/elapsed_seconds"] = round(elapsed, 1)
+            if step > 0 and self._total_steps > 0:
+                steps_remaining = self._total_steps - step
+                secs_per_step = elapsed / step
+                eta = steps_remaining * secs_per_step
+                extra["train/eta_seconds"] = round(eta, 1)
+                extra["train/eta_minutes"] = round(eta / 60, 2)
+
+        if extra:
+            wandb.log(extra, step=step)
+
+    def on_train_end(self, args, state, control, **kwargs):
+        # Stop background thread
+        self._stop_event.set()
+        if self._poll_thread is not None:
+            self._poll_thread.join(timeout=10)
+
+        # Final snapshot
+        if _WANDB_AVAILABLE:
+            with self._lock:
+                final_energy = self._energy_wh
+                peak_alloc = self._peak_vram_alloc_gib
+                peak_res = self._peak_vram_reserved_gib
+
+            # Log final summary metrics
+            wandb.log({
+                "gpu/final_energy_wh": round(final_energy, 4),
+                "gpu/peak_vram_allocated_gib": round(peak_alloc, 3),
+                "gpu/peak_vram_reserved_gib": round(peak_res, 3),
+            }, step=state.global_step)
+            print(
+                f"[wandb-hw] Final energy: {final_energy:.3f} Wh | "
+                f"Peak VRAM alloc: {peak_alloc:.2f} GiB | reserved: {peak_res:.2f} GiB",
+                flush=True,
+            )
+
+        # Shutdown NVML
+        if self._nvml_ok:
+            try:
+                import pynvml
+                pynvml.nvmlShutdown()
+            except Exception:
+                pass
 
 
 # ---------------------------------------------------------------------------
