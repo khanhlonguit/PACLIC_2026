@@ -182,6 +182,94 @@ def log_train_summary(run: Any, metrics: dict) -> None:
 # Helpers shared by callbacks
 # ---------------------------------------------------------------------------
 
+def _wandb_log(metrics: dict, step: int | None = None) -> None:
+    """Log to W&B without step-backward warnings.
+
+    HF Trainer (report_to=wandb) may advance the internal step before our
+    callbacks fire (e.g. on_evaluate at step 200 while wandb is already at 201).
+    Merge supplementary metrics into the current step instead of going backwards.
+    """
+    if not _WANDB_AVAILABLE:
+        return
+    if step is not None and wandb.run is not None:
+        current = wandb.run.step
+        if current is not None and step < current:
+            step = current
+    wandb.log(metrics, step=step)
+
+
+def _get_peft_type(model) -> str:
+    """Return upper-case PEFT type string, e.g. 'LORA', 'TINYLORA', 'DELORA'."""
+    peft_config = getattr(model, "peft_config", None)
+    if not peft_config:
+        return ""
+    cfg = next(iter(peft_config.values()), None)
+    if cfg is None:
+        return ""
+    return str(getattr(cfg, "peft_type", "") or "").upper()
+
+
+def _manual_generate(
+    model,
+    input_ids,
+    attention_mask,
+    max_new_tokens: int,
+    eos_token_id: int,
+):
+    """Greedy decode via forward() — works for TinyLoRA/DeLoRA where Unsloth fast generate fails."""
+    import torch
+
+    generated = input_ids
+    attn = attention_mask
+    for _ in range(max_new_tokens):
+        outputs = model(input_ids=generated, attention_mask=attn, use_cache=False)
+        logits = outputs.logits if hasattr(outputs, "logits") else outputs[0]
+        next_token = logits[:, -1:, :].argmax(dim=-1)
+        generated = torch.cat([generated, next_token], dim=1)
+        attn = torch.cat(
+            [attn, torch.ones((attn.shape[0], 1), device=attn.device, dtype=attn.dtype)],
+            dim=1,
+        )
+        if eos_token_id is not None and (next_token == eos_token_id).all():
+            break
+    return generated
+
+
+def _safe_model_generate(model, inputs, max_new_tokens: int, pad_token_id, eos_token_id):
+    """Generate tokens, bypassing Unsloth fast kernels for non-standard PEFT adapters."""
+    peft_type = _get_peft_type(model)
+    gen_kwargs = dict(
+        max_new_tokens=max_new_tokens,
+        do_sample=False,
+        pad_token_id=pad_token_id,
+        eos_token_id=eos_token_id,
+    )
+
+    # TinyLoRA / DeLoRA: Unsloth fast_generate expects lora_A/lora_B → use forward loop
+    if peft_type in {"TINYLORA", "DELORA"}:
+        return _manual_generate(
+            model,
+            inputs["input_ids"],
+            inputs.get("attention_mask"),
+            max_new_tokens,
+            eos_token_id,
+        )
+
+    try:
+        return model.generate(**inputs, **gen_kwargs)
+    except AttributeError as exc:
+        if "lora_A" in str(exc):
+            print(f"[wandb-gentable] Unsloth fast generate failed ({exc}), using manual forward.", flush=True)
+            return _manual_generate(
+                model,
+                inputs["input_ids"],
+                inputs.get("attention_mask"),
+                max_new_tokens,
+                eos_token_id,
+            )
+        raise
+
+
 def _normalize(text: str) -> str:
     text = unicodedata.normalize("NFC", text or "")
     return " ".join(text.lower().translate(str.maketrans("", "", string.punctuation)).split())
@@ -337,10 +425,12 @@ class WandbGenerationTableCallback(TrainerCallback):
         max_new_tokens: int = 64,
         max_context_chars: int = 300,
         seed: int = 3407,
+        method_name: str = "",
     ):
         super().__init__()
         import random
 
+        self.method_name = method_name
         self.tokenizer = tokenizer
         self.system_prompt = system_prompt
         self.max_new_tokens = max_new_tokens
@@ -380,10 +470,10 @@ class WandbGenerationTableCallback(TrainerCallback):
                 inputs = self.tokenizer(
                     prompt, return_tensors="pt", truncation=True, max_length=512
                 ).to(device)
-                out = model.generate(
-                    **inputs,
+                out = _safe_model_generate(
+                    model,
+                    inputs,
                     max_new_tokens=self.max_new_tokens,
-                    do_sample=False,
                     pad_token_id=self.tokenizer.pad_token_id,
                     eos_token_id=self.tokenizer.eos_token_id,
                 )
@@ -410,13 +500,23 @@ class WandbGenerationTableCallback(TrainerCallback):
     def _log_table(self, model, step: int) -> None:
         if not _WANDB_AVAILABLE:
             return
-        rows = self._run_generation(model)
+        try:
+            rows = self._run_generation(model)
+        except Exception as exc:
+            print(
+                f"[wandb-gentable] Skipped generation table at step {step} "
+                f"({self.method_name or _get_peft_type(model)}): {exc}",
+                flush=True,
+            )
+            return
+        if not rows:
+            return
         table = wandb.Table(
             columns=["step", "context_snippet", "question", "ground_truth", "model_output", "em", "f1"]
         )
         for row in rows:
             table.add_data(step, row["context_snippet"], row["question"], row["ground_truth"], row["model_output"], row["em"], row["f1"])
-        wandb.log({self._table_key: table, "eval/gen_em": sum(r["em"] for r in rows) / len(rows), "eval/gen_f1": sum(r["f1"] for r in rows) / len(rows)}, step=step)
+        _wandb_log({self._table_key: table, "eval/gen_em": sum(r["em"] for r in rows) / len(rows), "eval/gen_f1": sum(r["f1"] for r in rows) / len(rows)}, step=step)
         print(f"[wandb-gentable] Logged {len(rows)} rows at step {step}", flush=True)
 
     def on_evaluate(self, args, state, control, model=None, **kwargs):
@@ -456,7 +556,7 @@ class WandbMetricsCallback(TrainerCallback):
                 perplexity = math.exp(eval_loss)
             except OverflowError:
                 perplexity = float("inf")
-            wandb.log({"eval/perplexity": perplexity}, step=state.global_step)
+            _wandb_log({"eval/perplexity": perplexity}, step=state.global_step)
 
     def on_log(self, args, state, control, logs=None, **kwargs):
         if not _WANDB_AVAILABLE or not logs:
@@ -481,7 +581,7 @@ class WandbMetricsCallback(TrainerCallback):
                     extra["train/samples_per_second"] = (state.global_step * bs) / elapsed
 
         if extra:
-            wandb.log(extra, step=state.global_step)
+            _wandb_log(extra, step=state.global_step)
 
 
 # ---------------------------------------------------------------------------
@@ -666,7 +766,7 @@ class WandbHardwareCallback(TrainerCallback):
                 extra["train/eta_minutes"] = round(eta / 60, 2)
 
         if extra:
-            wandb.log(extra, step=step)
+            _wandb_log(extra, step=step)
 
     def on_train_end(self, args, state, control, **kwargs):
         # Stop background thread
@@ -682,7 +782,7 @@ class WandbHardwareCallback(TrainerCallback):
                 peak_res = self._peak_vram_reserved_gib
 
             # Log final summary metrics
-            wandb.log({
+            _wandb_log({
                 "gpu/final_energy_wh": round(final_energy, 4),
                 "gpu/peak_vram_allocated_gib": round(peak_alloc, 3),
                 "gpu/peak_vram_reserved_gib": round(peak_res, 3),
