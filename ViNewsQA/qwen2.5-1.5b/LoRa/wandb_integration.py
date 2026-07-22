@@ -133,6 +133,7 @@ def init_run(
     entity: str | None,
     group: str | None,
     tags: list[str] | None = None,
+    resume_run_id: str | None = None,
 ) -> Any:
     """Open a new W&B run for one adapter variant. Returns the run object."""
     if not _WANDB_AVAILABLE:
@@ -145,7 +146,7 @@ def init_run(
 
     _tags = [name, "vinewsqa", "unsloth"] + (tags or [])
 
-    run = wandb.init(
+    init_kwargs: dict[str, Any] = dict(
         project=project,
         entity=entity,
         group=group,
@@ -154,7 +155,15 @@ def init_run(
         tags=_tags,
         reinit="finish_previous",
     )
-    print(f"[wandb] Run started: {run.name} | {run.url}", flush=True)
+    if resume_run_id:
+        init_kwargs["id"] = resume_run_id
+        init_kwargs["resume"] = "allow"
+
+    run = wandb.init(**init_kwargs)
+    if resume_run_id:
+        print(f"[wandb] Resumed run: {run.name} | {run.url}", flush=True)
+    else:
+        print(f"[wandb] Run started: {run.name} | {run.url}", flush=True)
     return run
 
 
@@ -202,11 +211,26 @@ def _get_peft_type(model) -> str:
     """Return upper-case PEFT type string, e.g. 'LORA', 'TINYLORA', 'DELORA'."""
     peft_config = getattr(model, "peft_config", None)
     if not peft_config:
+        # Unsloth may wrap base_model — try one level deeper
+        base = getattr(model, "base_model", None) or getattr(model, "model", None)
+        if base is not None:
+            peft_config = getattr(base, "peft_config", None)
+    if not peft_config:
         return ""
     cfg = next(iter(peft_config.values()), None)
     if cfg is None:
         return ""
-    return str(getattr(cfg, "peft_type", "") or "").upper()
+    peft_type = getattr(cfg, "peft_type", "") or ""
+    if hasattr(peft_type, "value"):
+        peft_type = peft_type.value
+    return str(peft_type).upper()
+
+
+def _needs_manual_generate(model, method_name: str = "") -> bool:
+    """True when Unsloth fast generate is incompatible (TinyLoRA / DeLoRA)."""
+    if method_name.lower() in {"tinylora", "delora"}:
+        return True
+    return _get_peft_type(model) in {"TINYLORA", "DELORA"}
 
 
 def _manual_generate(
@@ -235,18 +259,16 @@ def _manual_generate(
     return generated
 
 
-def _safe_model_generate(model, inputs, max_new_tokens: int, pad_token_id, eos_token_id):
+def _safe_model_generate(
+    model,
+    inputs,
+    max_new_tokens: int,
+    pad_token_id,
+    eos_token_id,
+    force_manual: bool = False,
+):
     """Generate tokens, bypassing Unsloth fast kernels for non-standard PEFT adapters."""
-    peft_type = _get_peft_type(model)
-    gen_kwargs = dict(
-        max_new_tokens=max_new_tokens,
-        do_sample=False,
-        pad_token_id=pad_token_id,
-        eos_token_id=eos_token_id,
-    )
-
-    # TinyLoRA / DeLoRA: Unsloth fast_generate expects lora_A/lora_B → use forward loop
-    if peft_type in {"TINYLORA", "DELORA"}:
+    if force_manual or _needs_manual_generate(model):
         return _manual_generate(
             model,
             inputs["input_ids"],
@@ -255,19 +277,13 @@ def _safe_model_generate(model, inputs, max_new_tokens: int, pad_token_id, eos_t
             eos_token_id,
         )
 
-    try:
-        return model.generate(**inputs, **gen_kwargs)
-    except AttributeError as exc:
-        if "lora_A" in str(exc):
-            print(f"[wandb-gentable] Unsloth fast generate failed ({exc}), using manual forward.", flush=True)
-            return _manual_generate(
-                model,
-                inputs["input_ids"],
-                inputs.get("attention_mask"),
-                max_new_tokens,
-                eos_token_id,
-            )
-        raise
+    return model.generate(
+        **inputs,
+        max_new_tokens=max_new_tokens,
+        do_sample=False,
+        pad_token_id=pad_token_id,
+        eos_token_id=eos_token_id,
+    )
 
 
 def _normalize(text: str) -> str:
@@ -431,6 +447,7 @@ class WandbGenerationTableCallback(TrainerCallback):
         import random
 
         self.method_name = method_name
+        self._use_manual_generate = method_name.lower() in {"tinylora", "delora"}
         self.tokenizer = tokenizer
         self.system_prompt = system_prompt
         self.max_new_tokens = max_new_tokens
@@ -441,6 +458,16 @@ class WandbGenerationTableCallback(TrainerCallback):
         rng.shuffle(indices)
         self._samples = [eval_dataset[i] for i in indices[:n_samples]]
         self._table_key = "eval/generation_samples"
+
+    def on_train_begin(self, args, state, control, model=None, **kwargs):
+        if model is not None and _needs_manual_generate(model, self.method_name):
+            self._use_manual_generate = True
+        if self._use_manual_generate:
+            print(
+                f"[wandb-gentable] {self.method_name or _get_peft_type(model)}: "
+                "using manual forward for generation table (Unsloth fast generate incompatible).",
+                flush=True,
+            )
 
     def _run_generation(self, model) -> list[dict]:
         import torch
@@ -476,6 +503,7 @@ class WandbGenerationTableCallback(TrainerCallback):
                     max_new_tokens=self.max_new_tokens,
                     pad_token_id=self.tokenizer.pad_token_id,
                     eos_token_id=self.tokenizer.eos_token_id,
+                    force_manual=self._use_manual_generate,
                 )
                 raw = self.tokenizer.decode(
                     out[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True
