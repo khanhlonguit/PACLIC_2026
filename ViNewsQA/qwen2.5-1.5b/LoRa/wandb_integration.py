@@ -317,6 +317,7 @@ def _score(pred: str, gold_answers: list[str]) -> tuple[int, float]:
 
 _ADAPTER_FILENAMES = {
     "adapter_model.safetensors",
+    "adapter_model.bin",
     "adapter_config.json",
     "tokenizer.json",
     "tokenizer_config.json",
@@ -324,6 +325,58 @@ _ADAPTER_FILENAMES = {
     "chat_template.jinja",
     "training_args.json",
 }
+
+# Real LoRA adapters for Qwen-1.5B are typically several MB; 133B = empty stub.
+_MIN_ADAPTER_WEIGHT_BYTES = 50_000
+
+
+def _adapter_weight_ok(dir_path: Path) -> tuple[bool, str]:
+    """Return (ok, message) after checking adapter weight file size."""
+    for name in ("adapter_model.safetensors", "adapter_model.bin"):
+        path = dir_path / name
+        if path.is_file():
+            size = path.stat().st_size
+            if size < _MIN_ADAPTER_WEIGHT_BYTES:
+                return False, f"{name} too small ({size} B) — refusing upload (likely empty stub)"
+            return True, f"{name} OK ({size / 1e6:.2f} MB)"
+    return False, f"No adapter_model.safetensors/.bin in {dir_path}"
+
+
+def upload_adapter_artifact(
+    run: Any,
+    adapter_dir: str | Path,
+    method_name: str,
+    aliases: list[str] | None = None,
+    metadata: dict | None = None,
+) -> bool:
+    """Upload a finished adapter folder to W&B. Call AFTER model.save_pretrained()."""
+    if not _WANDB_AVAILABLE or run is None:
+        return False
+    adapter_dir = Path(adapter_dir)
+    if not adapter_dir.is_dir():
+        print(f"[wandb-artifact] Missing dir {adapter_dir}", flush=True)
+        return False
+    ok, msg = _adapter_weight_ok(adapter_dir)
+    print(f"[wandb-artifact] {msg}", flush=True)
+    if not ok:
+        return False
+
+    artifact = wandb.Artifact(
+        name=f"vinewsqa-{method_name}-adapter",
+        type="model",
+        metadata=metadata or {},
+    )
+    added = 0
+    for path in sorted(adapter_dir.iterdir()):
+        if path.is_file() and path.name in _ADAPTER_FILENAMES:
+            artifact.add_file(str(path), name=path.name)
+            added += 1
+    if added == 0:
+        print(f"[wandb-artifact] No files to upload in {adapter_dir}", flush=True)
+        return False
+    run.log_artifact(artifact, aliases=aliases or ["latest", "final"])
+    print(f"[wandb-artifact] Uploaded {added} files from {adapter_dir} (aliases={aliases or ['latest', 'final']})", flush=True)
+    return True
 
 
 # ---------------------------------------------------------------------------
@@ -334,8 +387,9 @@ class WandbAdapterArtifactCallback(TrainerCallback):
     """TrainerCallback that uploads adapter weights to W&B Artifacts.
 
     Triggers:
-      - on_save  → upload latest checkpoint-* directory (lightweight)
-      - on_train_end → upload final adapter from variant["save_path"]
+      - on_save → upload latest checkpoint-* (validated weight size)
+      - on_train_end → upload best/latest checkpoint (NOT save_path —
+        save_path is written AFTER trainer.train() returns)
     """
 
     def __init__(
@@ -352,25 +406,27 @@ class WandbAdapterArtifactCallback(TrainerCallback):
         self.run = run
         self.upload_checkpoints = upload_checkpoints
         self._best_eval_loss = best_eval_loss
+        self._best_ckpt: Path | None = None
         self._artifact_aliases: list[str] = []
-
-    # ------------------------------------------------------------------
-    # Trainer callback interface
-    # ------------------------------------------------------------------
 
     def on_save(self, args, state, control, **kwargs):
         if not _WANDB_AVAILABLE or not self.upload_checkpoints:
             return
         output_dir = Path(args.output_dir)
-        # Find latest checkpoint dir
         ckpt_dirs = sorted(output_dir.glob("checkpoint-*"), key=lambda p: int(p.name.split("-")[-1]))
         if not ckpt_dirs:
             return
         latest_ckpt = ckpt_dirs[-1]
-        eval_loss = state.log_history[-1].get("eval_loss") if state.log_history else None
+        eval_loss = None
+        if state.log_history:
+            for entry in reversed(state.log_history):
+                if "eval_loss" in entry:
+                    eval_loss = entry["eval_loss"]
+                    break
         aliases = [f"step-{state.global_step}"]
         if eval_loss is not None and eval_loss < self._best_eval_loss:
             self._best_eval_loss = eval_loss
+            self._best_ckpt = latest_ckpt
             aliases.append("best")
         self._upload_dir(
             dir_path=latest_ckpt,
@@ -381,23 +437,26 @@ class WandbAdapterArtifactCallback(TrainerCallback):
         )
 
     def on_train_end(self, args, state, control, **kwargs):
+        """Upload from checkpoint dir only — final save_path is uploaded later via upload_adapter_artifact()."""
         if not _WANDB_AVAILABLE:
             return
-        save_path = Path(self.variant["save_path"])
-        if not save_path.exists():
-            print(f"[wandb-artifact] save_path {save_path} not found yet, skipping final upload.", flush=True)
+        output_dir = Path(args.output_dir)
+        ckpt_dirs = sorted(output_dir.glob("checkpoint-*"), key=lambda p: int(p.name.split("-")[-1]))
+        target = self._best_ckpt or (ckpt_dirs[-1] if ckpt_dirs else None)
+        if target is None or not target.exists():
+            print(
+                "[wandb-artifact] No checkpoint to upload at train_end "
+                "(final adapter will be uploaded after save_pretrained).",
+                flush=True,
+            )
             return
-        eval_loss = None
-        for entry in reversed(state.log_history):
-            if "eval_loss" in entry:
-                eval_loss = entry["eval_loss"]
-                break
+        eval_loss = self._best_eval_loss if self._best_eval_loss < float("inf") else None
         self._upload_dir(
-            dir_path=save_path,
-            artifact_name=f"vinewsqa-{self.variant['name']}-adapter",
+            dir_path=target,
+            artifact_name=f"vinewsqa-{self.variant['name']}-ckpt",
             artifact_type="model",
-            metadata={"eval_loss": eval_loss, "final": True},
-            aliases=["latest", "final"],
+            metadata={"eval_loss": eval_loss, "train_end_checkpoint": True},
+            aliases=["train-end"],
         )
 
     def _upload_dir(
@@ -408,10 +467,14 @@ class WandbAdapterArtifactCallback(TrainerCallback):
         metadata: dict,
         aliases: list[str],
     ) -> None:
+        ok, msg = _adapter_weight_ok(dir_path)
+        print(f"[wandb-artifact] {dir_path.name}: {msg}", flush=True)
+        if not ok:
+            return
         artifact = wandb.Artifact(name=artifact_name, type=artifact_type, metadata=metadata)
         added = 0
         for filename in sorted(dir_path.iterdir()):
-            if filename.name in _ADAPTER_FILENAMES:
+            if filename.is_file() and filename.name in _ADAPTER_FILENAMES:
                 artifact.add_file(str(filename), name=filename.name)
                 added += 1
         if added == 0:
