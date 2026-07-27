@@ -687,6 +687,31 @@ def _pynvml_available() -> bool:
         return False
 
 
+def _read_power_w_nvidia_smi(gpu_index: int = 0) -> float | None:
+    """Fallback when NVML power API is unavailable (common in some containers)."""
+    try:
+        import subprocess
+
+        result = subprocess.run(
+            [
+                "nvidia-smi",
+                "--query-gpu=power.draw",
+                "--format=csv,noheader,nounits",
+                "-i",
+                str(gpu_index),
+            ],
+            capture_output=True,
+            text=True,
+            timeout=5,
+            check=False,
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            return float(result.stdout.strip().splitlines()[0])
+    except Exception:
+        pass
+    return None
+
+
 class WandbHardwareCallback(TrainerCallback):
     """TrainerCallback that monitors GPU power, VRAM, energy, and ETA.
 
@@ -716,6 +741,7 @@ class WandbHardwareCallback(TrainerCallback):
         self._energy_wh: float = 0.0
         self._last_poll_t: float | None = None
         self._last_power_w: float = 0.0
+        self._power_ok: bool = False
 
         # peak VRAM (also tracked via torch)
         self._peak_vram_alloc_gib: float = 0.0
@@ -744,13 +770,14 @@ class WandbHardwareCallback(TrainerCallback):
 
     def _read_power_w(self) -> float | None:
         """Return instantaneous power in Watts, or None on failure."""
-        if not self._nvml_ok or self._handle is None:
-            return None
-        try:
-            import pynvml
-            return pynvml.nvmlDeviceGetPowerUsage(self._handle) / 1000.0
-        except Exception:
-            return None
+        if self._nvml_ok and self._handle is not None:
+            try:
+                import pynvml
+
+                return pynvml.nvmlDeviceGetPowerUsage(self._handle) / 1000.0
+            except Exception:
+                pass
+        return _read_power_w_nvidia_smi(self.gpu_index)
 
     def _read_vram_gib(self) -> tuple[float, float] | None:
         """Return (used_gib, total_gib) or None."""
@@ -771,6 +798,7 @@ class WandbHardwareCallback(TrainerCallback):
 
             with self._lock:
                 if power_w is not None:
+                    self._power_ok = True
                     if self._last_poll_t is not None:
                         dt = now - self._last_poll_t
                         avg_power = (power_w + self._last_power_w) / 2.0
@@ -805,6 +833,8 @@ class WandbHardwareCallback(TrainerCallback):
         self._total_steps = int(state.max_steps or 0)
         self._energy_wh = 0.0
         self._last_poll_t = None
+        self._last_power_w = 0.0
+        self._power_ok = False
         self._peak_vram_alloc_gib = 0.0
         self._peak_vram_reserved_gib = 0.0
 
@@ -829,9 +859,10 @@ class WandbHardwareCallback(TrainerCallback):
         extra: dict[str, Any] = {}
 
         with self._lock:
-            # Energy and power
-            extra["gpu/energy_wh"] = round(self._energy_wh, 4)
-            extra["gpu/power_watts"] = round(self._last_power_w, 2)
+            # Energy and power (skip if sensor unavailable — avoid misleading zeros)
+            if self._power_ok:
+                extra["gpu/energy_wh"] = round(self._energy_wh, 4)
+                extra["gpu/power_watts"] = round(self._last_power_w, 2)
             extra["gpu/peak_vram_allocated_gib"] = round(self._peak_vram_alloc_gib, 3)
             extra["gpu/peak_vram_reserved_gib"] = round(self._peak_vram_reserved_gib, 3)
 
@@ -868,21 +899,29 @@ class WandbHardwareCallback(TrainerCallback):
         # Final snapshot
         if _WANDB_AVAILABLE:
             with self._lock:
-                final_energy = self._energy_wh
+                final_energy = self._energy_wh if self._power_ok else None
                 peak_alloc = self._peak_vram_alloc_gib
                 peak_res = self._peak_vram_reserved_gib
 
-            # Log final summary metrics
-            _wandb_log({
-                "gpu/final_energy_wh": round(final_energy, 4),
+            summary = {
                 "gpu/peak_vram_allocated_gib": round(peak_alloc, 3),
                 "gpu/peak_vram_reserved_gib": round(peak_res, 3),
-            }, step=state.global_step)
-            print(
-                f"[wandb-hw] Final energy: {final_energy:.3f} Wh | "
-                f"Peak VRAM alloc: {peak_alloc:.2f} GiB | reserved: {peak_res:.2f} GiB",
-                flush=True,
-            )
+            }
+            if final_energy is not None:
+                summary["gpu/final_energy_wh"] = round(final_energy, 4)
+            _wandb_log(summary, step=state.global_step)
+            if final_energy is not None:
+                print(
+                    f"[wandb-hw] Final energy: {final_energy:.3f} Wh | "
+                    f"Peak VRAM alloc: {peak_alloc:.2f} GiB | reserved: {peak_res:.2f} GiB",
+                    flush=True,
+                )
+            else:
+                print(
+                    f"[wandb-hw] Power sensor unavailable (install nvidia-ml-py or check nvidia-smi). "
+                    f"Peak VRAM alloc: {peak_alloc:.2f} GiB | reserved: {peak_res:.2f} GiB",
+                    flush=True,
+                )
 
         # Shutdown NVML
         if self._nvml_ok:
