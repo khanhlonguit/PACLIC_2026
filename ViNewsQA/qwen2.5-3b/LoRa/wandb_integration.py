@@ -45,33 +45,71 @@ except ImportError:
 # Module 1 — Setup & Authentication
 # ---------------------------------------------------------------------------
 
-def ensure_wandb_ready(mode: str = "online") -> bool:
+def ensure_wandb_ready(mode: str = "online", notebook_name: str | None = None) -> bool:
     """Check W&B auth and set WANDB_MODE.
 
     Returns True if W&B is usable, False if it falls back to disabled/offline.
     Never raises — training must not fail because of W&B.
+
+    Auth sources (any one is enough):
+      1. os.environ["WANDB_API_KEY"]  — may be missing inside Jupyter even after shell export
+      2. wandb login / ~/.netrc       — wandb.api.api_key
     """
     if not _WANDB_AVAILABLE:
         print("[wandb] Package not installed. pip install wandb>=0.18", flush=True)
         os.environ["WANDB_MODE"] = "disabled"
         return False
 
-    api_key = (
-        os.environ.get("WANDB_API_KEY", "").strip()
-        or getattr(getattr(wandb, "api", None), "api_key", None)
-        or ""
-    )
+    # Avoid: "Failed to detect the name of this notebook..."
+    if notebook_name:
+        os.environ["WANDB_NOTEBOOK_NAME"] = notebook_name
+    else:
+        os.environ.setdefault(
+            "WANDB_NOTEBOOK_NAME",
+            "train_qwen_lora_unsloth_vinewsqa_3b.ipynb",
+        )
+
+    env_key = os.environ.get("WANDB_API_KEY", "").strip()
+    api_key = env_key
+    if not api_key:
+        # Jupyter kernel often misses shell `export`; use key from `wandb login`.
+        try:
+            api_key = (getattr(getattr(wandb, "api", None), "api_key", None) or "").strip()
+        except Exception:
+            api_key = ""
+    if not api_key:
+        try:
+            # Cached login (wandb login) — works even when env var is empty in notebook.
+            api_key = (wandb.api.api_key or "").strip() if hasattr(wandb, "api") else ""
+        except Exception:
+            api_key = ""
+
+    if api_key and not env_key:
+        # Propagate into this process so Trainer/report_to="wandb" also sees it.
+        os.environ["WANDB_API_KEY"] = api_key
+        print(
+            "[wandb] WANDB_API_KEY missing in notebook env — using key from wandb login cache.",
+            flush=True,
+        )
+
     if not api_key and mode == "online":
         print(
             "[wandb] No WANDB_API_KEY found. Falling back to offline mode.\n"
-            "        Set os.environ['WANDB_API_KEY'] = '...' before training to enable online sync.",
+            "        Fix (pick one):\n"
+            "          1) In notebook: os.environ['WANDB_API_KEY']='...'; wandb.login(key='...')\n"
+            "          2) Terminal: export WANDB_API_KEY=... then RESTART Jupyter server (not only kernel)\n"
+            "          3) Terminal: wandb login  then restart kernel and re-run ensure_wandb_ready",
             flush=True,
         )
         os.environ["WANDB_MODE"] = "offline"
         return True
 
     os.environ["WANDB_MODE"] = mode
-    print(f"[wandb] Ready (mode={os.environ['WANDB_MODE']})", flush=True)
+    print(
+        f"[wandb] Ready (mode={os.environ['WANDB_MODE']} | "
+        f"env_key={'yes' if env_key else 'no'} | login_key={'yes' if api_key else 'no'})",
+        flush=True,
+    )
     return True
 
 
