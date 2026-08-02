@@ -104,6 +104,10 @@ def main():
     order = sorted(range(len(samples)), key=lambda index: len(prompts[index]))
     predictions = [None] * len(samples)
 
+    # Qwen generation_config often sets max_length=32768; conflicts with max_new_tokens → spam warning.
+    if getattr(model, "generation_config", None) is not None:
+        model.generation_config.max_length = None
+
     started = time.time()
     done = 0
     for start in range(0, len(order), args.batch_size):
