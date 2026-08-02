@@ -34,12 +34,12 @@
   "rank_pattern": {},
   "revision": null,
   "target_modules": [
-    "o_proj",
+    "q_proj",
     "k_proj",
     "up_proj",
     "gate_proj",
-    "q_proj",
     "v_proj",
+    "o_proj",
     "down_proj"
   ],
   "target_parameters": null,
