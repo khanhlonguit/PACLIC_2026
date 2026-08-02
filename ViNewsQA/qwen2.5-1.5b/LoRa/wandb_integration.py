@@ -45,22 +45,41 @@ except ImportError:
 # Module 1 — Setup & Authentication
 # ---------------------------------------------------------------------------
 
-def ensure_wandb_ready(mode: str = "online") -> bool:
+def ensure_wandb_ready(mode: str = "online", notebook_name: str | None = None) -> bool:
     """Check W&B auth and set WANDB_MODE.
 
     Returns True if W&B is usable, False if it falls back to disabled/offline.
     Never raises — training must not fail because of W&B.
+
+    Auth sources (any one is enough):
+      1. os.environ["WANDB_API_KEY"]
+      2. wandb login / cached api_key
     """
     if not _WANDB_AVAILABLE:
         print("[wandb] Package not installed. pip install wandb>=0.18", flush=True)
         os.environ["WANDB_MODE"] = "disabled"
         return False
 
-    api_key = (
-        os.environ.get("WANDB_API_KEY", "").strip()
-        or getattr(getattr(wandb, "api", None), "api_key", None)
-        or ""
-    )
+    if notebook_name:
+        os.environ["WANDB_NOTEBOOK_NAME"] = notebook_name
+    else:
+        os.environ.setdefault("WANDB_NOTEBOOK_NAME", "train_qwen_lora_unsloth.ipynb")
+
+    env_key = os.environ.get("WANDB_API_KEY", "").strip()
+    api_key = env_key
+    if not api_key:
+        try:
+            api_key = (getattr(getattr(wandb, "api", None), "api_key", None) or "").strip()
+        except Exception:
+            api_key = ""
+
+    if api_key and not env_key:
+        os.environ["WANDB_API_KEY"] = api_key
+        print(
+            "[wandb] WANDB_API_KEY missing in notebook env — using key from wandb login cache.",
+            flush=True,
+        )
+
     if not api_key and mode == "online":
         print(
             "[wandb] No WANDB_API_KEY found. Falling back to offline mode.\n"
@@ -71,7 +90,11 @@ def ensure_wandb_ready(mode: str = "online") -> bool:
         return True
 
     os.environ["WANDB_MODE"] = mode
-    print(f"[wandb] Ready (mode={os.environ['WANDB_MODE']})", flush=True)
+    print(
+        f"[wandb] Ready (mode={os.environ['WANDB_MODE']} | "
+        f"env_key={'yes' if env_key else 'no'} | login_key={'yes' if bool(api_key) else 'no'})",
+        flush=True,
+    )
     return True
 
 
@@ -142,7 +165,12 @@ def init_run(
     name = variant["name"]
     lr = config.get("learning_rate", 2e-4)
     r = config.get("r", "?")
-    run_name = f"vinewsqa-{name}-r{r}-lr{lr:.0e}"
+    if name == "fullft" or r in (None, "?", ""):
+        run_name = f"vinewsqa-{name}-lr{lr:.0e}"
+    else:
+        run_name = f"vinewsqa-{name}-r{r}-lr{lr:.0e}"
+    if tags and "rtx4090" in tags:
+        run_name = f"{run_name}-rtx4090"
 
     _tags = [name, "vinewsqa", "unsloth"] + (tags or [])
 
