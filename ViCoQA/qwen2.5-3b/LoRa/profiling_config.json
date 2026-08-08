@@ -1,0 +1,14 @@
+{
+  "max_seq_length": 1280,
+  "token_length_stats": {
+    "min": 394,
+    "p50": 662,
+    "p95": 1028,
+    "p99": 1183,
+    "max": 1298,
+    "note": "copied from 1.5b estimate — rerun profiling cell / smoke_test_vicoqa.py with Qwen2.5-3B tokenizer",
+    "chosen_max_seq_length": 1280,
+    "truncated_samples": 1,
+    "truncated_pct": 0.2
+  }
+}
