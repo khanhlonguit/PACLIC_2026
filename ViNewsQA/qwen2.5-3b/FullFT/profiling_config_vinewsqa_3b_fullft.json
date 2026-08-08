@@ -1,0 +1,13 @@
+{
+  "max_seq_length": 1280,
+  "token_length_stats": {
+    "min": 219,
+    "p50": 570,
+    "p95": 984,
+    "p99": 1080,
+    "max": 1255,
+    "chosen_max_seq_length": 1280,
+    "truncated_samples": 0,
+    "truncated_pct": 0.0
+  }
+}
