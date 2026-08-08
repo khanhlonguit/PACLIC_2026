@@ -1,0 +1,18 @@
+{
+  "LoRA": {
+    "n_samples": 1500,
+    "EM": 48.8,
+    "F1": 79.1793,
+    "BERTScore_P": 80.1903,
+    "BERTScore_R": 77.971,
+    "BERTScore_F1": 78.7543
+  },
+  "TinyLoRA": {
+    "n_samples": 1500,
+    "EM": 31.8667,
+    "F1": 68.3778,
+    "BERTScore_P": 72.5425,
+    "BERTScore_R": 74.0962,
+    "BERTScore_F1": 72.8809
+  }
+}
