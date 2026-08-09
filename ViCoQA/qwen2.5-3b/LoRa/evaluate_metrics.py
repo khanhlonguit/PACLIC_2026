@@ -2,7 +2,7 @@
 evaluate_metrics.py
 -------------------
 Tính EM (Exact Match), F1-score (token-level) và BERTScore
-cho 4 file eval_preds của ViCoQA / Qwen2.5-1.5B.
+cho các file eval_preds của ViCoQA / Qwen2.5-3B.
 
 Cài đặt thư viện cần thiết:
     pip install bert-score
@@ -195,6 +195,8 @@ BASE_DIR = Path(__file__).parent
 FILES = {
     "LoRA"     : BASE_DIR / "eval_preds_lora_test.json",
     "TinyLoRA" : BASE_DIR / "eval_preds_tinylora_test.json",
+    "DoRA"     : BASE_DIR / "eval_preds_dora_test.json",
+    "DeLoRA"   : BASE_DIR / "eval_preds_delora_test.json",
 }
 
 # BERTScore model (multilingual BERT works well for Vietnamese)
@@ -206,7 +208,7 @@ def main():
     results = {}
 
     print("=" * 70)
-    print("  ViCoQA Evaluation  |  Qwen2.5-1.5B")
+    print("  ViCoQA Evaluation  |  Qwen2.5-3B")
     print("=" * 70)
 
     for name, path in FILES.items():
